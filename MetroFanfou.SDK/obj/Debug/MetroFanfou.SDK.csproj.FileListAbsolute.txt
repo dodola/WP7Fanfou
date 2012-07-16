@@ -1,0 +1,5 @@
+D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou.SDK\Bin\Debug\MetroFanfou.SDK.dll
+D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou.SDK\Bin\Debug\MetroFanfou.SDK.pdb
+D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou.SDK\obj\Debug\MetroFanfou.SDK.dll
+D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou.SDK\obj\Debug\MetroFanfou.SDK.pdb
+D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou.SDK\obj\Debug\MetroFanfou.SDK.csprojResolveAssemblyReference.cache

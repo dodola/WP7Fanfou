@@ -1,0 +1,350 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:Search.cs" caret="1904" fromTop="21" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:EMenuItemAction.cs" caret="235" fromTop="11" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:DraftHelper.cs" caret="584" fromTop="20" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:IpAddressHelper.cs" caret="825" fromTop="26" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:Users.cs" caret="447" fromTop="0" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:Blocks.cs" caret="0" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Properties/f:WMAppManifest.xml" caret="0" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Properties/f:AppManifest.xml" caret="204" fromTop="6" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:ThemeHelper.cs" caret="385" fromTop="15" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:LoginPage.xaml" caret="0" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Themes/f:Blue.xaml" caret="1037" fromTop="0" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:Followers.cs" caret="403" fromTop="15" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/f:OAuth.cs" caret="0" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:IsolatedHelper.cs" caret="1252" fromTop="26" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:common/f:Isolated.cs" caret="673" fromTop="24" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:App.xaml.cs" caret="850" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:common/f:OauthHelper.cs" caret="3368" fromTop="67" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:LoginPage.xaml.cs" caret="0" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:AppSetting.cs" caret="5461" fromTop="22" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:RequestBase.cs" caret="3003" fromTop="20" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:API/f:Statuses.cs" caret="3036" fromTop="22" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml.cs" caret="793" fromTop="25" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="6683" fromTop="23" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:Objects/f:Status.cs" caret="2644" fromTop="35" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:App.xaml" caret="832" fromTop="15" />
+      <File id="A8706C3F-9931-47FE-B165-AB96A8BD269C/d:Objects/f:User.cs" caret="1494" fromTop="0" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="3502" fromTop="25" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml" caret="2926" fromTop="30" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="3281" fromTop="17" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="4938" fromTop="31" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="11776" fromTop="29" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="10322" fromTop="19" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="11776" fromTop="31" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="10880" fromTop="31" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:App.xaml" caret="477" fromTop="9" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="3435" fromTop="29" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="4107" fromTop="49" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="3871" fromTop="40" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:App.xaml" caret="883" fromTop="16" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="2452" fromTop="13" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Helper/f:Converter.cs" caret="1169" fromTop="20" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="2791" fromTop="33" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="5490" fromTop="16" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:AppSetting.cs" caret="5532" fromTop="28" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:AppSetting.cs" caret="5460" fromTop="22" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml.cs" caret="579" fromTop="22" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml.cs" caret="704" fromTop="21" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="14598" fromTop="22" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="5026" fromTop="26" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="7234" fromTop="44" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml.cs" caret="6539" fromTop="29" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="851" fromTop="13" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="2096" fromTop="27" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="4559" fromTop="29" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="4376" fromTop="33" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml" caret="1145" fromTop="5" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/f:MainPage.xaml" caret="2926" fromTop="30" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="3096" fromTop="35" />
+      <File id="539BB00B-897A-47F2-89C9-FDC86CBDD647/d:Controls/f:FanList.xaml" caret="4979" fromTop="38" />
+    </RecentEdits>
+  </RecentFiles>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:@System.Text.Encoding">
+      <Item value="GetEncoding`0" priority="80" />
+      <Item value="UTF8" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="CSharpCodeCompletionContext">
+      <Item value="BaseXAuthRequest`0" priority="31" />
+      <Item value="private" priority="414" />
+      <Item value="const" priority="31" />
+      <Item value="this" priority="543" />
+      <Item value="string" priority="5036" />
+      <Item value="AccessTokenUrl" priority="127" />
+      <Item value="var" priority="575" />
+      <Item value="new" priority="575" />
+      <Item value="AsyncCallback" priority="57" />
+      <Item value="AsyncHttpRequest" priority="28" />
+      <Item value="try" priority="63" />
+      <Item value="ex" priority="31" />
+      <Item value="request" priority="223" />
+      <Item value="responseEnd" priority="32" />
+      <Item value="EndAccessToken`0" priority="65" />
+      <Item value="callback" priority="1798" />
+      <Item value="HttpWebRequest`0" priority="63" />
+      <Item value="req" priority="31" />
+      <Item value="public" priority="1404" />
+      <Item value="AsyncCallback`0" priority="64" />
+      <Item value="o" priority="31" />
+      <Item value="postData" priority="63" />
+      <Item value="byte" priority="31" />
+      <Item value="Encoding`0" priority="31" />
+      <Item value="postStream" priority="95" />
+      <Item value="byteArray" priority="31" />
+      <Item value="String`0" priority="95" />
+      <Item value="XAuth" priority="28" />
+      <Item value="xauth" priority="31" />
+      <Item value="Action&lt;string&gt;" priority="28" />
+      <Item value="Action" priority="511" />
+      <Item value="innerCallback" priority="63" />
+      <Item value="AccessString" priority="31" />
+      <Item value="void" priority="607" />
+      <Item value="GetString`0" priority="32" />
+      <Item value="str" priority="31" />
+      <Item value="Dispatcher" priority="31" />
+      <Item value="object" priority="32" />
+      <Item value="XAuth`0" priority="31" />
+      <Item value="appSecret" priority="31" />
+      <Item value="oauth" priority="31" />
+      <Item value="ResponseDataFormat" priority="31" />
+      <Item value="Status`0" priority="240" />
+      <Item value="DataMember" priority="222" />
+      <Item value="Name" priority="222" />
+      <Item value="Photo`0" priority="31" />
+      <Item value="DataContract" priority="95" />
+      <Item value="enum" priority="31" />
+      <Item value="ResponseData" priority="63" />
+      <Item value="List" priority="63" />
+      <Item value="Parameters" priority="206" />
+      <Item value="paramters" priority="287" />
+      <Item value="queryWord" priority="62" />
+      <Item value="sinceId" priority="159" />
+      <Item value="maxId" priority="159" />
+      <Item value="if" priority="1119" />
+      <Item value="throw" priority="191" />
+      <Item value="count" priority="255" />
+      <Item value="mode" priority="159" />
+      <Item value="format" priority="287" />
+      <Item value="GetData`0" priority="287" />
+      <Item value="IFormatProvider`0" priority="63" />
+      <Item value="SearchCallBack" priority="126" />
+      <Item value="Util`0" priority="255" />
+      <Item value="json" priority="63" />
+      <Item value="OauthHelper`0" priority="95" />
+      <Item value="NavigateTo`0" priority="31" />
+      <Item value="Search" priority="28" />
+      <Item value="search" priority="63" />
+      <Item value="Exception`0" priority="31" />
+      <Item value="ICollection" priority="447" />
+      <Item value="null" priority="2207" />
+      <Item value="q" priority="61" />
+      <Item value="parameters" priority="1504" />
+      <Item value="int" priority="1087" />
+      <Item value="IFormattable`0" priority="31" />
+      <Item value="result" priority="31" />
+      <Item value="User`0" priority="126" />
+      <Item value="ListBox`0" priority="31" />
+      <Item value="Search`0" priority="31" />
+      <Item value="SearchUsers`0" priority="63" />
+      <Item value="UInt64`0" priority="95" />
+      <Item value="page" priority="127" />
+      <Item value="SearchUsersCallBack" priority="62" />
+      <Item value="RequestBase`0" priority="383" />
+      <Item value="IconCollection`0" priority="95" />
+      <Item value="GetBlocksIds`0" priority="30" />
+      <Item value="GetBlocksIdsCallBack" priority="94" />
+      <Item value="GetBlocksIdsEnd`0" priority="32" />
+      <Item value="Parameters`0" priority="63" />
+      <Item value="GetBlockingCallBack" priority="62" />
+      <Item value="GetBlockingEnd`0" priority="32" />
+      <Item value="CreateBlockCallBack" priority="62" />
+      <Item value="Exception" priority="28" />
+      <Item value="ExistsBlockCallBack" priority="94" />
+      <Item value="TemplatePartAttribute" priority="29" />
+      <Item value="ExistsBlockEnd`0" priority="32" />
+      <Item value="tag" priority="31" />
+      <Item value="GetUsersByTaggedCallBack" priority="62" />
+      <Item value="paraadd" priority="63" />
+      <Item value="paraint" priority="671" />
+      <Item value="parastr" priority="1951" />
+      <Item value="idisnull" priority="543" />
+      <Item value="GetHashCode`0" priority="31" />
+      <Item value="PostData`0" priority="31" />
+      <Item value="TrendObj`0" priority="31" />
+      <Item value="BrushMappingMode`0" priority="31" />
+      <Item value="source" priority="31" />
+      <Item value="status" priority="31" />
+      <Item value="ps" priority="447" />
+      <Item value="pi" priority="255" />
+      <Item value="global" priority="30" />
+      <Item value="DirectMessageObj`0" priority="62" />
+      <Item value="bool" priority="31" />
+      <Item value="Statuses`0" priority="144" />
+      <Item value="Statuses" priority="57" />
+      <Item value="statuses" priority="64" />
+      <Item value="GetHomeTimeLineCallback`0" priority="65" />
+      <Item value="Setting" priority="31" />
+      <Item value="FanFou" priority="128" />
+      <Item value="SDK" priority="107" />
+      <Item value="API" priority="53" />
+      <Item value="OAuth`0" priority="26" />
+      <Item value="Objects" priority="53" />
+      <Item value="static" priority="63" />
+      <Item value="Isolated`0" priority="63" />
+      <Item value="Helper" priority="63" />
+      <Item value="IsolatedHelper`0" priority="53" />
+      <Item value="AppSetting`0" priority="31" />
+      <Item value="return" priority="63" />
+      <Item value="val" priority="127" />
+      <Item value="ital" priority="31" />
+      <Item value="value" priority="95" />
+      <Item value="e" priority="31" />
+      <Item value="sender" priority="31" />
+      <Item value="case" priority="31" />
+      <Item value="break" priority="31" />
+      <Item value="homeItem" priority="63" />
+      <Item value="BeforeLoading`0" priority="32" />
+      <Item value="AfterLoaded`0" priority="32" />
+      <Item value="statusAPI" priority="31" />
+      <Item value="true" priority="31" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:MetroFanfou.SDK.Http.XAuth">
+      <Item value="LastError" priority="26" />
+      <Item value="GetAccessToken`0" priority="26" />
+      <Item value="AppSecret" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:MetroFanfou.SDK.Http.AsyncHttpRequest">
+      <Item value="Get`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.WebHeaderCollection">
+      <Item value="Indexer" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Net.HttpWebRequest">
+      <Item value="GetResponse`0" priority="26" />
+      <Item value="BeginGetResponse`0" priority="80" />
+      <Item value="BeginGetRequestStream`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Text.Encoding">
+      <Item value="GetByteCount`0" priority="26" />
+      <Item value="GetBytes`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.Stream">
+      <Item value="Write`0" priority="26" />
+      <Item value="Close`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="Length" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:MetroFanfou.MainPage">
+      <Item value="textBlock1" priority="26" />
+      <Item value="mainPanorama" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Controls.TextBlock">
+      <Item value="Text" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Threading.Dispatcher">
+      <Item value="BeginInvoke`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.ResponseDataFormat">
+      <Item value="JSON" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.API.Search">
+      <Item value="OAuth" priority="26" />
+      <Item value="ResponseDataFormat" priority="26" />
+      <Item value="SearchCallBack" priority="80" />
+      <Item value="SearchPublicTime`0" priority="53" />
+      <Item value="SearchUsersCallBack" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.Parameters">
+      <Item value="Add`0" priority="1241" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="IsNullOrEmpty`0" priority="647" />
+      <Item value="IsNullOrWhiteSpace`0" priority="53" />
+      <Item value="Format`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@FanFou.SDK.Util">
+      <Item value="JsonToObject`1" priority="215" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@MetroFanfou.common.OauthHelper">
+      <Item value="Token" priority="26" />
+      <Item value="TokenSecret" priority="26" />
+      <Item value="OAuth`0" priority="80" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.ResponseData`1">
+      <Item value="Data" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.ResponseDataObject`1">
+      <Item value="Info" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.API.Blocks">
+      <Item value="GetBlockingCallBack" priority="26" />
+      <Item value="CreateBlockCallBack" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.API.Users">
+      <Item value="GetUsersByTagged`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.API.Statuses">
+      <Item value="GetHomeTimeLine`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.IO.IsolatedStorage.IsolatedStorageSettings">
+      <Item value="Save`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.Status">
+      <Item value="Id" priority="53" />
+      <Item value="CreatedAt" priority="26" />
+      <Item value="Rawid" priority="80" />
+      <Item value="User" priority="26" />
+      <Item value="Text" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@MetroFanfou.common.Isolated">
+      <Item value="Get`0" priority="26" />
+      <Item value="Set`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@MetroFanfou.AppSetting">
+      <Item value="PageCount" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Int32">
+      <Item value="Parse`0" priority="26" />
+      <Item value="TryParse`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Convert">
+      <Item value="ToInt32`0" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@MetroFanfou.Helper.IsolatedHelper">
+      <Item value="PageCount" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Phone.Controls.Panorama">
+      <Item value="SelectedIndex" priority="26" />
+      <Item value="Items" priority="26" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:MetroFanfou.Controls.FanList">
+      <Item value="Init`0" priority="53" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FanFou.SDK.Objects.User">
+      <Item value="ScreenName" priority="26" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.6\bin\net-2.0\lib</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A8706C3F-9931-47FE-B165-AB96A8BD269C}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FanFou.SDK</RootNamespace>
+    <AssemblyName>FanFou.SDK</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Account.cs" />
+    <Compile Include="API\Blocks.cs" />
+    <Compile Include="API\DirectMessage.cs" />
+    <Compile Include="API\Favorites.cs" />
+    <Compile Include="API\Firends.cs" />
+    <Compile Include="API\FirendShips.cs" />
+    <Compile Include="API\Followers.cs" />
+    <Compile Include="API\Photos.cs" />
+    <Compile Include="API\RequestBase.cs" />
+    <Compile Include="API\SavedSearches.cs" />
+    <Compile Include="API\Search.cs" />
+    <Compile Include="API\Statuses.cs" />
+    <Compile Include="API\Trends.cs" />
+    <Compile Include="API\Users.cs" />
+    <Compile Include="CustomMD5Impl.cs" />
+    <Compile Include="Http\AsyncHttpRequest.cs" />
+    <Compile Include="Http\HttpUtil.cs" />
+    <Compile Include="OAuth.cs" />
+    <Compile Include="Objects\ConversationList.cs" />
+    <Compile Include="Objects\DirectMessageObj.cs" />
+    <Compile Include="Objects\Files.cs" />
+    <Compile Include="Objects\NameValuePairCollection.cs" />
+    <Compile Include="Objects\Notification.cs" />
+    <Compile Include="Objects\Parameters.cs" />
+    <Compile Include="Objects\Photo.cs" />
+    <Compile Include="Objects\ResponseDataFormat.cs" />
+    <Compile Include="Objects\Search\SavedSearch.cs" />
+    <Compile Include="Objects\Search\SearchUsers.cs" />
+    <Compile Include="Objects\Status.cs" />
+    <Compile Include="Objects\Trends\TrendObj.cs" />
+    <Compile Include="Objects\Trends\TrendCollection.cs" />
+    <Compile Include="Objects\UploadFile.cs" />
+    <Compile Include="Objects\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

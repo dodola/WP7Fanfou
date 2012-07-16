@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{539BB00B-897A-47F2-89C9-FDC86CBDD647}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MetroFanfou</RootNamespace>
+    <AssemblyName>MetroFanfou</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>MetroFanfou.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>MetroFanfou.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Controls, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Drawing, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppSetting.cs" />
+    <Compile Include="common\Isolated.cs" />
+    <Compile Include="common\OauthHelper.cs" />
+    <Compile Include="common\Params.cs" />
+    <Compile Include="Controls\FanList.xaml.cs">
+      <DependentUpon>FanList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Converter.cs" />
+    <Compile Include="Helper\DraftHelper.cs" />
+    <Compile Include="Helper\EAddTweetType.cs" />
+    <Compile Include="Helper\EMenuItemAction.cs" />
+    <Compile Include="Helper\HuaTiHelper.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\IpAddressHelper.cs" />
+    <Compile Include="Helper\IsolatedHelper.cs" />
+    <Compile Include="Helper\MessageBoxHelper.cs" />
+    <Compile Include="Helper\ScheduledHelper.cs" />
+    <Compile Include="Helper\ThemeHelper.cs" />
+    <Compile Include="Helper\TweetHelper.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\FanList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Black.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Blue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DarkBlue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Icons\back.png" />
+    <Content Include="Resource\Icons\camera.png" />
+    <Content Include="Resource\Icons\cancel.png" />
+    <Content Include="Resource\Icons\check.png" />
+    <Content Include="Resource\Icons\circle.png" />
+    <Content Include="Resource\Icons\comment.png" />
+    <Content Include="Resource\Icons\download.png" />
+    <Content Include="Resource\Icons\duihua.png" />
+    <Content Include="Resource\Icons\edit.png" />
+    <Content Include="Resource\Icons\face.png" />
+    <Content Include="Resource\Icons\favorite.png" />
+    <Content Include="Resource\Icons\forword.png" />
+    <Content Include="Resource\Icons\home.png" />
+    <Content Include="Resource\Icons\idol.png" />
+    <Content Include="Resource\Icons\landskape.png" />
+    <Content Include="Resource\Icons\list.comment.png" />
+    <Content Include="Resource\Icons\list.forward.png" />
+    <Content Include="Resource\Icons\logo.png" />
+    <Content Include="Resource\Icons\logo.white.png" />
+    <Content Include="Resource\Icons\mentions.png" />
+    <Content Include="Resource\Icons\message.png" />
+    <Content Include="Resource\Icons\move.png" />
+    <Content Include="Resource\Icons\noidol.png" />
+    <Content Include="Resource\Icons\POI.png" />
+    <Content Include="Resource\Icons\profile.png" />
+    <Content Include="Resource\Icons\refresh.png" />
+    <Content Include="Resource\Icons\resize.png" />
+    <Content Include="Resource\Icons\return.png" />
+    <Content Include="Resource\Icons\savet.png" />
+    <Content Include="Resource\Icons\search.png" />
+    <Content Include="Resource\Icons\sent.png" />
+    <Content Include="Resource\Icons\setting.png" />
+    <Content Include="Resource\Icons\sex.female.png" />
+    <Content Include="Resource\Icons\sex.male.png" />
+    <Content Include="Resource\Icons\trash.png" />
+    <Content Include="Resource\Icons\tray.comment.png" />
+    <Content Include="Resource\Icons\tray.comment.white.png" />
+    <Content Include="Resource\Icons\tray.fans.png" />
+    <Content Include="Resource\Icons\tray.fans.white.png" />
+    <Content Include="Resource\Icons\tray.message.png" />
+    <Content Include="Resource\Icons\tray.message.white.png" />
+    <Content Include="Resource\Icons\tray.tweet.png" />
+    <Content Include="Resource\Icons\tray.tweet.white.png" />
+    <Content Include="Resource\Icons\v.png" />
+    <Resource Include="Resource\Images\AddTweetTileBackground.png" />
+    <Resource Include="Resource\Images\backgound.png" />
+    <Resource Include="Resource\Images\noHead.png" />
+    <Resource Include="Resource\Images\pull.png" />
+    <Resource Include="Resource\Images\s.broadcast.png" />
+    <Resource Include="Resource\Images\s.famous.png" />
+    <Resource Include="Resource\Images\s.mayknow.png" />
+    <Resource Include="Resource\Images\s.topic.png" />
+    <Resource Include="Resource\Images\theme.black.png" />
+    <Resource Include="Resource\Images\theme.blue.png" />
+    <Resource Include="Resource\Images\theme.darkblue.png" />
+    <Resource Include="Resource\Images\VideoMask.png" />
+    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FanFou.SDK\FanFou.SDK.csproj">
+      <Project>{A8706C3F-9931-47FE-B165-AB96A8BD269C}</Project>
+      <Name>FanFou.SDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

@@ -1,0 +1,4 @@
+D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll
+D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.pdb
+D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\obj\Debug\FanFou.SDK.dll
+D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\obj\Debug\FanFou.SDK.pdb

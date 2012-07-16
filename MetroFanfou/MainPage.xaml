@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MetroFanfou.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:MetroFanfou.Controls">
+
+    <Grid x:Name="rootView"  Style="{StaticResource PageLayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Height="30" Grid.Row="0" Width="400">
+            <StackPanel x:Name="TrayPanel" Orientation="Horizontal" HorizontalAlignment="Right">
+                <toolkit:PerformanceProgressBar x:Name="performanceBar" Width="200"  Style="{StaticResource PerformanceProgressBarStyle}" />
+                <Image x:Name="imgTweetCount" Style="{StaticResource TrayTweetCountIcon}"/>
+                <TextBlock x:Name="tbTweetCount" Text="2" Style="{StaticResource TrayInfoTextStyle}"/>
+                <Image x:Name="imgCommentCount" Style="{StaticResource TrayCommentCountIcon}" />
+                <TextBlock x:Name="tbCommentCount" Text="2" Style="{StaticResource TrayInfoTextStyle}"/>
+                <Image x:Name="imgMessageCount"  Style="{StaticResource TrayMessageCountcon}"/>
+                <TextBlock x:Name="tbMessageCount" Text="1" Style="{StaticResource TrayInfoTextStyle}"/>
+                <Image x:Name="imgFanxCount" Style="{StaticResource TrayFansCountIcon}"/>
+                <TextBlock x:Name="tbFanxCount" Text="1" Style="{StaticResource TrayInfoTextStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <controls:Panorama TabNavigation="Cycle" SelectionChanged="Panorama_SelectionChanged" x:Name="mainPanorama" Grid.Row="1">
+            <controls:PanoramaItem Header="主页" >
+                <Grid>
+
+                    <my:FanList HorizontalAlignment="Left"
+                            Timeline="Home"
+                                ShowType="Full"
+                            x:Name="homeItem" 
+                            VerticalAlignment="Top" 
+                            />
+                </Grid>
+
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Header="@提到我的">
+                <my:FanList HorizontalAlignment="Left"
+                            Timeline="Reply"
+                                ShowType="Full"
+                            x:Name="replyItem" 
+                            VerticalAlignment="Top" 
+                            />
+            </controls:PanoramaItem>
+            <controls:PanoramaItem Header="随便看看">
+                <my:FanList HorizontalAlignment="Left"
+                            Timeline="Public"
+                                ShowType="Full"
+                            x:Name="publicItem" 
+                            VerticalAlignment="Top" 
+                            />
+            </controls:PanoramaItem>
+
+        </controls:Panorama>
+
+    </Grid>
+
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.9">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="设置" x:Name="mSetting" Click="mSetting_Click"/>
+                <shell:ApplicationBarMenuItem Text="注销" x:Name="mLogout" Click="mLogout_Click"/>
+                <shell:ApplicationBarMenuItem Text="关于" x:Name="mAbout" Click="mAbout_Click"/>
+                <shell:ApplicationBarMenuItem Text="帮助" x:Name="mHelp" Click="mHelp_Click"/>
+                <shell:ApplicationBarMenuItem Text="退出" x:Name="mExit" Click="mExit_Click"/>
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnReload" IconUri="/Resource/Icons/refresh.png" Text="刷新" Click="btnReload_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Resource/Icons/edit.png" Text="添加" Click="btnAdd_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnProfile" IconUri="/Resource/Icons/profile.png" Text="资料" Click="btnProfile_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnSearch" IconUri="/Resource/Icons/search.png" Text="搜索"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

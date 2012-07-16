@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="MetroFanfou.Controls.FanList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
+             mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="800" d:DesignWidth="480">
+    <UserControl.Resources>
+        <DataTemplate x:Key="FullFanListItemTemplate">
+            <Grid Margin="0,0,0,18">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu IsZoomEnabled="False" Style="{StaticResource ContextMenuStyle}" Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
+                        <toolkit:MenuItem Header="回复" Click="MenuItem_Reply" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="转播" Click="MenuItem_Forward" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="收藏" Click="MenuItem_Favorite"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="对话" Click="MenuItem_Comment"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" HorizontalAlignment="Left" Source="{Binding User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" Stretch="Fill" Width="40" Height="40" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding User.ScreenName}" Style="{StaticResource TweetListAccount}"/>
+                        <!--<Image Source="/Resource/Icons/v.png" Stretch="Fill" Width="24" Height="24" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>-->
+                    </StackPanel>
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource TweetContent}" Visibility="{Binding Text, Converter={StaticResource StringToVisibleConverter}}"/>
+                    <Image  Stretch="None" Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Image,StringFormat='\{0\}/160'}" Style="{StaticResource TweetListImage}"/>
+
+                    <!--被回复的微博Style 1-->
+                    <Grid  Visibility="{Binding RepostStatus, Converter={StaticResource ObjectToVisibleConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <es:RegularPolygon Style="{StaticResource ParentTextBackgroundArrow}">
+                            <es:RegularPolygon.RenderTransform>
+                                <CompositeTransform SkewX="37"/>
+                            </es:RegularPolygon.RenderTransform>
+                        </es:RegularPolygon>
+                        <Grid Grid.Row="1" Style="{StaticResource TweetListParentTextBg}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}" Style="{StaticResource TweetListParentText}" Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}"/>
+                                <Image  Stretch="None" Visibility="{Binding RepostStatus.StatusPhoto, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding RepostStatus.StatusPhoto,StringFormat='\{0\}/160'}"  Style="{StaticResource TweetListParentImage}"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <!--微博来源等-->
+                    <Grid Margin="0,5,0,0" Width="400" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding CreatedAt}" Style="{StaticResource TweetListMeta}" />
+                            <TextBlock Text="{Binding Source}" Style="{StaticResource TweetListMeta}"  />
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--简单模板，无头像，无名称，用户详细资料页面使用-->
+        <DataTemplate x:Key="SimpleTweetListItemTemplate">
+            <Grid Margin="0,0,0,24">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu IsZoomEnabled="False" Style="{StaticResource ContextMenuStyle}" Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
+                        <toolkit:MenuItem Header="回复" Click="MenuItem_Reply" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="转播" Click="MenuItem_Forward" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="收藏" Click="MenuItem_Favorite"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="对话" Click="MenuItem_Comment"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+                <StackPanel>
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NickName}" Style="{StaticResource TweetListAccount}"/>
+                        <Image Source="/Resource/Icons/v.png" Stretch="Fill" Width="24" Height="24" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+                    </StackPanel>-->
+                    <TextBlock Text="{Binding Origtext}" Style="{StaticResource TweetContent}" Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+                    <Image  Stretch="None" Visibility="{Binding Image, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Image,StringFormat='\{0\}/160'}" Style="{StaticResource TweetListImage}"/>
+                    <Image  Stretch="None" Visibility="{Binding Video, Converter={StaticResource ObjectToVisibleConverter}}" Source="{Binding Video.ThumbUrl}" Style="{StaticResource TweetListImage}">
+                        <Image.OpacityMask>
+                            <ImageBrush ImageSource="/Resource/Images/VideoMask.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                        </Image.OpacityMask>
+                    </Image>
+                    <!--被回复的微博Style 1-->
+                    <Grid  Visibility="{Binding Source, Converter={StaticResource ObjectToVisibleConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <es:RegularPolygon  Style="{StaticResource ParentTextBackgroundArrow}">
+                            <es:RegularPolygon.RenderTransform>
+                                <CompositeTransform SkewX="37"/>
+                            </es:RegularPolygon.RenderTransform>
+                        </es:RegularPolygon>
+                        <Grid Grid.Row="1" Style="{StaticResource TweetListParentTextBg}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source,Converter={StaticResource SourceTweetContentConverter}}" Style="{StaticResource TweetListParentText}" Visibility="{Binding Source.Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+                                <Image  Stretch="None" Visibility="{Binding Source.Image, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Source.Image,StringFormat='\{0\}/160'}"  Style="{StaticResource TweetListParentImage}"/>
+                                <Image  Stretch="None" Visibility="{Binding Source.Video, Converter={StaticResource ObjectToVisibleConverter}}" Source="{Binding Source.Video.ThumbUrl}" Style="{StaticResource TweetListParentImage}">
+                                    <Image.OpacityMask>
+                                        <ImageBrush ImageSource="/Resource/Images/VideoMask.png" Stretch="Uniform" AlignmentX="Center" AlignmentY="Center"/>
+                                    </Image.OpacityMask>
+                                </Image>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <!--微博来源等-->
+                    <Grid Margin="0,5,0,0" Width="450" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding PublishTime}" Style="{StaticResource TweetListMeta}" />
+                            <TextBlock Text="{Binding From}" Style="{StaticResource TweetListMeta}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Image  Source="/Resource/Icons/list.comment.png" Style="{StaticResource TweetListIcon}" Visibility="{Binding Mcount, Converter={StaticResource IntToVisibleConverter}}"/>
+                            <TextBlock Text="{Binding Mcount}" Style="{StaticResource TweetListIconText}"  Visibility="{Binding Mcount, Converter={StaticResource IntToVisibleConverter}}"/>
+                            <Image Source="/Resource/Icons/list.forward.png" Style="{StaticResource TweetListIcon}"  Visibility="{Binding Count, Converter={StaticResource IntToVisibleConverter}}"/>
+                            <TextBlock  Text="{Binding Count}" Style="{StaticResource TweetListIconText}"  Visibility="{Binding Count, Converter={StaticResource IntToVisibleConverter}}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--转播评论模板-->
+        <DataTemplate x:Key="ReplayListItemTemplate">
+            <Grid Margin="0,0,0,18">
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu IsZoomEnabled="False" Style="{StaticResource ContextMenuStyle}" Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
+                        <toolkit:MenuItem Header="回复" Click="MenuItem_Reply" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="转播" Click="MenuItem_Forward" Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="收藏" Click="MenuItem_Favorite"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                        <toolkit:MenuItem Header="对话" Click="MenuItem_Comment"  Tag="{Binding Id}" Style="{StaticResource MenuItemStyle}" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" HorizontalAlignment="Left" Source="{Binding Head, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" Stretch="Fill" Width="40" Height="40" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NickName}" Style="{StaticResource TweetListAccount}"/>
+                        <Image Source="/Resource/Icons/v.png" Stretch="Fill" Width="24" Height="24" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Origtext}" Style="{StaticResource TweetContent}" Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+                    <!--微博来源等-->
+                    <Grid Margin="0,5,0,0" Width="400" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding PublishTime}" Style="{StaticResource TweetListMeta}" />
+                            <TextBlock Text="{Binding From}" Style="{StaticResource TweetListMeta}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--头部模板-->
+        <DataTemplate x:Key="ListHeaderTemplate">
+            <Grid Style="{StaticResource ListHeaderGrid}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/Resource/Images/pull.png" Width="32" Height="32" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tbHeaderText" Style="{StaticResource ListHeaderText}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--底部模板-->
+        <DataTemplate x:Key="ListFooterTemplate">
+            <Grid Style="{StaticResource ListFooterGrid}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbFooterText" Style="{StaticResource ListFooterText}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="TweetListLayoutRoot" Background="Transparent" Style="{StaticResource ListLayoutGrid}">
+        <toolkit:LongListSelector x:Name="FanListBox" 
+                                  Background="Transparent" 
+                                  toolkit:TiltEffect.IsTiltEnabled="True"
+                                  IsFlatList="True"
+                                  ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
+                                  ListFooterTemplate="{StaticResource ListFooterTemplate}"
+                                  ShowListHeader="False"
+                                  ShowListFooter="False"
+                                  Tap="FanListBox_Tap"
+                                  >
+            <toolkit:GestureService.GestureListener>
+                <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted" GestureBegin="GestureListener_GestureBegin" />
+            </toolkit:GestureService.GestureListener>
+        </toolkit:LongListSelector>
+    </Grid>
+
+</UserControl>
