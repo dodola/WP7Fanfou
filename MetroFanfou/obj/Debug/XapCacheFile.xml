@@ -1,9 +1,9 @@
-﻿<xapCache source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\Bin\Debug\MetroFanfou.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2012/7/16 23:05:48">
+﻿<xapCache source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\Bin\Debug\MetroFanfou.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2012/7/18 0:33:17">
   <file source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2012/7/12 23:07:29" />
   <file source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\Background.png" archivePath="Background.png" lastWriteTime="2012/3/27 0:43:29" />
   <file source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="2012/3/27 0:43:29" />
-  <file source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\obj\Debug\MetroFanfou.dll" archivePath="MetroFanfou.dll" lastWriteTime="2012/7/16 23:05:48" />
-  <file source="D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll" archivePath="FanFou.SDK.dll" lastWriteTime="2012/7/15 21:50:33" />
+  <file source="D:\Project\WindowsPhone7\MetroFanfou\MetroFanfou\obj\Debug\MetroFanfou.dll" archivePath="MetroFanfou.dll" lastWriteTime="2012/7/18 0:33:17" />
+  <file source="D:\Project\WindowsPhone7\MetroFanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll" archivePath="FanFou.SDK.dll" lastWriteTime="2012/7/17 23:59:09" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Controls.dll" archivePath="Microsoft.Expression.Controls.dll" lastWriteTime="2011/8/17 1:48:22" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Drawing.dll" archivePath="Microsoft.Expression.Drawing.dll" lastWriteTime="2011/8/17 1:48:22" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="2011/8/29 22:49:08" />

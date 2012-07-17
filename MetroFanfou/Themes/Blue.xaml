@@ -266,7 +266,7 @@ xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expressio
     <!--
         Pivot的样式
     -->
-    <Style x:Key="Pivot" TargetType="controls:Pivot">
+    <Style x:Key="Panorama" TargetType="controls:Panorama">
         <Setter Property="Foreground" Value="#FF55A4F2"/>
     </Style>
 

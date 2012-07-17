@@ -16,6 +16,7 @@
         <converter:SourceTweetContentConverter x:Key="SourceTweetContentConverter" />
      
         <converter:MessageListTextConverter x:Key="MessageListTextConverter" />
+        <converter:TimeToSpanConvert x:Key="TimeToSpanConvert"/>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

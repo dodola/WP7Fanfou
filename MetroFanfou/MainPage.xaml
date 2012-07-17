@@ -35,7 +35,7 @@
             </StackPanel>
         </Grid>
 
-        <controls:Panorama TabNavigation="Cycle" SelectionChanged="Panorama_SelectionChanged" x:Name="mainPanorama" Grid.Row="1">
+        <controls:Panorama TabNavigation="Cycle" SelectionChanged="Panorama_SelectionChanged" x:Name="mainPanorama" Grid.Row="1" Style="{StaticResource Panorama}">
             <controls:PanoramaItem Header="主页" >
                 <Grid>
 

@@ -15,11 +15,14 @@ namespace FanFou.SDK.Objects
     [DataContract]
     public class Status
     {
+
+
         /// <summary>
         /// 消息发送时间
         /// </summary>
         [DataMember(Name = "created_at")]
         public string CreatedAt { get; set; }
+
         /// <summary>
         /// 消息id
         /// </summary>

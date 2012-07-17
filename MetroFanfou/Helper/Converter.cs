@@ -5,6 +5,7 @@
 /////////////////////////////////////////////////////////
 
 using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using FanFou.SDK.Objects;
@@ -122,4 +123,53 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
+
+
+    public class TimeToSpanConvert : IValueConverter
+    {
+        /// <summary>  
+        /// 本地时间转成GMT格式的时间  
+        /// </summary>  
+        public static string ToGMTFormat(DateTime dt)
+        {
+            return dt.ToString("r") + dt.ToString("zzz").Replace(":", "");
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                const string format = "ddd MMM dd HH:mm:ss zzz yyyy";
+                DateTime date;
+                if (DateTime.TryParseExact(value.ToString(), format, CultureInfo.InvariantCulture,
+                                           DateTimeStyles.None, out date))
+                {
+                    TimeSpan timeSpan = DateTime.Now.Subtract(date).Duration();
+
+
+                    if ((int)timeSpan.TotalDays > 0)
+                    {
+                        return string.Format("{0}天前", (int)timeSpan.TotalDays);
+                    }
+                    if ((int)timeSpan.TotalHours > 0)
+                    {
+                        return string.Format("{0}小时前", (int)timeSpan.TotalHours);
+                    }
+                    if ((int)timeSpan.TotalMinutes > 0)
+                    {
+                        return string.Format("{0}分钟前", (int)timeSpan.TotalMinutes);
+                    }
+                    if ((int)timeSpan.TotalSeconds > 0)
+                        return String.Format("{0}秒前", (int)timeSpan.TotalSeconds);
+                }
+            }
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+
 }

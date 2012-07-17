@@ -22,6 +22,7 @@ namespace MetroFanfou
         {
             InitializeComponent();
             this.ApplicationBar.BackgroundColor = (Color)App.Current.Resources["ApplicationBarBackgroundColor"];
+            this.Dispatcher.BeginInvoke(() => homeItem.Init(BeforeLoading, AfterLoaded));
         }
 
         private void mSetting_Click(object sender, EventArgs e)
@@ -86,6 +87,12 @@ namespace MetroFanfou
             {
                 case 0:
                     homeItem.Init(BeforeLoading, AfterLoaded);
+                    break;
+                case 1:
+                    replyItem.Init(BeforeLoading, AfterLoaded);
+                    break;
+                case 2:
+                    publicItem.Init(BeforeLoading, AfterLoaded);
                     break;
             }
         }

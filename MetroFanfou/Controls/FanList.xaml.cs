@@ -124,6 +124,7 @@ namespace MetroFanfou.Controls
 
 
 
+
         #endregion
 
         #region 自定义属性
@@ -245,13 +246,21 @@ namespace MetroFanfou.Controls
 
                 if (data != null && data.Count() > 0)
                 {
-                    lastRawId = data.LastOrDefault().Rawid;
+                    var lastOrDefault = data.LastOrDefault();
+                    if (lastOrDefault != null)
+                        lastRawId = lastOrDefault.Rawid;
 
-                    firstRawId = data.FirstOrDefault().Rawid;
+                    var firstOrDefault = data.FirstOrDefault();
+                    if (firstOrDefault != null)
+                        firstRawId = firstOrDefault.Rawid;
 
-                    firstId = data.FirstOrDefault().Id;
+                    var orDefault = data.FirstOrDefault();
+                    if (orDefault != null)
+                        firstId = orDefault.Id;
 
-                    lastId = data.LastOrDefault().Id;
+                    var last = data.LastOrDefault();
+                    if (last != null)
+                        lastId = last.Id;
                 }
 
                 if (FanListBox.ItemTemplate == null)
@@ -394,9 +403,13 @@ namespace MetroFanfou.Controls
                 case ETimeline.Home:
                     statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, null, AppSetting.PageCount, 0, "default");
                     break;
-                //    case ETimeline.Mentions: Dal.Timeline.Instance.Mentions(0, 0, 0, GetTimelineEnd); break;
-                //    case ETimeline.User: Dal.Timeline.Instance.GetUserTime(additionalData,0, 0, GetTimelineEnd); break;
-                //    case ETimeline.Reply: Dal.Tweet.Instance.ReplyList(0,0,additionalData,GetTimelineEnd); break;
+                case ETimeline.Reply:
+                    statusAPI.GetReplies(GetTimelineEnd, null, null, AppSetting.PageCount, 0, "default");
+                    break;
+                case ETimeline.Public:
+                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, null, "default");
+                    break;
+
             }
         }
 
@@ -439,11 +452,15 @@ namespace MetroFanfou.Controls
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, null, AppSetting.PageCount, null, "default");
+                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, lastId, AppSetting.PageCount, null, "default");
                     break;
-                //    case ETimeline.Mentions: Dal.Timeline.Instance.Mentions(PageFlag.Down, lastTimestamp, 0, GetTimelineEnd); break;
-                //    case ETimeline.User: Dal.Timeline.Instance.GetUserTime(additionalData, PageFlag.Down, lastTimestamp, GetTimelineEnd); break;
-                //    case ETimeline.Reply: Dal.Tweet.Instance.ReplyList(PageFlag.Down, lastTimestamp, additionalData, GetTimelineEnd); break;
+                case ETimeline.Reply:
+                    statusAPI.GetReplies(GetTimelineEnd, null, lastId, AppSetting.PageCount, null, "default");
+                    break;
+                case ETimeline.Public:
+                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, lastId, "default");
+                    break;
+
             }
 
             Dispatcher.BeginInvoke(() =>
@@ -478,11 +495,14 @@ namespace MetroFanfou.Controls
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, null, AppSetting.PageCount, null, "default");
+                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, firstId, null, AppSetting.PageCount, null, "default");
                     break;
-                //    case ETimeline.Mentions: Dal.Timeline.Instance.Mentions(PageFlag.First, firstTimestamp, 0, GetTimelineEnd); break;
-                //    case ETimeline.User: Dal.Timeline.Instance.GetUserTime(additionalData, PageFlag.First, firstTimestamp, GetTimelineEnd); break;
-                //    case ETimeline.Reply: Dal.Tweet.Instance.ReplyList(PageFlag.First, firstTimestamp, additionalData, GetTimelineEnd); break;
+                case ETimeline.Reply:
+                    statusAPI.GetReplies(GetTimelineEnd, firstId, null, AppSetting.PageCount, null, "default");
+                    break;
+                case ETimeline.Public:
+                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, firstId, null, "default");
+                    break;
             }
 
 
