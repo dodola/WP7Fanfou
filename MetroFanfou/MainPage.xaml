@@ -13,11 +13,13 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:MetroFanfou.Controls">
+    shell:SystemTray.IsVisible="True" 
+    xmlns:fanfou="clr-namespace:MetroFanfou.Controls" Loaded="PhoneApplicationPageLoaded">
 
     <Grid x:Name="rootView"  Style="{StaticResource PageLayoutGrid}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -35,37 +37,66 @@
             </StackPanel>
         </Grid>
 
-        <controls:Panorama TabNavigation="Cycle" SelectionChanged="Panorama_SelectionChanged" x:Name="mainPanorama" Grid.Row="1" Style="{StaticResource Panorama}">
-            <controls:PanoramaItem Header="主页" >
-                <Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Image x:Name="imgLogo" Style="{StaticResource TweetLogo}" />
+            <TextBlock x:Name="tbAccountName" Style="{StaticResource TweetAccountTitle}"/>
+        </StackPanel>
 
-                    <my:FanList HorizontalAlignment="Left"
+
+
+        <controls:Pivot x:Name="PivotMain" Style="{StaticResource Pivot}" Grid.Row="2"
+                        SelectionChanged="PivotMain_SelectionChanged"
+                        >
+            <!--主页 -->
+            <controls:PivotItem Header="主页"  >
+
+                <fanfou:FanList HorizontalAlignment="Left"
                             Timeline="Home"
                                 ShowType="Full"
                             x:Name="homeItem" 
                             VerticalAlignment="Top" 
                             />
-                </Grid>
+            </controls:PivotItem>
 
-            </controls:PanoramaItem>
-            <controls:PanoramaItem Header="@提到我的">
-                <my:FanList HorizontalAlignment="Left"
+            <!--提及 -->
+            <controls:PivotItem Header="@提到我的">
+                <fanfou:FanList HorizontalAlignment="Left"
                             Timeline="Reply"
                                 ShowType="Full"
                             x:Name="replyItem" 
                             VerticalAlignment="Top" 
                             />
-            </controls:PanoramaItem>
-            <controls:PanoramaItem Header="随便看看">
-                <my:FanList HorizontalAlignment="Left"
+            </controls:PivotItem>
+            <!--私信-->
+            <controls:PivotItem Header="随便看看">
+                <fanfou:FanList HorizontalAlignment="Left"
                             Timeline="Public"
                                 ShowType="Full"
                             x:Name="publicItem" 
                             VerticalAlignment="Top" 
                             />
-            </controls:PanoramaItem>
-
-        </controls:Panorama>
+            </controls:PivotItem>
+            <!--
+            <controls:PivotItem Header="广场">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                      
+                        <fanfou:HubTileButton Grid.Row="0" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True"  Content="热门广播" Image="/Resource/Images/s.broadcast.png" Template="{StaticResource HubTileButton}"/>
+                        <fanfou:HubTileButton Grid.Row="0" Grid.Column="1" toolkit:TiltEffect.IsTiltEnabled="True"  Content="热门话题" Image="/Resource/Images/s.topic.png" Template="{StaticResource HubTileButton}"/>
+                        <fanfou:HubTileButton Grid.Row="1" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True"  Content="推荐名人" Image="/Resource/Images/s.famous.png" Template="{StaticResource HubTileButton}"/>
+                        <fanfou:HubTileButton Grid.Row="1" Grid.Column="1" toolkit:TiltEffect.IsTiltEnabled="True"  Content="可能认识" Image="/Resource/Images/s.mayknow.png" Template="{StaticResource HubTileButton}"/>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>-->
+        </controls:Pivot>
 
     </Grid>
 

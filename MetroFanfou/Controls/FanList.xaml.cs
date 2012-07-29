@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using FanFou.SDK.API;
 using MetroFanfou.Helper;
 using MetroFanfou.common;
+using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Input.Touch;
 using GestureEventArgs = Microsoft.Phone.Controls.GestureEventArgs;
 
@@ -618,6 +619,15 @@ namespace MetroFanfou.Controls
             return null;
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var textBlock = (TextBlock)sender;
+            if (!String.IsNullOrEmpty(textBlock.Tag.ToString()))
+            {
+                WebBrowserTask task = new WebBrowserTask();
+                task.Uri = new Uri(textBlock.Tag.ToString());
+                task.Show();
+            }
+        }
     }
 }

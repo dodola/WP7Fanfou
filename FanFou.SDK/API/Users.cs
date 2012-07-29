@@ -47,12 +47,12 @@ namespace FanFou.SDK.API
 
         public Action<User> UsersShowCallBack { get; set; }
 
-        public void UsersShow(Action<User> callback, string id, string mode = null, string format = null)
+        public void UsersShow(Action<User> callback, string id = null ,string mode = null, string format = null)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("id不能为空");
+            // if (string.IsNullOrEmpty(id)) throw new ArgumentException("id不能为空");
             UsersShowCallBack = callback;
             var parameters = new Parameters();
-            parameters.Add("id", id);
+            if (!string.IsNullOrEmpty(id)) parameters.Add("id", id);
             if (!string.IsNullOrEmpty(mode)) parameters.Add("mode", mode);
             if (!string.IsNullOrEmpty(format)) parameters.Add("format", format);
             GetData("http://api.fanfou.com/users/show.json", parameters, UsersShowEnd);

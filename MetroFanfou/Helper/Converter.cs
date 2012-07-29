@@ -6,6 +6,7 @@
 
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
 using FanFou.SDK.Objects;
@@ -170,6 +171,50 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
+
+    //public class HtmlToLinkConvert : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        String link = "";
+    //        if (value != null)
+    //        {
+    //            var r = new Regex("<a\\shref=\"(?<link>.*?)\"[^>]*?>(?<content>.*?)<\\/a>");
+    //            Match match = r.Match(value.ToString());
+    //            if (match.Length > 0)
+    //            {
+    //                link = match.Groups["link"].Value;
+    //            }
+    //        }
+    //        return link;
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return value;
+    //    }
+    //}
+    //public class HtmlToContentConvert : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        String content = "";
+    //        if (value != null)
+    //        {
+    //            var r = new Regex("<a\\shref=\"(?<link>.*?)\"[^>]*?>(?<content>.*?)<\\/a>");
+    //            Match match = r.Match(value.ToString());
+    //            if (match.Length > 0)
+    //                content = match.Groups["content"].Value;
+
+    //        }
+    //        return content;
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return value;
+    //    }
+    //}
 
 
 }

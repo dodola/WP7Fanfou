@@ -24,7 +24,7 @@ namespace MetroFanfou
         /// 微博最大字数
         /// </summary>
         public static int MaxTweetWordCount = 140;
-
+        
         /// <summary>
         /// 在线帮助文档
         /// </summary>

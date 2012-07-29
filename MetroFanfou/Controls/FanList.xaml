@@ -9,6 +9,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+             xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
     d:DesignHeight="800" d:DesignWidth="480">
     <UserControl.Resources>
         <DataTemplate x:Key="FullFanListItemTemplate">
@@ -25,7 +26,17 @@
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" HorizontalAlignment="Left" Source="{Binding User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" Stretch="Fill" Width="40" Height="40" VerticalAlignment="Top"/>
+                <Image Grid.Column="0" HorizontalAlignment="Left"
+                       Source="{Binding User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" 
+                       Stretch="Fill"
+                       Width="40"
+                       Height="40"
+                       VerticalAlignment="Top" >
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                    </Image.Clip>
+
+                </Image>
                 <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding User.ScreenName}" Style="{StaticResource TweetListAccount}"/>
@@ -56,8 +67,8 @@
                     <!--微博来源等-->
                     <Grid Margin="0,5,0,0" Width="400" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding CreatedAt,Converter={StaticResource TimeToSpanConvert}}" Style="{StaticResource TweetListMeta}" />
-                            <TextBlock Text="{Binding  Source}" Style="{StaticResource TweetListMeta}"  />
+                            <TextBlock Text="{Binding CreatedAt,Converter={StaticResource TimeToSpanConvert}}" Style="{StaticResource SourceText}"  />
+                            <fanfou:HtmlLinkBlock Html="{Binding Source}" Style="{StaticResource SourceLink}"/>
                         </StackPanel>
 
                     </Grid>

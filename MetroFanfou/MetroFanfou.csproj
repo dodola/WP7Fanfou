@@ -74,6 +74,8 @@
     <Compile Include="Controls\FanList.xaml.cs">
       <DependentUpon>FanList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HtmlLinkBlock.cs" />
+    <Compile Include="Controls\HubTileButton.cs" />
     <Compile Include="Helper\Converter.cs" />
     <Compile Include="Helper\DraftHelper.cs" />
     <Compile Include="Helper\EAddTweetType.cs" />
@@ -93,6 +95,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -110,6 +115,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Setting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Black.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -179,18 +188,18 @@
     <Content Include="Resource\Icons\tray.tweet.png" />
     <Content Include="Resource\Icons\tray.tweet.white.png" />
     <Content Include="Resource\Icons\v.png" />
-    <Resource Include="Resource\Images\AddTweetTileBackground.png" />
-    <Resource Include="Resource\Images\backgound.png" />
-    <Resource Include="Resource\Images\noHead.png" />
-    <Resource Include="Resource\Images\pull.png" />
-    <Resource Include="Resource\Images\s.broadcast.png" />
-    <Resource Include="Resource\Images\s.famous.png" />
-    <Resource Include="Resource\Images\s.mayknow.png" />
-    <Resource Include="Resource\Images\s.topic.png" />
-    <Resource Include="Resource\Images\theme.black.png" />
-    <Resource Include="Resource\Images\theme.blue.png" />
-    <Resource Include="Resource\Images\theme.darkblue.png" />
-    <Resource Include="Resource\Images\VideoMask.png" />
+    <Content Include="Resource\Images\AddTweetTileBackground.png" />
+    <Content Include="Resource\Images\backgound.png" />
+    <Content Include="Resource\Images\noHead.png" />
+    <Content Include="Resource\Images\pull.png" />
+    <Content Include="Resource\Images\s.broadcast.png" />
+    <Content Include="Resource\Images\s.famous.png" />
+    <Content Include="Resource\Images\s.mayknow.png" />
+    <Content Include="Resource\Images\s.topic.png" />
+    <Content Include="Resource\Images\theme.black.png" />
+    <Content Include="Resource\Images\theme.blue.png" />
+    <Content Include="Resource\Images\theme.darkblue.png" />
+    <Content Include="Resource\Images\VideoMask.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

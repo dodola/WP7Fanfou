@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -18,15 +19,34 @@ namespace MetroFanfou
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private Users usersApi = new Users(OauthHelper.OAuth());
         public MainPage()
         {
             InitializeComponent();
             this.ApplicationBar.BackgroundColor = (Color)App.Current.Resources["ApplicationBarBackgroundColor"];
-            this.Dispatcher.BeginInvoke(() => homeItem.Init(BeforeLoading, AfterLoaded));
+            homeItem.Init(BeforeLoading, AfterLoaded);
+
+            new Thread(() => usersApi.UsersShow(UserLoaded)).Start();
+
+        }
+
+        private void UserLoaded(User obj)
+        {
+            this.Dispatcher.BeginInvoke(() =>
+                                            {
+
+                                                this.tbTweetCount.Text = obj.StatusesCount.ToString();
+                                                this.tbCommentCount.Text = obj.FavouritesCount.ToString();
+                                                this.tbFanxCount.Text = obj.FollowersCount.ToString();
+                                                this.tbAccountName.Text = obj.Name;
+                                                this.tbMessageCount.Text = obj.FriendsCount.ToString();
+
+                                            });
         }
 
         private void mSetting_Click(object sender, EventArgs e)
         {
+            NavigationService.Navigate(new Uri(string.Format("/Setting.xaml"), UriKind.Relative));
         }
 
         private void mLogout_Click(object sender, EventArgs e)
@@ -46,7 +66,12 @@ namespace MetroFanfou
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-
+            switch (PivotMain.SelectedIndex)
+            {
+                case 0: homeItem.Reset(); break;
+                case 1: replyItem.Reset(); break;
+                case 2: publicItem.Reset(); break;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -81,9 +106,16 @@ namespace MetroFanfou
                 performanceBar.IsIndeterminate = false;
             });
         }
-        private void Panorama_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void PhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
         {
-            switch (mainPanorama.SelectedIndex)
+
+
+        }
+
+        private void PivotMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (PivotMain.SelectedIndex)
             {
                 case 0:
                     homeItem.Init(BeforeLoading, AfterLoaded);
