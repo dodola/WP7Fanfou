@@ -44,4 +44,5 @@ D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.g.resources
 D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.dll
 D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.pdb
 D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\XapCacheFile.xml
+D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\Controls\MySelfInfoControl.g.i.cs
 D:\dodogit\WP7Fanfou\MetroFanfou\obj\Debug\Setting.g.i.cs

@@ -1,0 +1,113 @@
+﻿<phone:PhoneApplicationPage xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
+    x:Class="MetroFanfou.Setting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"  Style="{StaticResource PageLayoutGrid}">
+        <!--Pivot Control-->
+        <controls:Pivot x:Name="ptSettingPivot"  Style="{StaticResource Pivot}" >
+            <controls:Pivot.Title>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" Style="{StaticResource TweetLogo}" />
+                    <TextBlock Text="Altman设置" FontSize="24" FontFamily="Microsoft YaHei"/>
+                </StackPanel>
+            </controls:Pivot.Title>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="选项">
+                <StackPanel>
+                    <toolkit:ListPicker x:Name="lpPictureQuality"  Header="发微博时的图片质量" SelectionMode="Single" SelectionChanged="lpPictureQuality_SelectionChanged" Style="{StaticResource SettingListPicker}" Loaded="lpPictureQuality_Loaded">
+                        <toolkit:ListPicker.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource SettingTitleStyle}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.HeaderTemplate>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key}" Style="{StaticResource SettingListPickerItem}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                    <toolkit:ListPicker x:Name="lpCheckUpdateStatus"   Header="应用主界面查新时间间隔" SelectionMode="Single" SelectionChanged="lpCheckUpdateStatus_SelectionChanged" Style="{StaticResource SettingListPicker}" Loaded="lpCheckUpdateStatus_Loaded">
+                        <toolkit:ListPicker.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource SettingTitleStyle}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.HeaderTemplate>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key}" Style="{StaticResource SettingListPickerItem}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                    <toolkit:ListPicker x:Name="lpSchedule"   Header="退出后每30分钟查新一次（后台任务）" SelectionMode="Single"  SelectionChanged="lpSchedule_SelectionChanged"  Style="{StaticResource SettingListPicker}"  Loaded="lpSchedule_Loaded">
+                        <toolkit:ListPicker.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource SettingTitleStyle}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.HeaderTemplate>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key}" Style="{StaticResource SettingListPickerItem}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                    <toolkit:ListPicker x:Name="lpExitConfirm"   Header="退出应用时请询问我" SelectionMode="Single"  SelectionChanged="lpExitConfirm_SelectionChanged" Style="{StaticResource SettingListPicker}" Loaded="lpExitConfirm_Loaded">
+                        <toolkit:ListPicker.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource SettingTitleStyle}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.HeaderTemplate>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key}" Style="{StaticResource SettingListPickerItem}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
+                    <CheckBox x:Name="cbHubTile" Content="添加发新微瓦片" Tap="cbHubTile_Tap" Style="{StaticResource SettingCheckbox}"/>
+                </StackPanel>
+            </controls:PivotItem>
+            <controls:PivotItem Header="主题">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel  Grid.Row="0">
+                        <TextBlock Text="点击色块选择主题后重启应用生效" />
+                    </StackPanel>
+                    <ListBox x:Name="themeListBox" Grid.Row="1" SelectionChanged="themeListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Value}" Width="434" Height="80" Margin="0,0,0,24" Stretch="UniformToFill">
+                                </Image>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+
+            </controls:PivotItem>
+            <!--Pivot item two-->
+            <controls:PivotItem Header="关于">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock x:Name="tbAppName" Text="" Style="{StaticResource AboutTitle}"/>
+                      
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+
+</phone:PhoneApplicationPage>
