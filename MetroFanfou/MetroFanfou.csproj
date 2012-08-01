@@ -74,9 +74,7 @@
     <Compile Include="Controls\FanList.xaml.cs">
       <DependentUpon>FanList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MySelfInfoControl.xaml.cs">
-      <DependentUpon>MySelfInfoControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\RichTweetBox.cs" />
     <Compile Include="Helper\Converter.cs" />
     <Compile Include="Helper\DraftHelper.cs" />
     <Compile Include="Helper\EAddTweetType.cs" />
@@ -106,10 +104,6 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Controls\FanList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MySelfInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

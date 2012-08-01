@@ -76,26 +76,7 @@
                             VerticalAlignment="Top" 
                             />
             </controls:PivotItem>
-            <!--
-            <controls:PivotItem Header="广场">
-                <ScrollViewer>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                      
-                        <fanfou:HubTileButton Grid.Row="0" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True"  Content="热门广播" Image="/Resource/Images/s.broadcast.png" Template="{StaticResource HubTileButton}"/>
-                        <fanfou:HubTileButton Grid.Row="0" Grid.Column="1" toolkit:TiltEffect.IsTiltEnabled="True"  Content="热门话题" Image="/Resource/Images/s.topic.png" Template="{StaticResource HubTileButton}"/>
-                        <fanfou:HubTileButton Grid.Row="1" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True"  Content="推荐名人" Image="/Resource/Images/s.famous.png" Template="{StaticResource HubTileButton}"/>
-                        <fanfou:HubTileButton Grid.Row="1" Grid.Column="1" toolkit:TiltEffect.IsTiltEnabled="True"  Content="可能认识" Image="/Resource/Images/s.mayknow.png" Template="{StaticResource HubTileButton}"/>
-                    </Grid>
-                </ScrollViewer>
-            </controls:PivotItem>-->
+
         </controls:Pivot>
 
     </Grid>
@@ -104,15 +85,15 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.9">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="设置" x:Name="mSetting" Click="mSetting_Click"/>
-                <shell:ApplicationBarMenuItem Text="注销" x:Name="mLogout" Click="mLogout_Click"/>
-                <shell:ApplicationBarMenuItem Text="关于" x:Name="mAbout" Click="mAbout_Click"/>
-                <shell:ApplicationBarMenuItem Text="帮助" x:Name="mHelp" Click="mHelp_Click"/>
-                <shell:ApplicationBarMenuItem Text="退出" x:Name="mExit" Click="mExit_Click"/>
+                <shell:ApplicationBarMenuItem Text="设置" x:Name="mSetting" Click="MSettingClick"/>
+                <shell:ApplicationBarMenuItem Text="注销" x:Name="mLogout" Click="MLogoutClick"/>
+                <shell:ApplicationBarMenuItem Text="关于" x:Name="mAbout" Click="MAboutClick"/>
+                <shell:ApplicationBarMenuItem Text="帮助" x:Name="mHelp" Click="MHelpClick"/>
+                <shell:ApplicationBarMenuItem Text="退出" x:Name="mExit" Click="MExitClick"/>
             </shell:ApplicationBar.MenuItems>
-            <shell:ApplicationBarIconButton x:Name="btnReload" IconUri="/Resource/Icons/refresh.png" Text="刷新" Click="btnReload_Click"/>
-            <shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Resource/Icons/edit.png" Text="添加" Click="btnAdd_Click"/>
-            <shell:ApplicationBarIconButton x:Name="btnProfile" IconUri="/Resource/Icons/profile.png" Text="资料" Click="btnProfile_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnReload" IconUri="/Resource/Icons/refresh.png" Text="刷新" Click="BtnReloadClick"/>
+            <shell:ApplicationBarIconButton x:Name="btnAdd" IconUri="/Resource/Icons/edit.png" Text="添加" Click="BtnAddClick"/>
+            <shell:ApplicationBarIconButton x:Name="btnProfile" IconUri="/Resource/Icons/profile.png" Text="资料" Click="BtnProfileClick"/>
             <shell:ApplicationBarIconButton x:Name="btnSearch" IconUri="/Resource/Icons/search.png" Text="搜索"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using FanFou.SDK.API;
 using MetroFanfou.Helper;
 using MetroFanfou.common;
 using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Input.Touch;
-using GestureEventArgs = Microsoft.Phone.Controls.GestureEventArgs;
 
 namespace MetroFanfou.Controls
 {
     public partial class FanList : UserControl
     {
-        private FanFou.SDK.API.Statuses statusAPI;
+        private FanFou.SDK.API.Statuses _statusApi;
 
 
 
@@ -50,13 +43,13 @@ namespace MetroFanfou.Controls
         public enum ETimeline
         {
             /// 首页
-            /// </summary>
+            /// 
             Home = 1,
             /// <summary>
             /// 提及
             /// </summary>
             Reply,
-            /// <summary>
+            /// <summary/>
             /// <summary>
             /// 随便看看
             /// </summary>
@@ -90,38 +83,38 @@ namespace MetroFanfou.Controls
         /// <summary>
         /// 是否正在拉取数据
         /// </summary>
-        private bool isPolling { get; set; }
+        private bool IsPolling { get; set; }
         /// <summary>
         /// 是否初始化，加载数据
         /// </summary>
-        private bool isInited { get; set; }
+        private bool IsInited { get; set; }
 
         /// <summary>
         /// 加载数据的类型
         /// </summary>
-        private EPollType pollType { get; set; }
+        private EPollType PollType { get; set; }
 
         /// <summary>
         /// 最后一条微博rawid
         /// </summary>
-        private long lastRawId { get; set; }
+        private long LastRawId { get; set; }
         /// <summary>
         /// 第一条微博的rawid
         /// </summary>
-        private long firstRawId { get; set; }
+        private long FirstRawId { get; set; }
 
-        private string firstId { get; set; }
+        private string FirstId { get; set; }
 
-        private string lastId { get; set; }
+        private string LastId { get; set; }
         /// <summary>
         /// 最后一次刷新的时间
         /// </summary>
-        private DateTime lastPollTime { get; set; }
+        private DateTime LastPollTime { get; set; }
 
         /// <summary>
         /// 拖取的指定用户或是指定的微博ID
         /// </summary>
-        private string additionalData;
+        private string _additionalData;
 
 
 
@@ -170,9 +163,9 @@ namespace MetroFanfou.Controls
 
         #region 本控件事件
 
-        private Action beforeLoadingCallback { get; set; }
+        private Action BeforeLoadingCallback { get; set; }
 
-        private Action<object> afterLoadedCallback { get; set; }
+        private Action<object> AfterLoadedCallback { get; set; }
 
         /// <summary>
         /// 选择微博
@@ -214,23 +207,23 @@ namespace MetroFanfou.Controls
         private void GetTimelineEnd(ICollection<FanFou.SDK.Objects.Status> tweets)
         {
 
-            isPolling = false;
+            IsPolling = false;
 
             isVerticalDrag = false;
 
-            lastPollTime = DateTime.Now;
+            LastPollTime = DateTime.Now;
 
             Dispatcher.BeginInvoke(() =>
             {
                 var data = (IEnumerable<FanFou.SDK.Objects.Status>)FanListBox.ItemsSource;
 
-                if (pollType == EPollType.NextPage)
+                if (PollType == EPollType.NextPage)
                 {
                     data = data.Concat(tweets).ToList();
                 }
-                else if (pollType == EPollType.Lastest)
+                else if (PollType == EPollType.Lastest)
                 {
-                    tweets = tweets.Where(t => t.Rawid > firstRawId).ToList();
+                    tweets = tweets.Where(t => t.Rawid > FirstRawId).ToList();
                     if (tweets.Count > 0)
                     {
                         data = tweets.Concat(data).ToList();
@@ -240,28 +233,28 @@ namespace MetroFanfou.Controls
                 {
                     if (tweets != null && tweets.Count > 0)
                     {
-                        isInited = true;
+                        IsInited = true;
                     }
                     data = tweets;
                 }
 
-                if (data != null && data.Count() > 0)
+                if (data != null && data.Any())
                 {
                     var lastOrDefault = data.LastOrDefault();
                     if (lastOrDefault != null)
-                        lastRawId = lastOrDefault.Rawid;
+                        LastRawId = lastOrDefault.Rawid;
 
                     var firstOrDefault = data.FirstOrDefault();
                     if (firstOrDefault != null)
-                        firstRawId = firstOrDefault.Rawid;
+                        FirstRawId = firstOrDefault.Rawid;
 
                     var orDefault = data.FirstOrDefault();
                     if (orDefault != null)
-                        firstId = orDefault.Id;
+                        FirstId = orDefault.Id;
 
                     var last = data.LastOrDefault();
                     if (last != null)
-                        lastId = last.Id;
+                        LastId = last.Id;
                 }
 
                 if (FanListBox.ItemTemplate == null)
@@ -290,12 +283,12 @@ namespace MetroFanfou.Controls
 
                 FanListBox.ShowListHeader = false;
 
-                if (afterLoadedCallback != null)
+                if (AfterLoadedCallback != null)
                 {
-                    afterLoadedCallback(tweets);
+                    AfterLoadedCallback(tweets);
                 }
 
-                if ((pollType == EPollType.Lastest || pollType == EPollType.Default) && GotLastest != null)
+                if ((PollType == EPollType.Lastest || PollType == EPollType.Default) && GotLastest != null)
                 {
                     GotLastest();
                 }
@@ -376,39 +369,39 @@ namespace MetroFanfou.Controls
         /// <param name="afterCallback"></param>
         public void Init(Action beforeLoading = null, Action<object> afterCallback = null)
         {
-            if (statusAPI == null)
-                statusAPI = new Statuses(OauthHelper.OAuth());
+            if (_statusApi == null)
+                _statusApi = new Statuses(OauthHelper.OAuth());
 
-            if (isInited)
+            if (IsInited)
             {
                 return;
             }
 
             if (beforeLoading != null)
             {
-                beforeLoadingCallback = beforeLoading;
+                BeforeLoadingCallback = beforeLoading;
                 beforeLoading();
             }
 
             if (afterCallback != null)
             {
-                afterLoadedCallback = afterCallback;
+                AfterLoadedCallback = afterCallback;
             }
 
-            pollType = EPollType.Default;
+            PollType = EPollType.Default;
 
-            isPolling = true;
+            IsPolling = true;
 
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, null, AppSetting.PageCount, 0, "default");
+                    _statusApi.GetHomeTimeLine(GetTimelineEnd, null, null, null, AppSetting.PageCount, 0, "default");
                     break;
                 case ETimeline.Reply:
-                    statusAPI.GetReplies(GetTimelineEnd, null, null, AppSetting.PageCount, 0, "default");
+                    _statusApi.GetReplies(GetTimelineEnd, null, null, AppSetting.PageCount, 0, "default");
                     break;
                 case ETimeline.Public:
-                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, null, "default");
+                    _statusApi.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, null, "default");
                     break;
 
             }
@@ -421,11 +414,11 @@ namespace MetroFanfou.Controls
         public void Reset()
         {
 
-            isInited = false;
+            IsInited = false;
 
-            pollType = EPollType.Default;
+            PollType = EPollType.Default;
 
-            Init(beforeLoadingCallback, afterLoadedCallback);
+            Init(BeforeLoadingCallback, AfterLoadedCallback);
 
         }
 
@@ -441,25 +434,25 @@ namespace MetroFanfou.Controls
 
             if (!this.IsCanPollData()) return;
 
-            if (beforeLoadingCallback != null)
+            if (BeforeLoadingCallback != null)
             {
-                beforeLoadingCallback();
+                BeforeLoadingCallback();
             }
 
-            isPolling = true;
+            IsPolling = true;
 
-            pollType = EPollType.NextPage;
+            PollType = EPollType.NextPage;
 
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, null, lastId, AppSetting.PageCount, null, "default");
+                    _statusApi.GetHomeTimeLine(GetTimelineEnd, null, null, LastId, AppSetting.PageCount, null, "default");
                     break;
                 case ETimeline.Reply:
-                    statusAPI.GetReplies(GetTimelineEnd, null, lastId, AppSetting.PageCount, null, "default");
+                    _statusApi.GetReplies(GetTimelineEnd, null, LastId, AppSetting.PageCount, null, "default");
                     break;
                 case ETimeline.Public:
-                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, lastId, "default");
+                    _statusApi.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, LastId, "default");
                     break;
 
             }
@@ -484,25 +477,25 @@ namespace MetroFanfou.Controls
 
             if (!this.IsCanPollData()) return;
 
-            if (beforeLoadingCallback != null)
+            if (BeforeLoadingCallback != null)
             {
-                beforeLoadingCallback();
+                BeforeLoadingCallback();
             }
 
-            isPolling = true;
+            IsPolling = true;
 
-            pollType = EPollType.Lastest;
+            PollType = EPollType.Lastest;
 
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    statusAPI.GetHomeTimeLine(GetTimelineEnd, null, firstId, null, AppSetting.PageCount, null, "default");
+                    _statusApi.GetHomeTimeLine(GetTimelineEnd, null, FirstId, null, AppSetting.PageCount, null, "default");
                     break;
                 case ETimeline.Reply:
-                    statusAPI.GetReplies(GetTimelineEnd, firstId, null, AppSetting.PageCount, null, "default");
+                    _statusApi.GetReplies(GetTimelineEnd, FirstId, null, AppSetting.PageCount, null, "default");
                     break;
                 case ETimeline.Public:
-                    statusAPI.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, firstId, null, "default");
+                    _statusApi.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, FirstId, null, "default");
                     break;
             }
 
@@ -523,7 +516,7 @@ namespace MetroFanfou.Controls
         /// <returns></returns>
         private bool IsCanPollData()
         {
-            return !isPolling;
+            return !IsPolling;
         }
 
         #endregion

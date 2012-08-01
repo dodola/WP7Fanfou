@@ -1,93 +1,86 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using FanFou.SDK.API;
 using FanFou.SDK.Objects;
 using MetroFanfou.common;
-using Microsoft.Phone.Controls;
 
 namespace MetroFanfou
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
-        private Users usersApi = new Users(OauthHelper.OAuth());
+        private readonly Users _usersApi = new Users(OauthHelper.OAuth());
+
         public MainPage()
         {
             InitializeComponent();
-            this.ApplicationBar.BackgroundColor = (Color)App.Current.Resources["ApplicationBarBackgroundColor"];
+            ApplicationBar.BackgroundColor = (Color) Application.Current.Resources["ApplicationBarBackgroundColor"];
             homeItem.Init(BeforeLoading, AfterLoaded);
 
-            new Thread(() => usersApi.UsersShow(UserLoaded)).Start();
-
+            new Thread(() => _usersApi.UsersShow(UserLoaded)).Start();
         }
 
         private void UserLoaded(User obj)
         {
-            this.Dispatcher.BeginInvoke(() =>
-                                            {
-
-                                                this.tbTweetCount.Text = obj.StatusesCount.ToString();
-                                                this.tbCommentCount.Text = obj.FavouritesCount.ToString();
-                                                this.tbFanxCount.Text = obj.FollowersCount.ToString();
-                                                this.tbAccountName.Text = obj.Name;
-                                                this.tbMessageCount.Text = obj.FriendsCount.ToString();
-
-                                            });
+            Dispatcher.BeginInvoke(() =>
+                                       {
+                                           tbTweetCount.Text = obj.StatusesCount.ToString(CultureInfo.InvariantCulture);
+                                           tbCommentCount.Text =
+                                               obj.FavouritesCount.ToString(CultureInfo.InvariantCulture);
+                                           tbFanxCount.Text = obj.FollowersCount.ToString(CultureInfo.InvariantCulture);
+                                           tbAccountName.Text = obj.Name;
+                                           tbMessageCount.Text = obj.FriendsCount.ToString(CultureInfo.InvariantCulture);
+                                       });
         }
 
-        private void mSetting_Click(object sender, EventArgs e)
+        private void MSettingClick(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri(string.Format("/Setting.xaml"), UriKind.Relative));
         }
 
-        private void mLogout_Click(object sender, EventArgs e)
+        private void MLogoutClick(object sender, EventArgs e)
         {
-
         }
 
-        private void mHelp_Click(object sender, EventArgs e)
+        private void MHelpClick(object sender, EventArgs e)
         {
-
         }
 
-        private void mExit_Click(object sender, EventArgs e)
+        private void MExitClick(object sender, EventArgs e)
         {
-
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
+        private void BtnReloadClick(object sender, EventArgs e)
         {
             switch (PivotMain.SelectedIndex)
             {
-                case 0: homeItem.Reset(); break;
-                case 1: replyItem.Reset(); break;
-                case 2: publicItem.Reset(); break;
+                case 0:
+                    homeItem.Reset();
+                    break;
+                case 1:
+                    replyItem.Reset();
+                    break;
+                case 2:
+                    publicItem.Reset();
+                    break;
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAddClick(object sender, EventArgs e)
         {
-
         }
 
-        private void btnProfile_Click(object sender, EventArgs e)
+        private void BtnProfileClick(object sender, EventArgs e)
         {
-
         }
 
-        private void mAbout_Click(object sender, EventArgs e)
+        private void MAboutClick(object sender, EventArgs e)
         {
-
         }
+
         /// <summary>
         /// 加载数据前显示loading状态
         /// </summary>
@@ -101,16 +94,11 @@ namespace MetroFanfou
         /// </summary>
         private void AfterLoaded(object tweets)
         {
-            Dispatcher.BeginInvoke(() =>
-            {
-                performanceBar.IsIndeterminate = false;
-            });
+            Dispatcher.BeginInvoke(() => { performanceBar.IsIndeterminate = false; });
         }
 
         private void PhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
         {
-
-
         }
 
         private void PivotMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
