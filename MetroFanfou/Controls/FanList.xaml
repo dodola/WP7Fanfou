@@ -27,11 +27,16 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" HorizontalAlignment="Left"
-                       Source="{Binding User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" 
+                      
                        Stretch="Fill"
                        Width="40"
                        Height="40"
                        VerticalAlignment="Top" >
+                    <Image.Source>
+                        <BitmapImage  CreateOptions="BackgroundCreation" UriSource="{Binding User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}" >
+
+                        </BitmapImage>
+                    </Image.Source>
                     <Image.Clip>
                         <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
                     </Image.Clip>
@@ -40,9 +45,15 @@
                 <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding User.ScreenName}" Style="{StaticResource TweetListAccount}"/>
-
                     </StackPanel>
-                    <fanfou:RichTweetBox  OrigText="{Binding Text}"  TextWrapping="Wrap" FontSize="22" Foreground="Black" x:Name="rtRichTweetBox" Style="{StaticResource RichTweetBox}" Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+                    <fanfou:RichTweetBox  OrigText="{Binding Text}" 
+                                          TextWrapping="Wrap" 
+                                          FontSize="22"
+                                          Foreground="Black"
+                                          x:Name="rtRichTweetBox" 
+                                          Style="{StaticResource RichTweetBox}" 
+                                          Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+
                     <Image  Stretch="None" Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Image,StringFormat='\{0\}/160'}" Style="{StaticResource TweetListImage}"/>
 
                     <!--被回复的微博Style 1-->
@@ -59,7 +70,17 @@
                         <Grid Grid.Row="1" Style="{StaticResource TweetListParentTextBg}">
                             <StackPanel>
                                 <TextBlock Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}" Style="{StaticResource TweetListParentText}" Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}"/>
-                                <Image  Stretch="None" Visibility="{Binding RepostStatus.StatusPhoto, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding RepostStatus.StatusPhoto,StringFormat='\{0\}/160'}"  Style="{StaticResource TweetListParentImage}"/>
+
+                                <Image  Stretch="None" 
+                                        Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"
+                                        Style="{StaticResource TweetListParentImage}"
+                                        Tag="{Binding RepostStatus.StatusPhoto}"
+                                         MouseLeftButtonUp="Image_MouseLeftButtonUp"
+                                        >
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{Binding RepostStatus.StatusPhoto.ImageUrl}" CreateOptions="BackgroundCreation"></BitmapImage>
+                                    </Image.Source>
+                                </Image>
 
                             </StackPanel>
                         </Grid>
@@ -68,7 +89,7 @@
                     <Grid Margin="0,5,0,0" Width="400" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <TextBlock Text="{Binding CreatedAt,Converter={StaticResource TimeToSpanConvert}}" Style="{StaticResource SourceText}"  />
-
+                            <TextBlock Text="{Binding Source,Converter={StaticResource HtmlToContentConvert}}" Style="{StaticResource SourceText}"/>
                         </StackPanel>
 
                     </Grid>

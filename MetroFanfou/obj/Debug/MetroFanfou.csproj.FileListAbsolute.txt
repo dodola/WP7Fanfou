@@ -70,3 +70,9 @@ D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.g.resources
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.dll
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.pdb
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\XapCacheFile.xml
+D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\ImageBrowse.g.i.cs
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Coding4Fun.Phone.Controls.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Coding4Fun.Phone.Controls.Toolkit.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.pdb
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.xml

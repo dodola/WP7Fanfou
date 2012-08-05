@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using FanFou.SDK.API;
+using FanFou.SDK.Objects;
 using MetroFanfou.Helper;
 using MetroFanfou.common;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -606,20 +609,22 @@ namespace MetroFanfou.Controls
                 var data = (IEnumerable<FanFou.SDK.Objects.Status>)FanListBox.ItemsSource;
                 if (data != null)
                 {
-                    return data.Where(t => t.Id == tweetId).FirstOrDefault();
+                    return data.FirstOrDefault(t => t.Id == tweetId);
                 }
             }
             return null;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var textBlock = (TextBlock)sender;
-            if (!String.IsNullOrEmpty(textBlock.Tag.ToString()))
+            if (sender != null)
             {
-                WebBrowserTask task = new WebBrowserTask();
-                task.Uri = new Uri(textBlock.Tag.ToString());
-                task.Show();
+                var image = (Image)sender;
+                Photo photo = image.Tag as Photo;
+                PhoneApplicationService.Current.State[Const.IMGOBJ] = photo;
+                var app = Application.Current as App;
+                if (app != null)
+                    app.RootFrame.Navigate(new Uri("/ImageBrowse.xaml", UriKind.Relative));
             }
         }
     }
