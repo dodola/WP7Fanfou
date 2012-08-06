@@ -1,0 +1,60 @@
+﻿<UserControl
+    x:Class="MetroFanfou.Controls.TweetDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
+    xmlns:fanfou="clr-namespace:MetroFanfou.Controls" FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="TweetDetailLayoutRoot" Background="Transparent" Style="{StaticResource ListLayoutGrid}">
+        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel>
+                <!--<TextBlock Text="{Binding Origtext}" Style="{StaticResource TweetContent}" Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>-->
+                <fanfou:RichTweetBox  TextWrapping="Wrap" FontSize="22" Foreground="Black" x:Name="rtRichTweetBox" Style="{StaticResource RichTweetBox}" Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
+                <Image  Stretch="None" Visibility="{Binding StatusPhoto.LargeUrl, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Image,StringFormat='\{0\}/460'}" Style="{StaticResource DetailImage}" Tap="TweetImageTap" />
+
+                <!--被回复的微博Style 1-->
+                <Grid  Visibility="{Binding RepostStatus, Converter={StaticResource ObjectToVisibleConverter}}" Tap="Grid_Tap" Margin="12,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <es:RegularPolygon  Style="{StaticResource ParentTextBackgroundArrow}">
+                        <es:RegularPolygon.RenderTransform>
+                            <CompositeTransform SkewX="37"/>
+                        </es:RegularPolygon.RenderTransform>
+                    </es:RegularPolygon>
+                    <Grid Grid.Row="1" Style="{StaticResource TweetListParentTextBg}">
+                        <StackPanel>
+                            <TextBlock 
+                                Text="{Binding RepostStatus.Text,Converter={StaticResource SourceTweetContentConverter}}" Style="{StaticResource TweetListParentText}" 
+                                Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}"/>
+                            <Image  Stretch="None" Visibility="{Binding Source.Image, Converter={StaticResource StringToVisibleConverter}}" 
+                                    Source="{Binding RepostStatus.Photo.LargeUrl.Image,StringFormat='\{0\}/160'}"  Style="{StaticResource TweetListParentImage}"/>
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <!--微博来源等-->
+                <Grid Margin="12,5,0,0" Width="420" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding CreatedAt,Converter={StaticResource TimeToSpanConvert}}" Style="{StaticResource DetailMeta}" />
+                        <TextBlock Text="{Binding Source}" Style="{StaticResource DetailMeta}" />
+                        <TextBlock Text="{Binding Location}" Style="{StaticResource DetailMeta}" />
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Image  Source="/Resource/Icons/list.comment.png" Style="{StaticResource TweetListIcon}" Visibility="{Binding Mcount, Converter={StaticResource IntToVisibleConverter}}"/>
+                        <TextBlock Text="{Binding Mcount}" Style="{StaticResource TweetListIconText}"  Visibility="{Binding Mcount, Converter={StaticResource IntToVisibleConverter}}"/>
+                        <Image Source="/Resource/Icons/list.forward.png" Style="{StaticResource TweetListIcon}"  Visibility="{Binding Count, Converter={StaticResource IntToVisibleConverter}}"/>
+                        <TextBlock  Text="{Binding Count}" Style="{StaticResource TweetListIconText}"  Visibility="{Binding Count, Converter={StaticResource IntToVisibleConverter}}"/>
+                    </StackPanel>-->
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

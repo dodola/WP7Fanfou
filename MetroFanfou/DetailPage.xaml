@@ -1,0 +1,58 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
+    xmlns:mec="clr-namespace:Microsoft.Expression.Controls;assembly=Microsoft.Expression.Controls"
+    xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    x:Class="MetroFanfou.DetailPage"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.9">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="返回首页" x:Name="mHome" Click="HomeClick"/>
+                <shell:ApplicationBarMenuItem Text="短信分享" x:Name="mSms" Click="SmsClick"/>
+                <shell:ApplicationBarMenuItem Text="邮件分享" x:Name="mEmail" Click="EmailClick"/>
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnReply" IconUri="/Resource/Icons/comment.png" Text="评论" Click="btnReply_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnForward" IconUri="/Resource/Icons/forword.png" Text="转发" Click="btnForward_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnFavorite" IconUri="/Resource/Icons/favorite.png" Text="收藏" Click="btnFavorite_Click"/>
+            <shell:ApplicationBarIconButton x:Name="btnComment" IconUri="/Resource/Icons/duihua.png" Text="对话" Click="btnComment_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource PageLayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="3" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--用户头像-->
+      
+        <toolkit:PerformanceProgressBar Width="400"  Grid.Row="1"  HorizontalAlignment="Center" x:Name="progressBar" Style="{StaticResource PerformanceProgressBarStyle}"/>
+        <!--Pivot Control-->
+        <controls:Pivot x:Name="detailPivot" Style="{StaticResource Pivot}" Grid.Row="2" SelectionChanged="Pivot_SelectionChanged">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="微博详情">
+                <fanfou:TweetDetail x:Name="tweetDetail" />
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="转播与评论">
+                <fanfou:FanList x:Name="replyList" Timeline="Reply" ShowType="Reply"/>
+            </controls:PivotItem>
+        </controls:Pivot>
+
+    </Grid>
+</phone:PhoneApplicationPage>

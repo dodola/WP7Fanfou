@@ -79,6 +79,12 @@
     </Compile>
     <Compile Include="Controls\PullDownToRefreshPanel.cs" />
     <Compile Include="Controls\RichTweetBox.cs" />
+    <Compile Include="Controls\TweetDetail.xaml.cs">
+      <DependentUpon>TweetDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Converter.cs" />
     <Compile Include="Helper\DraftHelper.cs" />
     <Compile Include="Helper\EAddTweetType.cs" />
@@ -112,6 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Controls\FanList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TweetDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

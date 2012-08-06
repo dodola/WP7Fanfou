@@ -20,22 +20,17 @@ namespace MetroFanfou
         public ImageBrowse()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
             InitData();
-            base.OnNavigatedTo(e);
         }
 
         private void InitData()
         {
             object imgObj;
-            PhoneApplicationService.Current.State.TryGetValue(Const.IMGOBJ, out imgObj);
+            PhoneApplicationService.Current.State.TryGetValue(Const.Imgobj, out imgObj);
             if (imgObj != null)
             {
                 Img = (Photo)imgObj;
-                image.Source = new BitmapImage(new Uri(Img.LargeUrl));
+              image.Source = new BitmapImage(new Uri(Img.LargeUrl));
             }
         }
 
@@ -130,6 +125,11 @@ namespace MetroFanfou
                               a.M21 * b.M12 + a.M22 * b.M22,
                               a.OffsetX * b.M11 + a.OffsetY * b.M21 + b.OffsetX,
                               a.OffsetX * b.M12 + a.OffsetY * b.M22 + b.OffsetY);
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

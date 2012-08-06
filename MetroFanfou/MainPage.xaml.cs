@@ -17,10 +17,23 @@ namespace MetroFanfou
         public MainPage()
         {
             InitializeComponent();
-            ApplicationBar.BackgroundColor = (Color) Application.Current.Resources["ApplicationBarBackgroundColor"];
+            ApplicationBar.BackgroundColor = (Color)Application.Current.Resources["ApplicationBarBackgroundColor"];
             homeItem.Init(BeforeLoading, AfterLoaded);
 
-            new Thread(() => _usersApi.UsersShow(UserLoaded)).Start();
+
+            this.Dispatcher.BeginInvoke(() =>
+                                            {
+                                                _usersApi.UsersShow(UserLoaded);
+                                                if (NavigationService.CanGoBack)
+                                                    NavigationService.RemoveBackEntry();
+
+                                                this.homeItem.Selected = SelectStatus;
+
+                                            });
+        }
+        private void SelectStatus(FanFou.SDK.Objects.Status status)
+        {
+            this.Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri(String.Format("/DetailPage.xaml?{0}={1}", Const.StatusID, status.Id), UriKind.Relative)));
         }
 
         private void UserLoaded(User obj)
@@ -101,7 +114,7 @@ namespace MetroFanfou
         {
         }
 
-        private void PivotMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PivotMainSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (PivotMain.SelectedIndex)
             {

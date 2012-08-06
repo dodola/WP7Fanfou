@@ -4,24 +4,26 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
+using System.Windows.Input;
 using FanFou.SDK.API;
 using FanFou.SDK.Objects;
 using MetroFanfou.Helper;
 using MetroFanfou.common;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework.Input.Touch;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MetroFanfou.Controls
 {
     public partial class FanList : UserControl
     {
-        private FanFou.SDK.API.Statuses _statusApi;
-
-
+        private Statuses _statusApi;
 
         #region 属性枚举
+
+        #region EShowType enum
+
         /// <summary>
         /// 显示类型
         /// </summary>
@@ -31,15 +33,22 @@ namespace MetroFanfou.Controls
             /// 完全
             /// </summary>
             Full,
+
             /// <summary>
             /// 简单
             /// </summary>
             Simple,
+
             /// <summary>
             /// 回复，无父
             /// </summary>
             Reply
         }
+
+        #endregion
+
+        #region ETimeline enum
+
         /// <summary>
         /// 时间线类型
         /// </summary>
@@ -48,17 +57,20 @@ namespace MetroFanfou.Controls
             /// 首页
             /// 
             Home = 1,
+
             /// <summary>
             /// 提及
             /// </summary>
             Reply,
+
             /// <summary/>
             /// <summary>
             /// 随便看看
             /// </summary>
             Public
-
         }
+
+        #endregion
 
         /// <summary>
         /// 拉取数据类型
@@ -69,10 +81,12 @@ namespace MetroFanfou.Controls
             /// 默认，结果绑定到控件
             /// </summary>
             Default,
+
             /// <summary>
             /// 下一页，结果追加到末尾
             /// </summary>
             NextPage,
+
             /// <summary>
             /// 最新，结果插到开头
             /// </summary>
@@ -84,9 +98,15 @@ namespace MetroFanfou.Controls
         #region 私有属性
 
         /// <summary>
+        /// 拖取的指定用户或是指定的微博ID
+        /// </summary>
+        private string _additionalData;
+
+        /// <summary>
         /// 是否正在拉取数据
         /// </summary>
         private bool IsPolling { get; set; }
+
         /// <summary>
         /// 是否初始化，加载数据
         /// </summary>
@@ -101,6 +121,7 @@ namespace MetroFanfou.Controls
         /// 最后一条微博rawid
         /// </summary>
         private long LastRawId { get; set; }
+
         /// <summary>
         /// 第一条微博的rawid
         /// </summary>
@@ -109,37 +130,33 @@ namespace MetroFanfou.Controls
         private string FirstId { get; set; }
 
         private string LastId { get; set; }
+
         /// <summary>
         /// 最后一次刷新的时间
         /// </summary>
         private DateTime LastPollTime { get; set; }
 
-        /// <summary>
-        /// 拖取的指定用户或是指定的微博ID
-        /// </summary>
-        private string _additionalData;
-
-
-
-
         #endregion
 
         #region 自定义属性
+
         /// <summary>
         /// 依赖项，显示的时间线内容类型
         /// </summary>
         public static readonly DependencyProperty TimelineProperty = DependencyProperty.Register("Timeline",
-            typeof(ETimeline),
-            typeof(FanList),
-            new PropertyMetadata(ETimeline.Home));
+                                                                                                 typeof (ETimeline),
+                                                                                                 typeof (FanList),
+                                                                                                 new PropertyMetadata(
+                                                                                                     ETimeline.Home));
 
         /// <summary>
         /// 依赖项，显示方式
         /// </summary>
         public static readonly DependencyProperty ShowTypeProperty = DependencyProperty.Register("ShowType",
-            typeof(EShowType),
-            typeof(FanList),
-            new PropertyMetadata(EShowType.Full));
+                                                                                                 typeof (EShowType),
+                                                                                                 typeof (FanList),
+                                                                                                 new PropertyMetadata(
+                                                                                                     EShowType.Full));
 
 
         /// <summary>
@@ -148,8 +165,8 @@ namespace MetroFanfou.Controls
         [Description("时间线类型")]
         public ETimeline Timeline
         {
-            get { return (ETimeline)this.GetValue(TimelineProperty); }
-            set { this.SetValue(TimelineProperty, value); }
+            get { return (ETimeline) GetValue(TimelineProperty); }
+            set { SetValue(TimelineProperty, value); }
         }
 
         /// <summary>
@@ -158,8 +175,8 @@ namespace MetroFanfou.Controls
         [Description("显示类型")]
         public EShowType ShowType
         {
-            get { return (EShowType)this.GetValue(ShowTypeProperty); }
-            set { this.SetValue(ShowTypeProperty, value); }
+            get { return (EShowType) GetValue(ShowTypeProperty); }
+            set { SetValue(ShowTypeProperty, value); }
         }
 
         #endregion
@@ -173,13 +190,13 @@ namespace MetroFanfou.Controls
         /// <summary>
         /// 选择微博
         /// </summary>
-        public Action<FanFou.SDK.Objects.Status> Selected { get; set; }
+        public Action<Status> Selected { get; set; }
 
 
         /// <summary>
         ///弹出菜单操作
         /// </summary>
-        public Action<FanFou.SDK.Objects.Status, EMenuItemAction> MenuItemClick { get; set; }
+        public Action<Status, EMenuItemAction> MenuItemClick { get; set; }
 
         /// <summary>
         /// 获取最新之后的回调
@@ -193,7 +210,6 @@ namespace MetroFanfou.Controls
         /// </summary>
         public FanList()
         {
-
             if (!DesignerProperties.IsInDesignTool)
             {
                 InitializeComponent();
@@ -207,9 +223,8 @@ namespace MetroFanfou.Controls
         /// 获取微博数据结束
         /// </summary>
         /// <param name="tweets"></param>
-        private void GetTimelineEnd(ICollection<FanFou.SDK.Objects.Status> tweets)
+        private void GetTimelineEnd(ICollection<Status> tweets)
         {
-
             IsPolling = false;
 
             isVerticalDrag = false;
@@ -217,106 +232,214 @@ namespace MetroFanfou.Controls
             LastPollTime = DateTime.Now;
 
             Dispatcher.BeginInvoke(() =>
+                                       {
+                                           var data = (IEnumerable<Status>) FanListBox.ItemsSource;
+
+                                           if (PollType == EPollType.NextPage)
+                                           {
+                                               data = data.Concat(tweets).ToList();
+                                           }
+                                           else if (PollType == EPollType.Lastest)
+                                           {
+                                               tweets = tweets.Where(t => t.Rawid > FirstRawId).ToList();
+                                               if (tweets.Count > 0)
+                                               {
+                                                   data = tweets.Concat(data).ToList();
+                                               }
+                                           }
+                                           else
+                                           {
+                                               if (tweets != null && tweets.Count > 0)
+                                               {
+                                                   IsInited = true;
+                                               }
+                                               data = tweets;
+                                           }
+
+                                           if (data != null && data.Any())
+                                           {
+                                               Status lastOrDefault = data.LastOrDefault();
+                                               if (lastOrDefault != null)
+                                                   LastRawId = lastOrDefault.Rawid;
+
+                                               Status firstOrDefault = data.FirstOrDefault();
+                                               if (firstOrDefault != null)
+                                                   FirstRawId = firstOrDefault.Rawid;
+
+                                               Status orDefault = data.FirstOrDefault();
+                                               if (orDefault != null)
+                                                   FirstId = orDefault.Id;
+
+                                               Status last = data.LastOrDefault();
+                                               if (last != null)
+                                                   LastId = last.Id;
+                                           }
+
+                                           if (FanListBox.ItemTemplate == null)
+                                           {
+                                               if (ShowType == EShowType.Full)
+                                               {
+                                                   FanListBox.ItemTemplate =
+                                                       (DataTemplate) Resources["FullFanListItemTemplate"];
+                                               }
+                                               else if (ShowType == EShowType.Reply)
+                                               {
+                                                   FanListBox.ItemTemplate =
+                                                       (DataTemplate) Resources["ReplayListItemTemplate"];
+                                               }
+                                               else
+                                               {
+                                                   FanListBox.ItemTemplate =
+                                                       (DataTemplate) Resources["SimpleFanListItemTemplate"];
+                                               }
+                                           }
+                                           //处理界面提示
+
+                                           FanListBox.ItemsSource = data;
+
+                                           FanListBox.UpdateLayout();
+
+                                           FanListBox.ShowListFooter = false;
+
+                                           FanListBox.ShowListHeader = false;
+
+                                           if (AfterLoadedCallback != null)
+                                           {
+                                               AfterLoadedCallback(tweets);
+                                           }
+
+                                           if ((PollType == EPollType.Lastest || PollType == EPollType.Default) &&
+                                               GotLastest != null)
+                                           {
+                                               GotLastest();
+                                           }
+                                       });
+        }
+
+        private void MenuItem_Reply(object sender, RoutedEventArgs e)
+        {
+            var m = (MenuItem) sender;
+            if (m != null)
             {
-                var data = (IEnumerable<FanFou.SDK.Objects.Status>)FanListBox.ItemsSource;
-
-                if (PollType == EPollType.NextPage)
+                Status t = GetMenuItemTweet(m.Tag.ToString());
+                if (t != null)
                 {
-                    data = data.Concat(tweets).ToList();
-                }
-                else if (PollType == EPollType.Lastest)
-                {
-                    tweets = tweets.Where(t => t.Rawid > FirstRawId).ToList();
-                    if (tweets.Count > 0)
+                    if (MenuItemClick != null)
                     {
-                        data = tweets.Concat(data).ToList();
+                        MenuItemClick(t, EMenuItemAction.Reply);
                     }
                 }
-                else
+            }
+        }
+
+        private void MenuItem_Forward(object sender, RoutedEventArgs e)
+        {
+            var m = (MenuItem) sender;
+            if (m != null)
+            {
+                Status t = GetMenuItemTweet(m.Tag.ToString());
+                if (t != null)
                 {
-                    if (tweets != null && tweets.Count > 0)
+                    if (MenuItemClick != null)
                     {
-                        IsInited = true;
+                        MenuItemClick(t, EMenuItemAction.ReAdd);
                     }
-                    data = tweets;
                 }
+            }
+        }
 
-                if (data != null && data.Any())
+        private void MenuItem_Favorite(object sender, RoutedEventArgs e)
+        {
+            var m = (MenuItem) sender;
+            if (m != null)
+            {
+                Status t = GetMenuItemTweet(m.Tag.ToString());
+                if (t != null)
                 {
-                    var lastOrDefault = data.LastOrDefault();
-                    if (lastOrDefault != null)
-                        LastRawId = lastOrDefault.Rawid;
-
-                    var firstOrDefault = data.FirstOrDefault();
-                    if (firstOrDefault != null)
-                        FirstRawId = firstOrDefault.Rawid;
-
-                    var orDefault = data.FirstOrDefault();
-                    if (orDefault != null)
-                        FirstId = orDefault.Id;
-
-                    var last = data.LastOrDefault();
-                    if (last != null)
-                        LastId = last.Id;
-                }
-
-                if (FanListBox.ItemTemplate == null)
-                {
-                    if (ShowType == EShowType.Full)
+                    if (MenuItemClick != null)
                     {
-                        FanListBox.ItemTemplate = (DataTemplate)this.Resources["FullFanListItemTemplate"];
+                        MenuItemClick(t, EMenuItemAction.Favorite);
                     }
-                    else if (ShowType == EShowType.Reply)
-                    {
-                        FanListBox.ItemTemplate = (DataTemplate)this.Resources["ReplayListItemTemplate"];
-                    }
-                    else
-                    {
-                        FanListBox.ItemTemplate = (DataTemplate)this.Resources["SimpleFanListItemTemplate"];
-                    }
-
                 }
-                //处理界面提示
+            }
+        }
 
-                FanListBox.ItemsSource = data;
-
-                FanListBox.UpdateLayout();
-
-                FanListBox.ShowListFooter = false;
-
-                FanListBox.ShowListHeader = false;
-
-                if (AfterLoadedCallback != null)
+        private void MenuItem_Comment(object sender, RoutedEventArgs e)
+        {
+            var m = (MenuItem) sender;
+            if (m != null)
+            {
+                Status t = GetMenuItemTweet(m.Tag.ToString());
+                if (t != null)
                 {
-                    AfterLoadedCallback(tweets);
+                    if (MenuItemClick != null)
+                    {
+                        MenuItemClick(t, EMenuItemAction.Comment);
+                    }
                 }
+            }
+        }
 
-                if ((PollType == EPollType.Lastest || PollType == EPollType.Default) && GotLastest != null)
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            FanListBox.IsEnabled = false;
+        }
+
+        private void ContextMenu_Closed(object sender, RoutedEventArgs e)
+        {
+            FanListBox.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// 获取弹出菜单所处的微博位置
+        /// </summary>
+        /// <param name="tweetId"></param>
+        /// <returns></returns>
+        private Status GetMenuItemTweet(string tweetId)
+        {
+            if (!string.IsNullOrWhiteSpace(tweetId))
+            {
+                var data = (IEnumerable<Status>) FanListBox.ItemsSource;
+                if (data != null)
                 {
-                    GotLastest();
+                    return data.FirstOrDefault(t => t.Id == tweetId);
                 }
-            });
+            }
+            return null;
+        }
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                var image = (Image) sender;
+                var photo = image.Tag as Photo;
+                PhoneApplicationService.Current.State[Const.Imgobj] = photo;
+                var app = Application.Current as App;
+                if (app != null)
+                    app.RootFrame.Navigate(new Uri("/ImageBrowse.xaml", UriKind.Relative));
+            }
         }
 
         #region 操作事件
+
+        /// <summary>
+        /// 手势是否是垂直拖拽
+        /// </summary>
+        private bool isVerticalDrag { get; set; }
 
         /// <summary>
         /// 选择查看的微博
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FanListBox_Tap(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs)
+        private void FanListBox_Tap(object sender, GestureEventArgs gestureEventArgs)
         {
             if (Selected != null)
             {
-                Selected((FanFou.SDK.Objects.Status)FanListBox.SelectedItem);
+                Selected((Status) FanListBox.SelectedItem);
             }
         }
-
-        /// <summary>
-        /// 手势是否是垂直拖拽
-        /// </summary>
-        private bool isVerticalDrag { get; set; }
 
         /// <summary>
         /// 手势结束
@@ -337,13 +460,14 @@ namespace MetroFanfou.Controls
                 {
                     GetNextPage();
                 }
-                //顶部
+                    //顶部
                 else if (scrollviewer.VerticalOffset < 0.000001)
                 {
                     GetLastest();
                 }
             }
         }
+
         /// <summary>
         /// 手势开始
         /// </summary>
@@ -406,7 +530,6 @@ namespace MetroFanfou.Controls
                 case ETimeline.Public:
                     _statusApi.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, null, "default");
                     break;
-
             }
         }
 
@@ -416,13 +539,11 @@ namespace MetroFanfou.Controls
         /// </summary>
         public void Reset()
         {
-
             IsInited = false;
 
             PollType = EPollType.Default;
 
             Init(BeforeLoadingCallback, AfterLoadedCallback);
-
         }
 
         #endregion
@@ -434,8 +555,7 @@ namespace MetroFanfou.Controls
         /// </summary>
         private void GetNextPage()
         {
-
-            if (!this.IsCanPollData()) return;
+            if (!IsCanPollData()) return;
 
             if (BeforeLoadingCallback != null)
             {
@@ -457,19 +577,16 @@ namespace MetroFanfou.Controls
                 case ETimeline.Public:
                     _statusApi.GetPublicTimeline(GetTimelineEnd, AppSetting.PageCount, null, LastId, "default");
                     break;
-
             }
 
             Dispatcher.BeginInvoke(() =>
-            {
-                if (!FanListBox.ShowListFooter)
-                {
-
-                    FanListBox.ShowListFooter = true;
-                    FanListBox.ScrollTo(FanListBox.ListFooter);
-                }
-            });
-
+                                       {
+                                           if (!FanListBox.ShowListFooter)
+                                           {
+                                               FanListBox.ShowListFooter = true;
+                                               FanListBox.ScrollTo(FanListBox.ListFooter);
+                                           }
+                                       });
         }
 
         /// <summary>
@@ -477,8 +594,7 @@ namespace MetroFanfou.Controls
         /// </summary>
         private void GetLastest()
         {
-
-            if (!this.IsCanPollData()) return;
+            if (!IsCanPollData()) return;
 
             if (BeforeLoadingCallback != null)
             {
@@ -492,7 +608,8 @@ namespace MetroFanfou.Controls
             switch (Timeline)
             {
                 case ETimeline.Home:
-                    _statusApi.GetHomeTimeLine(GetTimelineEnd, null, FirstId, null, AppSetting.PageCount, null, "default");
+                    _statusApi.GetHomeTimeLine(GetTimelineEnd, null, FirstId, null, AppSetting.PageCount, null,
+                                               "default");
                     break;
                 case ETimeline.Reply:
                     _statusApi.GetReplies(GetTimelineEnd, FirstId, null, AppSetting.PageCount, null, "default");
@@ -504,13 +621,12 @@ namespace MetroFanfou.Controls
 
 
             Dispatcher.BeginInvoke(() =>
-            {
-                if (!FanListBox.ShowListHeader)
-                {
-                    FanListBox.ShowListHeader = true;
-                }
-            });
-
+                                       {
+                                           if (!FanListBox.ShowListHeader)
+                                           {
+                                               FanListBox.ShowListHeader = true;
+                                           }
+                                       });
         }
 
         /// <summary>
@@ -523,109 +639,5 @@ namespace MetroFanfou.Controls
         }
 
         #endregion
-
-        private void MenuItem_Reply(object sender, RoutedEventArgs e)
-        {
-            var m = (Microsoft.Phone.Controls.MenuItem)sender;
-            if (m != null)
-            {
-                var t = GetMenuItemTweet(m.Tag.ToString());
-                if (t != null)
-                {
-                    if (MenuItemClick != null)
-                    {
-                        MenuItemClick(t, EMenuItemAction.Reply);
-                    }
-                }
-            }
-        }
-
-        private void MenuItem_Forward(object sender, RoutedEventArgs e)
-        {
-            var m = (Microsoft.Phone.Controls.MenuItem)sender;
-            if (m != null)
-            {
-                var t = GetMenuItemTweet(m.Tag.ToString());
-                if (t != null)
-                {
-                    if (MenuItemClick != null)
-                    {
-                        MenuItemClick(t, EMenuItemAction.ReAdd);
-                    }
-                }
-            }
-        }
-
-        private void MenuItem_Favorite(object sender, RoutedEventArgs e)
-        {
-            var m = (Microsoft.Phone.Controls.MenuItem)sender;
-            if (m != null)
-            {
-                var t = GetMenuItemTweet(m.Tag.ToString());
-                if (t != null)
-                {
-                    if (MenuItemClick != null)
-                    {
-                        MenuItemClick(t, EMenuItemAction.Favorite);
-                    }
-                }
-            }
-        }
-
-        private void MenuItem_Comment(object sender, RoutedEventArgs e)
-        {
-            var m = (Microsoft.Phone.Controls.MenuItem)sender;
-            if (m != null)
-            {
-                var t = GetMenuItemTweet(m.Tag.ToString());
-                if (t != null)
-                {
-                    if (MenuItemClick != null)
-                    {
-                        MenuItemClick(t, EMenuItemAction.Comment);
-                    }
-                }
-            }
-        }
-
-        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
-        {
-            FanListBox.IsEnabled = false;
-        }
-
-        private void ContextMenu_Closed(object sender, RoutedEventArgs e)
-        {
-            FanListBox.IsEnabled = true;
-        }
-        /// <summary>
-        /// 获取弹出菜单所处的微博位置
-        /// </summary>
-        /// <param name="tweetId"></param>
-        /// <returns></returns>
-        private FanFou.SDK.Objects.Status GetMenuItemTweet(string tweetId)
-        {
-            if (!string.IsNullOrWhiteSpace(tweetId))
-            {
-                var data = (IEnumerable<FanFou.SDK.Objects.Status>)FanListBox.ItemsSource;
-                if (data != null)
-                {
-                    return data.FirstOrDefault(t => t.Id == tweetId);
-                }
-            }
-            return null;
-        }
-
-        private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (sender != null)
-            {
-                var image = (Image)sender;
-                Photo photo = image.Tag as Photo;
-                PhoneApplicationService.Current.State[Const.IMGOBJ] = photo;
-                var app = Application.Current as App;
-                if (app != null)
-                    app.RootFrame.Navigate(new Uri("/ImageBrowse.xaml", UriKind.Relative));
-            }
-        }
     }
 }
