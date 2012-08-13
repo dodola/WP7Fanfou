@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using FanFou.SDK;
-using MetroFanfou.Helper;
 using MetroFanfou.common;
+using MetroFanfou.Helper;
 using Microsoft.Phone.Controls;
 
 namespace MetroFanfou
@@ -23,15 +15,16 @@ namespace MetroFanfou
     {
         private readonly OAuth _oauth = OauthHelper.OAuth();
 
-        const string DefaultHtmlFormat = "<html><head><title>Altman</title></head><body style='text-align:center;background:#FFF;color:#000;'><br/><br/><br/>{0}</body></html>";
+        private const string DefaultHtmlFormat = "<html><head><title>Altman</title></head><body style='text-align:center;background:#FFF;color:#000;'><br/><br/><br/>{0}</body></html>";
 
-        DispatcherTimer _timer;
+        private DispatcherTimer _timer;
+
         /// <summary>
         /// 页面加载超时时间
         /// </summary>
-        const int Timerout = 6;
+        private const int Timerout = 6;
 
-        bool _isLoaded = false;
+        private bool _isLoaded = false;
 
         /// <summary>
         /// 默认加载中页面内容
@@ -86,7 +79,6 @@ namespace MetroFanfou
             {
                 base.OnNavigatedTo(e);
 
-
                 if (!OauthHelper.IsVerified)
                 {
                     var size = App.Current.RootVisual.RenderSize;
@@ -101,7 +93,6 @@ namespace MetroFanfou
                 }
                 else
                     NavigateTo();
-
             }
             catch (Exception ex)
             {
@@ -143,7 +134,6 @@ namespace MetroFanfou
                 (new Helper.MessageBoxHelper()).Show(ex.Message.ToString(), "出错了", this.LayoutRoot);
                 Dispatcher.BeginInvoke(() => webBrowser.NavigateToString(BuildHtml(ex.Message.ToString())));
             }
-
         }
 
         /// <summary>
@@ -161,10 +151,7 @@ namespace MetroFanfou
             if (!string.IsNullOrEmpty(match.Value))
             {
                 _oauth.GetAccessToken("", AccessTokenEnd);
-
             }
-
-
         }
 
         ///<summary>
@@ -175,18 +162,15 @@ namespace MetroFanfou
         {
             try
             {
-
-
                 OauthHelper.Token = _oauth.Token;
                 OauthHelper.TokenSecret = _oauth.TokenSecret;
                 OauthHelper.IsVerified = true;
                 NavigateTo();
-
             }
             catch (Exception ex)
             {
-                (new Helper.MessageBoxHelper()).Show(ex.Message.ToString(), "出错了", this.LayoutRoot);
-                Dispatcher.BeginInvoke(() => webBrowser.NavigateToString(BuildHtml(ex.Message.ToString())));
+                (new MessageBoxHelper()).Show(ex.Message.ToString(CultureInfo.InvariantCulture), "出错了", this.LayoutRoot);
+                Dispatcher.BeginInvoke(() => webBrowser.NavigateToString(BuildHtml(ex.Message.ToString(CultureInfo.InvariantCulture))));
             }
         }
 
@@ -197,11 +181,11 @@ namespace MetroFanfou
         {
             try
             {
-                var ipHelper = new IpAddressHelper();
-                ipHelper.GetIpAddress((string rs) =>
-                {
-                    AppSetting.IpAddress = rs;
-                });
+                //var ipHelper = new IpAddressHelper();
+                //ipHelper.GetIpAddress((string rs) =>
+                //{
+                //    AppSetting.IpAddress = rs;
+                //});
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     var url = "/MainPage.xaml";
@@ -211,13 +195,11 @@ namespace MetroFanfou
                     }
                     NavigationService.Navigate(new Uri(url, UriKind.Relative));
                 });
-
             }
             catch (Exception ex)
             {
                 (new MessageBoxHelper()).Show(ex.Message.ToString(), "出错了", this.LayoutRoot);
             }
-
         }
 
         /// <summary>

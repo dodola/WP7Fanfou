@@ -14,6 +14,7 @@ namespace MetroFanfou.common
         /// App Key
         /// </summary>
         private const string AppKey = "2b6f6ad1b48d1f001c1e5a63c4428571";//输入你的AppKey
+
         /// <summary>
         /// App Secret
         /// </summary>
@@ -39,7 +40,7 @@ namespace MetroFanfou.common
         /// </summary>
         private const string TokenSecretStoreKey = "OAuthHelper.Flags.TokenSecret";
 
-        #endregion
+        #endregion 私有属性
 
         #region 公共属性
 
@@ -115,9 +116,10 @@ namespace MetroFanfou.common
             }
         }
 
-        #endregion
+        #endregion 公共属性
 
         #region 公共方法
+
         /// <summary>
         /// 获取OAuth对象
         /// </summary>
@@ -144,6 +146,6 @@ namespace MetroFanfou.common
             TokenSecret = string.Empty;
         }
 
-        #endregion
+        #endregion 公共方法
     }
 }

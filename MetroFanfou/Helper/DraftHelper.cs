@@ -8,16 +8,20 @@ namespace MetroFanfou.Helper
         /// 保存
         /// </summary>
         /// <param name="content"></param>
-        public void Save(string content) {
-            Isolated.Set(IsolatedHelper.TweetDraftKey,content);
+        public void Save(string content)
+        {
+            Isolated.Set(IsolatedHelper.TweetDraftKey, content);
         }
+
         /// <summary>
         /// 获取
         /// </summary>
         /// <returns></returns>
-        public string Get() {
-            var str=Isolated.Get(IsolatedHelper.TweetDraftKey);
-            if(str!=null){
+        public string Get()
+        {
+            var str = Isolated.Get(IsolatedHelper.TweetDraftKey);
+            if (str != null)
+            {
                 return str.ToString();
             }
             return "";
@@ -26,7 +30,8 @@ namespace MetroFanfou.Helper
         /// <summary>
         /// 清空草稿
         /// </summary>
-        public void Clear() {
+        public void Clear()
+        {
             Isolated.Set(IsolatedHelper.TweetDraftKey, "");
         }
     }

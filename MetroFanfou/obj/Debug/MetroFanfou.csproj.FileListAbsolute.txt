@@ -76,3 +76,5 @@ D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Coding4Fun.Phone.Controls.Toolkit.dll
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.pdb
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.xml
+D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\TweetDetail.g.i.cs
+D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\DetailPage.g.i.cs

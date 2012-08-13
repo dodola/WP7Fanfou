@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using MetroFanfou;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -19,17 +12,17 @@ namespace MetroFanfou
 {
     public partial class Setting : PhoneApplicationPage
     {
-        bool isPictureQualityLoaded = false;
-        bool isCheckUpdateStatusLoaded = false;
-        bool isExitConfirmLoaded = false;
-        bool isScheduleLoad = false;
+        private bool isPictureQualityLoaded = false;
+        private bool isCheckUpdateStatusLoaded = false;
+        private bool isExitConfirmLoaded = false;
+        private bool isScheduleLoad = false;
 
         /// <summary>
         /// 选择的index
         /// </summary>
-        const string SelectIndexKey = "index";
+        private const string SelectIndexKey = "index";
 
-        string tileUriParam = AppSetting.TileDirectUriKey + "=/Tweet/Add.xaml?"+AppSetting.IsQuickTweetParameterKey+"=1";
+        private string tileUriParam = AppSetting.TileDirectUriKey + "=/Tweet/Add.xaml?" + AppSetting.IsQuickTweetParameterKey + "=1";
 
         public Setting()
         {
@@ -40,7 +33,7 @@ namespace MetroFanfou
         {
             base.OnNavigatedTo(e);
 
-            tbAppName.Text = AppSetting.AppName + " "+AppSetting.AppVersion;
+            tbAppName.Text = AppSetting.AppName + " " + AppSetting.AppVersion;
 
             var picQuality = new List<KeyValuePair<string, int>>();
             picQuality.Add(new KeyValuePair<string, int>("一般(50%)", 50));
@@ -51,7 +44,6 @@ namespace MetroFanfou
 
             var pq = picQuality.Where(k => k.Value == AppSetting.ImageQuality).FirstOrDefault();
             lpPictureQuality.SelectedItem = new KeyValuePair<string, int>(pq.Key, pq.Value);
-
 
             var timespan = new List<KeyValuePair<string, int>>();
             timespan.Add(new KeyValuePair<string, int>("不检查", 0));
@@ -64,7 +56,6 @@ namespace MetroFanfou
             var ts = timespan.Where(k => k.Value == AppSetting.CheckUpdateSecondSpan).FirstOrDefault();
             lpCheckUpdateStatus.SelectedItem = new KeyValuePair<string, int>(ts.Key, ts.Value);
 
-
             var confirmData = new List<KeyValuePair<string, bool>>();
             confirmData.Add(new KeyValuePair<string, bool>("否", false));
             confirmData.Add(new KeyValuePair<string, bool>("是", true));
@@ -72,7 +63,6 @@ namespace MetroFanfou
 
             var cf = confirmData.Where(k => k.Value == AppSetting.IsExitConfirm).FirstOrDefault();
             lpExitConfirm.SelectedItem = new KeyValuePair<string, bool>(cf.Key, cf.Value);
-
 
             var schedulespan = new List<KeyValuePair<string, bool>>();
             schedulespan.Add(new KeyValuePair<string, bool>("否", false));
@@ -83,9 +73,7 @@ namespace MetroFanfou
             var ss = schedulespan.Where(k => k.Value == AppSetting.IsScheduledAgent).FirstOrDefault();
             lpSchedule.SelectedItem = new KeyValuePair<string, bool>(ss.Key, ss.Value);
 
-            cbHubTile.IsChecked=ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileUriParam))!=null;
-
-        
+            cbHubTile.IsChecked = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileUriParam)) != null;
 
             if (NavigationContext.QueryString.ContainsKey(SelectIndexKey))
             {
@@ -148,7 +136,8 @@ namespace MetroFanfou
         /// <param name="e"></param>
         private void lpSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (isScheduleLoad) {
+            if (isScheduleLoad)
+            {
                 var val = (KeyValuePair<string, bool>)lpSchedule.SelectedItem;
                 AppSetting.IsScheduledAgent = val.Value;
             }
@@ -177,7 +166,7 @@ namespace MetroFanfou
         private void cbHubTile_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             var ischecked = cbHubTile.IsChecked;
-            var tiles=  ShellTile.ActiveTiles;           
+            var tiles = ShellTile.ActiveTiles;
             var TileToFind = tiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileUriParam));
             if (ischecked == true)
             {
@@ -190,27 +179,27 @@ namespace MetroFanfou
                         BackTitle = "腾讯微博",
                         BackContent = "快速启动\r\n发布微博"
                     };
-                    ShellTile.Create(new Uri("/Oauth.xaml?"+tileUriParam, UriKind.Relative), NewTileData);
+                    ShellTile.Create(new Uri("/Oauth.xaml?" + tileUriParam, UriKind.Relative), NewTileData);
                 }
             }
-            else {
-                if (TileToFind != null) {
+            else
+            {
+                if (TileToFind != null)
+                {
                     TileToFind.Delete();
                 }
             }
         }
 
-     
-
         private void btnIssue_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri(string.Format("/Tweet/Add.xaml?{0}={1}&{2}={3}&{4}={5}", 
-                AppSetting.AddTweetTypeParameterKey, 
-                Helper.EAddTweetType.Mention.GetHashCode(), 
-                AppSetting.AddTweetMetaParameterKey, 
+            NavigationService.Navigate(new Uri(string.Format("/Tweet/Add.xaml?{0}={1}&{2}={3}&{4}={5}",
+                AppSetting.AddTweetTypeParameterKey,
+                Helper.EAddTweetType.Mention.GetHashCode(),
+                AppSetting.AddTweetMetaParameterKey,
                 AppSetting.AuthorAccount,
                 AppSetting.AddTweetSubMetaParameterKey,
-                HttpUtility.UrlEncode("#"+AppSetting.AppName+"#") 
+                HttpUtility.UrlEncode("#" + AppSetting.AppName + "#")
                 ), UriKind.Relative));
         }
 

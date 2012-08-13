@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
 using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
-using Microsoft.Xna.Framework.Media;
 
 namespace MetroFanfou.Helper
 {
@@ -14,14 +11,17 @@ namespace MetroFanfou.Helper
         {
             return DeviceNetworkInformation.IsNetworkAvailable;
         }
+
         public static bool IsWifi()
         {
             var type = NetworkInterface.NetworkInterfaceType;
 
             return (type == NetworkInterfaceType.Wireless80211) || type == NetworkInterfaceType.Ethernet;
         }
+
         // Fields
         public static PopToastCompleted OnPopToastCompleted;
+
         private static bool _showFlag;
 
         // Methods
@@ -55,7 +55,6 @@ namespace MetroFanfou.Helper
             OnPopToastCompleted = null;
         }
 
-
         public delegate void PopToastCompleted();
 
         public static void SavePicture(Image img)
@@ -83,12 +82,6 @@ namespace MetroFanfou.Helper
             //        CustomControls.PopToast("图片不存在，无法保存！", "", 0x3e8);
             //    }
             //}
-
-            
-            
-
         }
-
-
     }
 }

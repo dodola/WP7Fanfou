@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
 using FanFou.SDK.API;
@@ -15,17 +14,16 @@ namespace MetroFanfou.Controls
         private FanFou.SDK.API.Statuses statusAPI = new Statuses(OauthHelper.OAuth());
         private Status _status;
 
-        #endregion
+        #endregion 私有变量
 
         #region 公共变量
+
         /// <summary>
         /// 选择微博
         /// </summary>
         public Action<string> SelectedSource { get; set; }
 
-
-
-        #endregion
+        #endregion 公共变量
 
         #region 控件事件
 
@@ -34,7 +32,7 @@ namespace MetroFanfou.Controls
         /// </summary>
         private Action<Status> AfterLoadedCallback { get; set; }
 
-        #endregion
+        #endregion 控件事件
 
         public TweetDetail()
         {
@@ -72,7 +70,6 @@ namespace MetroFanfou.Controls
                 _status = rs;
                 TweetDetailLayoutRoot.DataContext = rs;
 
-
                 rtRichTweetBox.SetContent(rs.Text);
 
                 if (AfterLoadedCallback != null)
@@ -84,7 +81,6 @@ namespace MetroFanfou.Controls
 
         private void Grid_Tap(object sender, GestureEventArgs e)
         {
-
         }
 
         /// <summary>
@@ -94,7 +90,11 @@ namespace MetroFanfou.Controls
         /// <param name="e"></param>
         private void TweetImageTap(object sender, GestureEventArgs e)
         {
+        }
 
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

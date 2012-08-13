@@ -17,12 +17,12 @@ namespace MetroFanfou.Helper
             soucre.Seek(0, SeekOrigin.Begin);
             var p = quality / 100.0;
             var writeableBitmap = PictureDecoder.DecodeJpeg(soucre);
-            var width = writeableBitmap.PixelWidth*p;
-            var height = writeableBitmap.PixelHeight*p;
+            var width = writeableBitmap.PixelWidth * p;
+            var height = writeableBitmap.PixelHeight * p;
             var outstream = new MemoryStream();
             writeableBitmap.SaveJpeg(outstream, (int)width, (int)height, 0, quality);
             outstream.Seek(0, SeekOrigin.Begin);
             return outstream;
-        } 
+        }
     }
 }

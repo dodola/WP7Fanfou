@@ -17,19 +17,19 @@ namespace MetroFanfou.Helper
         /// <summary>
         /// 启动
         /// </summary>
-        public static void Start() {
-
+        public static void Start()
+        {
             if (!AppSetting.IsScheduledAgent)
             {
                 return;
             }
 
-            if (isAgentOn) {
-
+            if (isAgentOn)
+            {
                 return;
             }
             Stop();
-            
+
             var periodicTask = new PeriodicTask(Params.PeriodicTaskName);
 
             periodicTask.Description = "腾讯微博客户端Altman后台任务，用于帮助用户检查是否有新微博，您可以在应用设置选项中将其关闭或者在手机的后台任务界面停止它。";
@@ -42,10 +42,12 @@ namespace MetroFanfou.Helper
             }
             catch { isAgentOn = false; }
         }
+
         /// <summary>
         /// 停止
         /// </summary>
-        public static void Stop() {
+        public static void Stop()
+        {
             try
             {
                 if (!AppSetting.IsScheduledAgent)
@@ -61,9 +63,8 @@ namespace MetroFanfou.Helper
                 }
 
                 isAgentOn = false;
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

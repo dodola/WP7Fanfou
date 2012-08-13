@@ -5,26 +5,22 @@
 /////////////////////////////////////////////////////////
 
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using System.Collections.Generic;
 using MetroFanfou.common;
 
 namespace MetroFanfou
 {
     public class AppSetting
     {
-
-
-
-
         private static string LoginAccountName;
 
         /// <summary>
         /// 微博最大字数
         /// </summary>
         public static int MaxTweetWordCount = 140;
-        
+
         /// <summary>
         /// 在线帮助文档
         /// </summary>
@@ -203,20 +199,17 @@ namespace MetroFanfou
         {
             get
             {
-
                 var val = Isolated.Get(Helper.IsolatedHelper.PageCount);
                 int count = 10;
                 if (val != null)
                     count = Convert.ToInt32(val);
 
                 return count;
-
             }
             set
             {
                 Isolated.Set(Helper.IsolatedHelper.PageCount, value > 40 ? 10 : value);
             }
-
         }
 
         public static string LastId
@@ -334,9 +327,10 @@ namespace MetroFanfou
             }
         }
 
-        #endregion
+        #endregion 页面传值的查询key
 
         #region 公共方法
+
         /// <summary>
         ///获取控件的子控件
         /// </summary>
@@ -364,6 +358,7 @@ namespace MetroFanfou
             }
             return null;
         }
-        #endregion
+
+        #endregion 公共方法
     }
 }

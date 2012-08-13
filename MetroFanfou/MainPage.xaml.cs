@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,24 +19,28 @@ namespace MetroFanfou
             ApplicationBar.BackgroundColor = (Color)Application.Current.Resources["ApplicationBarBackgroundColor"];
             homeItem.Init(BeforeLoading, AfterLoaded);
 
+            Dispatcher.BeginInvoke(() =>
+                                       {
+                                           _usersApi.UsersShow(UserLoaded);
+                                           if (NavigationService.CanGoBack)
+                                               NavigationService.RemoveBackEntry();
 
-            this.Dispatcher.BeginInvoke(() =>
-                                            {
-                                                _usersApi.UsersShow(UserLoaded);
-                                                if (NavigationService.CanGoBack)
-                                                    NavigationService.RemoveBackEntry();
-
-                                                this.homeItem.Selected = SelectStatus;
-
-                                            });
+                                           homeItem.Selected = SelectStatus;
+                                       });
         }
-        private void SelectStatus(FanFou.SDK.Objects.Status status)
+
+        private void SelectStatus(Status status)
         {
-            this.Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri(String.Format("/DetailPage.xaml?{0}={1}", Const.StatusID, status.Id), UriKind.Relative)));
+            Dispatcher.BeginInvoke(
+                () =>
+                NavigationService.Navigate(new Uri(
+                                               String.Format("/DetailPage.xaml?{0}={1}", Const.StatusID, status.Id),
+                                               UriKind.Relative)));
         }
 
         private void UserLoaded(User obj)
         {
+            App.CurrentUser = obj;
             Dispatcher.BeginInvoke(() =>
                                        {
                                            tbTweetCount.Text = obj.StatusesCount.ToString(CultureInfo.InvariantCulture);
@@ -73,9 +76,11 @@ namespace MetroFanfou
                 case 0:
                     homeItem.Reset();
                     break;
+
                 case 1:
                     replyItem.Reset();
                     break;
+
                 case 2:
                     publicItem.Reset();
                     break;
@@ -119,11 +124,14 @@ namespace MetroFanfou
             switch (PivotMain.SelectedIndex)
             {
                 case 0:
+                   
                     homeItem.Init(BeforeLoading, AfterLoaded);
                     break;
+
                 case 1:
                     replyItem.Init(BeforeLoading, AfterLoaded);
                     break;
+
                 case 2:
                     publicItem.Init(BeforeLoading, AfterLoaded);
                     break;

@@ -20,16 +20,18 @@ namespace MetroFanfou.Helper
         /// 帐号正则
         /// </summary>
         public const string AccountReg = @"@(.*?\s+)?";
+
         /// <summary>
         /// 话题正则
         /// </summary>
         public const string HuatiReg = @"\#([^\#|.]+)\#";
+
         /// <summary>
         /// Url正则
         /// </summary>
         public const string UrlReg = @"http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?";
 
-        #endregion
+        #endregion 私有变量
 
         #region 私有方法
 
@@ -53,7 +55,7 @@ namespace MetroFanfou.Helper
             return rs;
         }
 
-        #endregion
+        #endregion 私有方法
 
         public TweetHelper() { }
 
@@ -63,6 +65,7 @@ namespace MetroFanfou.Helper
             HuaTi = GetMatchs(content, HuatiReg);
             Urls = GetMatchs(content, UrlReg);
         }
+
         /// <summary>
         /// 匹配的字符串
         /// </summary>

@@ -11,6 +11,7 @@ namespace MetroFanfou.Controls
     {
         // Fields
         private const string ActivityVisualStateGroup = "ActivityStates";
+
         private const string InactiveVisualState = "Inactive";
         private const string PullingDownVisualState = "PullingDown";
         private const string ReadyToReleaseVisualState = "ReadyToRelease";
@@ -23,7 +24,6 @@ namespace MetroFanfou.Controls
         public static readonly DependencyProperty ReadyToReleaseTemplateProperty;
         public static readonly DependencyProperty RefreshingTemplateProperty;
         private ScrollViewer _targetScrollViewer;
-
 
         // Methods
         static PullDownToRefreshPanel()

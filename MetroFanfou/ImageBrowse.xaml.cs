@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using FanFou.SDK.Objects;
 using MetroFanfou.common;
 using Microsoft.Phone.Controls;
@@ -30,10 +29,9 @@ namespace MetroFanfou
             if (imgObj != null)
             {
                 Img = (Photo)imgObj;
-              image.Source = new BitmapImage(new Uri(Img.LargeUrl));
+                image.Source = new BitmapImage(new Uri(Img.LargeUrl));
             }
         }
-
 
         private void OnGestureListenerDragStarted(object sender, DragStartedGestureEventArgs args)
         {
@@ -129,7 +127,6 @@ namespace MetroFanfou
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

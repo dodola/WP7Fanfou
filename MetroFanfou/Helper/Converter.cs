@@ -9,7 +9,6 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
-using FanFou.SDK.Objects;
 
 namespace MetroFanfou.Helper
 {
@@ -28,6 +27,7 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
+
     /// <summary>
     /// 字符串是否为空判断显隐属性
     /// </summary>
@@ -68,7 +68,6 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class HeadUrlConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var size = parameter.ToString();
@@ -80,7 +79,6 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
-
 
     /// <summary>
     /// 截取私信
@@ -108,7 +106,6 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class SourceTweetContentConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value != null)
@@ -125,16 +122,16 @@ namespace MetroFanfou.Helper
         }
     }
 
-
     public class TimeToSpanConvert : IValueConverter
     {
-        /// <summary>  
-        /// 本地时间转成GMT格式的时间  
-        /// </summary>  
+        /// <summary>
+        /// 本地时间转成GMT格式的时间
+        /// </summary>
         public static string ToGMTFormat(DateTime dt)
         {
             return dt.ToString("r") + dt.ToString("zzz").Replace(":", "");
         }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
@@ -145,7 +142,6 @@ namespace MetroFanfou.Helper
                                            DateTimeStyles.None, out date))
                 {
                     TimeSpan timeSpan = DateTime.Now.Subtract(date).Duration();
-
 
                     if ((int)timeSpan.TotalDays > 0)
                     {
@@ -194,6 +190,7 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
+
     public class HtmlToContentConvert : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -205,7 +202,6 @@ namespace MetroFanfou.Helper
                 Match match = r.Match(value.ToString());
                 if (match.Length > 0)
                     content = match.Groups["content"].Value;
-
             }
             return content;
         }
@@ -215,6 +211,4 @@ namespace MetroFanfou.Helper
             return value;
         }
     }
-
-
 }

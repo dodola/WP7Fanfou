@@ -4,9 +4,10 @@ namespace MetroFanfou.common
 {
     public class Isolated
     {
-        static readonly IsolatedStorageSettings Setting = IsolatedStorageSettings.ApplicationSettings;
+        private static readonly IsolatedStorageSettings Setting = IsolatedStorageSettings.ApplicationSettings;
 
         #region 方法
+
         /// <summary>
         /// 获取对应的属性值
         /// </summary>
@@ -23,7 +24,6 @@ namespace MetroFanfou.common
                 else
                 {
                     Setting.Add(flag, null);
-                   
                 }
                 return null;
             }
@@ -39,7 +39,7 @@ namespace MetroFanfou.common
         /// </summary>
         /// <param name="flag"></param>
         /// <returns></returns>
-        public static bool Get<T>(string flag,out T val)
+        public static bool Get<T>(string flag, out T val)
         {
             try
             {
@@ -84,7 +84,6 @@ namespace MetroFanfou.common
             }
             catch
             {
-                
             }
         }
 
@@ -96,7 +95,6 @@ namespace MetroFanfou.common
         {
             try
             {
-
                 return Setting.Remove(flag);
             }
             catch
@@ -105,6 +103,6 @@ namespace MetroFanfou.common
             }
         }
 
-        #endregion 
+        #endregion 方法
     }
 }

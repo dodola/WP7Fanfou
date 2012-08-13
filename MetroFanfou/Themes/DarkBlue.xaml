@@ -1,245 +1,411 @@
-﻿<ResourceDictionary  
-xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-xmlns:tm="clr-namespace:MetroFanfou"
-xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
-xmlns:fanfou="clr-namespace:MetroFanfou.Controls">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                    xmlns:tm="clr-namespace:MetroFanfou"
+                    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                    xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing"
+                    xmlns:fanfou="clr-namespace:MetroFanfou.Controls">
     <!--
         页面样式 背景等
     -->
-    <Style x:Key="PageLayoutGrid" TargetType="Grid">
-        <Setter Property="Background" Value="#FF10253F"/>
+    <Style x:Key="PageLayoutGrid"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#FF10253F" />
     </Style>
     <!--
         LongList样式,主要是底部Margin72个像素
     -->
-    <Style x:Key="ListLayoutGrid" TargetType="Grid">
-        <Setter Property="Margin" Value="0,0,0,72"/>
+    <Style x:Key="ListLayoutGrid"
+           TargetType="Grid">
+        <Setter Property="Margin"
+                Value="0,0,0,72" />
     </Style>
     <!--消息提示背景框颜色-->
-    <SolidColorBrush x:Key="MessageBoxBgBrush" Color="{StaticResource PhoneAccentColor}"/>
+    <SolidColorBrush x:Key="MessageBoxBgBrush"
+                     Color="{StaticResource PhoneAccentColor}" />
     <!--消息提示文字颜色-->
-    <SolidColorBrush x:Key="MessageBoxTextBrush" Color="White"/>
+    <SolidColorBrush x:Key="MessageBoxTextBrush"
+                     Color="White" />
     <!--
         主界面顶部的提示
     -->
-    <Style x:Key="TrayInfoTextStyle" TargetType="TextBlock">
-        <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Text" Value="00"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="Arial"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Foreground" Value="#FFF"/>
+    <Style x:Key="TrayInfoTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="Width"
+                Value="Auto" />
+        <Setter Property="Text"
+                Value="00" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="FontFamily"
+                Value="Arial" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Setter Property="Foreground"
+                Value="#FFF" />
     </Style>
-    <Style x:Key="TrayTweetCountIcon" TargetType="Image">
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Source" Value="/Resource/Icons/tray.tweet.white.png"/>
+    <Style x:Key="TrayTweetCountIcon"
+           TargetType="Image">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Setter Property="Source"
+                Value="/Resource/Icons/tray.tweet.white.png" />
     </Style>
-    <Style x:Key="TrayCommentCountIcon" TargetType="Image">
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Source" Value="/Resource/Icons/tray.comment.white.png"/>
+    <Style x:Key="TrayCommentCountIcon"
+           TargetType="Image">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Setter Property="Source"
+                Value="/Resource/Icons/tray.comment.white.png" />
     </Style>
-    <Style x:Key="TrayMessageCountcon" TargetType="Image">
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Source" Value="/Resource/Icons/tray.message.white.png"/>
+    <Style x:Key="TrayMessageCountcon"
+           TargetType="Image">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Setter Property="Source"
+                Value="/Resource/Icons/tray.message.white.png" />
     </Style>
-    <Style x:Key="TrayFansCountIcon" TargetType="Image">
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Source" Value="/Resource/Icons/tray.fans.white.png"/>
+    <Style x:Key="TrayFansCountIcon"
+           TargetType="Image">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Setter Property="Source"
+                Value="/Resource/Icons/tray.fans.white.png" />
     </Style>
     <!--
         主界面的logo和标题
     -->
-    <Style x:Key="TweetAccountTitle" TargetType="TextBlock">
-        <Setter Property="Text" Value="安能饭否"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="Foreground" Value="#FFF"/>
+    <Style x:Key="TweetAccountTitle"
+           TargetType="TextBlock">
+        <Setter Property="Text"
+                Value="安能饭否" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Foreground"
+                Value="#FFF" />
     </Style>
-    <Style x:Key="TweetLogo" TargetType="Image">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="Source" Value="/Resource/Icons/logo.white.png"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
-        <Setter Property="Margin" Value="12,0,0,0"/>
+    <Style x:Key="TweetLogo"
+           TargetType="Image">
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="Width"
+                Value="30" />
+        <Setter Property="Height"
+                Value="30" />
+        <Setter Property="Source"
+                Value="/Resource/Icons/logo.white.png" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
+        <Setter Property="Margin"
+                Value="12,0,0,0" />
     </Style>
     <!--
         粉丝听众列表样式
     -->
-    <Style x:Key="IdolName" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Width" Value="Auto"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+    <Style x:Key="IdolName"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="Width"
+                Value="Auto" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Arial" />
     </Style>
-    <Style x:Key="IdolCount" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="#FF949494"/>
+    <Style x:Key="IdolCount"
+           TargetType="TextBlock">
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Foreground"
+                Value="#FF949494" />
     </Style>
-    <Style x:Key="IdolTweet" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+    <Style x:Key="IdolTweet"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="NoWrap" />
     </Style>
     <!--
         微博列表的样式
     -->
-    <Style x:Key="TweetContent" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="TweetContent"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
-    <Style x:Key="TweetListIconText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="14.667"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
+    <Style x:Key="TweetListIconText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="14.667" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
     </Style>
-    <Style x:Key="TweetListIcon" TargetType="Image">
-        <Setter Property="Width" Value="26"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Stretch" Value="UniformToFill"/>
+    <Style x:Key="TweetListIcon"
+           TargetType="Image">
+        <Setter Property="Width"
+                Value="26" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Stretch"
+                Value="UniformToFill" />
     </Style>
 
-
-    <Style x:Key="SourceText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="14.667"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="Margin" Value="0,0,12,0"/>
+    <Style x:Key="SourceText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="14.667" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Margin"
+                Value="0,0,12,0" />
     </Style>
-    <Style x:Key="TweetListImage" TargetType="Image">
-        <Setter Property="Margin" Value="0,6,0,0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Style x:Key="TweetListImage"
+           TargetType="Image">
+        <Setter Property="Margin"
+                Value="0,6,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
     </Style>
-    <Style x:Key="TweetListAccount" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="FontSize" Value="26.667"/>
-        <Setter Property="Margin" Value="0,0,0,6"/>
+    <Style x:Key="TweetListAccount"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="FontSize"
+                Value="26.667" />
+        <Setter Property="Margin"
+                Value="0,0,0,6" />
     </Style>
-    <Style x:Key="TweetListParentText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Margin" Value="8"/>
+    <Style x:Key="TweetListParentText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="8" />
     </Style>
-    <Style x:Key="TweetListParentImage" TargetType="Image">
-        <Setter Property="Margin" Value="6,6,0,6"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Style x:Key="TweetListParentImage"
+           TargetType="Image">
+        <Setter Property="Margin"
+                Value="6,6,0,6" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
     </Style>
-    <Style x:Key="TweetListParentTextBg" TargetType="Grid">
-        <Setter Property="Background" Value="#FF091423"/>
+    <Style x:Key="TweetListParentTextBg"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#FF091423" />
     </Style>
     <!--
         微博详细页面的样式
     -->
-    <Style x:Key="DetailContent" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="DetailContent"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="Black" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
-    <Style x:Key="DetailParentText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Margin" Value="8"/>
+    <Style x:Key="DetailParentText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="8" />
     </Style>
-    <Style x:Key="DetailImage" TargetType="Image">
-        <Setter Property="Margin" Value="6,6,0,0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="MaxWidth" Value="460"/>
+    <Style x:Key="DetailImage"
+           TargetType="Image">
+        <Setter Property="Margin"
+                Value="6,6,0,0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="MaxWidth"
+                Value="460" />
     </Style>
-    <Style x:Key="DetailMeta" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="14.667"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="Margin" Value="0,0,12,0"/>
+    <Style x:Key="DetailMeta"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="14.667" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Margin"
+                Value="0,0,12,0" />
     </Style>
     <!--详细微博内容的样式-->
-    <Style x:Key="RichTweetBox" TargetType="fanfou:RichTweetBox">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="RichTweetBox"
+           TargetType="fanfou:RichTweetBox">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
     <!--详细微博内容中的链接，昵称，主题的颜色-->
-    <SolidColorBrush x:Key="DetailComponentBrush" Color="{StaticResource PhoneAccentColor}"/>
+    <SolidColorBrush x:Key="DetailComponentBrush"
+                     Color="{StaticResource PhoneAccentColor}" />
     <!--详细微博内容文字颜色-->
     <Color x:Key="DetailContentColor">White</Color>
     <!--
         进度条样式
     -->
-    <Style x:Key="PerformanceProgressBarStyle" TargetType="toolkit:PerformanceProgressBar">
-        <Setter Property="Foreground" Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="IsIndeterminate" Value="True"/>
+    <Style x:Key="PerformanceProgressBarStyle"
+           TargetType="toolkit:PerformanceProgressBar">
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="IsIndeterminate"
+                Value="True" />
     </Style>
     <!--
         长列表头部底部样式
     -->
-    <Style x:Key="ListHeaderGrid" TargetType="Grid">
-        <Setter Property="Height" Value="64"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Style x:Key="ListHeaderGrid"
+           TargetType="Grid">
+        <Setter Property="Height"
+                Value="64" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
     </Style>
-    <Style x:Key="ListHeaderText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Text" Value="正在刷新..."/>
+    <Style x:Key="ListHeaderText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Text"
+                Value="正在刷新..." />
     </Style>
-    <Style x:Key="ListFooterGrid" TargetType="Grid">
-        <Setter Property="Height" Value="42"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="Margin" Value="0,0,0,8"/>
-        <Setter Property="Margin" Value="0,0,0,72"/>
+    <Style x:Key="ListFooterGrid"
+           TargetType="Grid">
+        <Setter Property="Height"
+                Value="42" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Margin"
+                Value="0,0,0,8" />
+        <Setter Property="Margin"
+                Value="0,0,0,72" />
     </Style>
-    <Style x:Key="ListFooterText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF949494"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Text" Value="加载数据中..."/>
+    <Style x:Key="ListFooterText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="#FF949494" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Text"
+                Value="加载数据中..." />
     </Style>
     <!--
         工具栏背景色
@@ -248,352 +414,581 @@ xmlns:fanfou="clr-namespace:MetroFanfou.Controls">
     <!--
         父微博箭头
     -->
-    <Style x:Key="ParentTextBackgroundArrow" TargetType="es:RegularPolygon">
-        <Setter Property="Fill" Value="#FF091423"/>
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="InnerRadius" Value="1" />
-        <Setter Property="PointCount" Value="3"  />
-        <Setter Property="Stretch" Value="Fill"/>
-        <Setter Property="UseLayoutRounding" Value="False" />
-        <Setter Property="Width" Value="12" />
-        <Setter Property="Height" Value="8" />
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="RenderTransformOrigin" Value="0.61,0.615"/>
-        <Setter Property="Margin" Value="4,0,0,0"/>
+    <Style x:Key="ParentTextBackgroundArrow"
+           TargetType="es:RegularPolygon">
+        <Setter Property="Fill"
+                Value="#FF091423" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="InnerRadius"
+                Value="1" />
+        <Setter Property="PointCount"
+                Value="3" />
+        <Setter Property="Stretch"
+                Value="Fill" />
+        <Setter Property="UseLayoutRounding"
+                Value="False" />
+        <Setter Property="Width"
+                Value="12" />
+        <Setter Property="Height"
+                Value="8" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="RenderTransformOrigin"
+                Value="0.61,0.615" />
+        <Setter Property="Margin"
+                Value="4,0,0,0" />
     </Style>
 
     <!--
         Pivot的样式
     -->
-    <Style x:Key="Pivot" TargetType="controls:Pivot">
-        <Setter Property="Foreground" Value="#FFF"/>
+    <Style x:Key="Pivot"
+           TargetType="controls:Pivot">
+        <Setter Property="Foreground"
+                Value="#FFF" />
     </Style>
 
     <!--
         详细资料页样式
     -->
     <!--内容标题-->
-    <Style x:Key="InfoTitleStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Margin" Value="0,0,0,8"/>
+    <Style x:Key="InfoTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="0,0,0,8" />
     </Style>
     <!--内容样式-->
-    <Style x:Key="InfoContentStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Margin" Value="0,0,0,8"/>
+    <Style x:Key="InfoContentStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="0,0,0,8" />
     </Style>
     <!--状态数字标题-->
-    <Style x:Key="InfoCountTypeStyle" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="FontSize" Value="29.333"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="Foreground" Value="White"/>
+    <Style x:Key="InfoCountTypeStyle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="FontSize"
+                Value="29.333" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
     <!--状态数字-->
-    <Style x:Key="InfoCountNumStyle" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+    <Style x:Key="InfoCountNumStyle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="TextWrapping"
+                Value="NoWrap" />
     </Style>
     <!--状态数字的背景-->
-    <Style x:Key="InfoCountBlock" TargetType="Grid">
-        <Setter Property="Background" Value="#33FFFFFF"/>
-        <Setter Property="Height" Value="100"/>
-        <Setter Property="Width" Value="100"/>
+    <Style x:Key="InfoCountBlock"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#33FFFFFF" />
+        <Setter Property="Height"
+                Value="100" />
+        <Setter Property="Width"
+                Value="100" />
     </Style>
     <!--粉丝数，微博数等小数字样式-->
-    <Style x:Key="HeaderSubText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Margin" Value="8,0,0,0"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    <Style x:Key="HeaderSubText"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Margin"
+                Value="8,0,0,0" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
     </Style>
     <!--
         设置与关于
     -->
     <!--设置项目的标题-->
-    <Style x:Key="SettingTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Foreground" Value="White"/>
+    <Style x:Key="SettingTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
     <!--设置项的下拉列表的条目-->
-    <Style x:Key="SettingListPickerItem" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Foreground" Value="Black"/>
+    <Style x:Key="SettingListPickerItem"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Foreground"
+                Value="Black" />
     </Style>
     <!--设置项的下拉列表-->
-    <Style x:Key="SettingListPicker" TargetType="toolkit:ListPicker">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderBrush" Value="#FF091423"/>
+    <Style x:Key="SettingListPicker"
+           TargetType="toolkit:ListPicker">
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="#FF091423" />
     </Style>
     <!--设置的Checkbox-->
-    <Style x:Key="SettingCheckbox" TargetType="CheckBox">
-        <Setter Property="Background" Value="#FFECECEC"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="24"/>
+    <Style x:Key="SettingCheckbox"
+           TargetType="CheckBox">
+        <Setter Property="Background"
+                Value="#FFECECEC" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="24" />
     </Style>
     <!--关于的标题-->
-    <Style x:Key="AboutTitle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Margin" Value="0,8"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Microsoft MHei"/>
+    <Style x:Key="AboutTitle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Margin"
+                Value="0,8" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontFamily"
+                Value="Microsoft MHei" />
     </Style>
     <!--关于的文字-->
-    <Style x:Key="AboutText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Microsoft MHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="AboutText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontFamily"
+                Value="Microsoft MHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
     <!--关于的链接-->
-    <Style x:Key="AboutLink" TargetType="TextBlock">
-        <Setter Property="Foreground"  Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="FontFamily" Value="Microsoft MHei"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+    <Style x:Key="AboutLink"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="FontFamily"
+                Value="Microsoft MHei" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
     </Style>
     <!--关于的按钮-->
-    <Style x:Key="AboutButton" TargetType="Button">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="Height" Value="80"/>
-        <Setter Property="FontFamily" Value="Microsoft MHei"/>
+    <Style x:Key="AboutButton"
+           TargetType="Button">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="Height"
+                Value="80" />
+        <Setter Property="FontFamily"
+                Value="Microsoft MHei" />
     </Style>
 
     <!--
         提及用户控件
     -->
     <!--提及的结果列表的用户昵称-->
-    <Style x:Key="MentionUserNickNameStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="Foreground" Value="White"/>
+    <Style x:Key="MentionUserNickNameStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
     <!--提及的结果列表的用户帐号-->
-    <Style x:Key="MentionUserNameStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Foreground" Value="#FF949494"/>
+    <Style x:Key="MentionUserNameStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Foreground"
+                Value="#FF949494" />
     </Style>
     <!--提及的按钮-->
-    <Style x:Key="MentionUserButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="Width" Value="120"/>
-        <Setter Property="Height" Value="80"/>
+    <Style x:Key="MentionUserButtonStyle"
+           TargetType="Button">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="Width"
+                Value="120" />
+        <Setter Property="Height"
+                Value="80" />
     </Style>
     <!--提及的文本输入框-->
-    <Style x:Key="MentionUserTextboxStyle" TargetType="TextBox">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Height" Value="80"/>
-        <Setter Property="Width" Value="360"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Background" Value="#FFEFEFEF"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+    <Style x:Key="MentionUserTextboxStyle"
+           TargetType="TextBox">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Height"
+                Value="80" />
+        <Setter Property="Width"
+                Value="360" />
+        <Setter Property="BorderBrush"
+                Value="Gray" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Background"
+                Value="#FFEFEFEF" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
     </Style>
     <!--提及的页面标题-->
-    <Style x:Key="MentionUserPageTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="50"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Margin" Value="12,0,0,0"/>
+    <Style x:Key="MentionUserPageTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="50" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Margin"
+                Value="12,0,0,0" />
     </Style>
     <!--提及的背景-->
-    <Style x:Key="MentionUserLayoutGrid" TargetType="Grid">
-        <Setter Property="Background" Value="Black"/>
+    <Style x:Key="MentionUserLayoutGrid"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="Black" />
     </Style>
 
     <!--
             收件箱发件箱私信列表样式
         -->
     <!--私信发送时间-->
-    <Style x:Key="PrivateMessageMeta" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Opacity" Value="0.9" />
-        <Setter Property="Margin" Value="0,0,8,8" />
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="Foreground" Value="#FFCCCCCC" />
+    <Style x:Key="PrivateMessageMeta"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="Opacity"
+                Value="0.9" />
+        <Setter Property="Margin"
+                Value="0,0,8,8" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="Foreground"
+                Value="#FFCCCCCC" />
     </Style>
     <!--私信文字-->
-    <Style x:Key="PrivateMessageText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="21.333"/>
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Margin" Value="12,12,12,5" />
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="Foreground" Value="White" />
+    <Style x:Key="PrivateMessageText"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="12,12,12,5" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
     <!--收件箱背景-->
-    <Style x:Key="PrivateMessageRevcBox" TargetType="Grid">
-        <Setter Property="Background" Value="#FF091423"/>
+    <Style x:Key="PrivateMessageRevcBox"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#FF091423" />
     </Style>
     <!--收件箱箭头-->
-    <Style x:Key="PrivateMessageRevcArrow" TargetType="es:RegularPolygon">
-        <Setter Property="Fill" Value="#FF091423"/>
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="InnerRadius" Value="1" />
-        <Setter Property="PointCount" Value="3"  />
-        <Setter Property="Stretch" Value="Fill"/>
-        <Setter Property="UseLayoutRounding" Value="False" />
-        <Setter Property="Width" Value="12" />
-        <Setter Property="Height" Value="8" />
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="RenderTransformOrigin" Value="0.61,0.615"/>
-        <Setter Property="Margin" Value="4,0,0,0"/>
+    <Style x:Key="PrivateMessageRevcArrow"
+           TargetType="es:RegularPolygon">
+        <Setter Property="Fill"
+                Value="#FF091423" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="InnerRadius"
+                Value="1" />
+        <Setter Property="PointCount"
+                Value="3" />
+        <Setter Property="Stretch"
+                Value="Fill" />
+        <Setter Property="UseLayoutRounding"
+                Value="False" />
+        <Setter Property="Width"
+                Value="12" />
+        <Setter Property="Height"
+                Value="8" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="RenderTransformOrigin"
+                Value="0.61,0.615" />
+        <Setter Property="Margin"
+                Value="4,0,0,0" />
     </Style>
     <!--发件箱背景-->
-    <Style x:Key="PrivateMessageSendBox" TargetType="Grid">
-        <Setter Property="Background" Value="#FF9DCEFF"/>
+    <Style x:Key="PrivateMessageSendBox"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#FF9DCEFF" />
     </Style>
     <!--发件箱箭头-->
-    <Style x:Key="PrivateMessageSendArrow" TargetType="es:RegularPolygon">
-        <Setter Property="Fill" Value="#FF9DCEFF"/>
-        <Setter Property="HorizontalAlignment" Value="right" />
-        <Setter Property="InnerRadius" Value="1" />
-        <Setter Property="PointCount" Value="3"  />
-        <Setter Property="Stretch" Value="Fill"/>
-        <Setter Property="UseLayoutRounding" Value="False" />
-        <Setter Property="Width" Value="12" />
-        <Setter Property="Height" Value="8" />
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="RenderTransformOrigin" Value="0.61,0.615"/>
-        <Setter Property="Margin" Value="0,0,4,0"/>
+    <Style x:Key="PrivateMessageSendArrow"
+           TargetType="es:RegularPolygon">
+        <Setter Property="Fill"
+                Value="#FF9DCEFF" />
+        <Setter Property="HorizontalAlignment"
+                Value="right" />
+        <Setter Property="InnerRadius"
+                Value="1" />
+        <Setter Property="PointCount"
+                Value="3" />
+        <Setter Property="Stretch"
+                Value="Fill" />
+        <Setter Property="UseLayoutRounding"
+                Value="False" />
+        <Setter Property="Width"
+                Value="12" />
+        <Setter Property="Height"
+                Value="8" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="RenderTransformOrigin"
+                Value="0.61,0.615" />
+        <Setter Property="Margin"
+                Value="0,0,4,0" />
     </Style>
 
     <!--
         用户头像控件
     -->
-    <Style x:Key="UserAvatarNickName" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="FontSize" Value="26.667" />
-        <Setter Property="Foreground" Value="White" />
+    <Style x:Key="UserAvatarNickName"
+           TargetType="TextBlock">
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="FontSize"
+                Value="26.667" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
-    <Style x:Key="UserAvatarName" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe WP Light" />
-        <Setter Property="Foreground" Value="#FF949494" />
+    <Style x:Key="UserAvatarName"
+           TargetType="TextBlock">
+        <Setter Property="FontFamily"
+                Value="Segoe WP Light" />
+        <Setter Property="Foreground"
+                Value="#FF949494" />
     </Style>
 
     <!--
         话题控件
     -->
-    <Style x:Key="HuaTiTextStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Margin" Value="0,0,0,12"/>
+    <Style x:Key="HuaTiTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Margin"
+                Value="0,0,0,12" />
     </Style>
-    <Style x:Key="HuaTiInsertButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="Width" Value="110"/>
-        <Setter Property="Height" Value="80"/>
+    <Style x:Key="HuaTiInsertButtonStyle"
+           TargetType="Button">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="Width"
+                Value="110" />
+        <Setter Property="Height"
+                Value="80" />
     </Style>
-    <Style x:Key="HuaTiCancelButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="DarkGray"/>
-        <Setter Property="Width" Value="80"/>
-        <Setter Property="Height" Value="80"/>
+    <Style x:Key="HuaTiCancelButtonStyle"
+           TargetType="Button">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Background"
+                Value="DarkGray" />
+        <Setter Property="Width"
+                Value="80" />
+        <Setter Property="Height"
+                Value="80" />
     </Style>
-    <Style x:Key="HuaTiTextboxStyle" TargetType="TextBox">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Height" Value="80"/>
-        <Setter Property="Width" Value="360"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Background" Value="#FFEFEFEF"/>
-        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+    <Style x:Key="HuaTiTextboxStyle"
+           TargetType="TextBox">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Height"
+                Value="80" />
+        <Setter Property="Width"
+                Value="360" />
+        <Setter Property="BorderBrush"
+                Value="Gray" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Background"
+                Value="#FFEFEFEF" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
     </Style>
-    <Style x:Key="HuaTiPageTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="50"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Margin" Value="12,0,0,0"/>
+    <Style x:Key="HuaTiPageTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="50" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Margin"
+                Value="12,0,0,0" />
     </Style>
-    <Style x:Key="HuaTiSubTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Margin" Value="12,0,0,12"/>
+    <Style x:Key="HuaTiSubTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Foreground"
+                Value="Gray" />
+        <Setter Property="Margin"
+                Value="12,0,0,12" />
     </Style>
     <!--提及的背景-->
-    <Style x:Key="HuaTiLayoutGrid" TargetType="Grid">
-        <Setter Property="Background" Value="Black"/>
+    <Style x:Key="HuaTiLayoutGrid"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="Black" />
     </Style>
 
     <!--
         添加微博界面
     -->
     <!--添加微博顶部的标题背景-->
-    <Style x:Key="AddPageTitleBgStyle" TargetType="Grid">
-        <Setter Property="Background" Value="#FF091423"/>
+    <Style x:Key="AddPageTitleBgStyle"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#FF091423" />
     </Style>
     <!--添加微博顶部的标题文字-->
-    <Style x:Key="AddPageTitleTextStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="6,0,0,0"/>
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="32" />
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
+    <Style x:Key="AddPageTitleTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="Margin"
+                Value="6,0,0,0" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="FontSize"
+                Value="32" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
     </Style>
     <!--添加微博顶部的已添加字数-->
-    <Style x:Key="AddTweetWordCountStyle" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Segoe WP Light" />
+    <Style x:Key="AddTweetWordCountStyle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontFamily"
+                Value="Segoe WP Light" />
     </Style>
     <!--添加微博输入框样式-->
-    <Style x:Key="AddTweetContentStyle" TargetType="TextBox">
-        <Setter Property="TextWrapping" Value="Wrap"  />
-        <Setter Property="FontSize" Value="21.333"  />
-        <Setter Property="HorizontalAlignment" Value="Stretch"  />
-        <Setter Property="Height" Value="255"  />
-        <Setter Property="FontFamily" Value="Microsoft YaHei" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="#BDBEBD"/>
+    <Style x:Key="AddTweetContentStyle"
+           TargetType="TextBox">
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="FontSize"
+                Value="21.333" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Height"
+                Value="255" />
+        <Setter Property="FontFamily"
+                Value="Microsoft YaHei" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="#BDBEBD" />
     </Style>
     <!--添加微博目标微博样式-->
-    <Style x:Key="AddTweetTargetStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="TextWrapping" Value="Wrap"  />
-        <Setter Property="Margin" Value="12,24,12,0"/>
+    <Style x:Key="AddTweetTargetStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="Gray" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Margin"
+                Value="12,24,12,0" />
     </Style>
 
     <!--
         弹出菜单
     -->
     <!--弹出菜单背景-->
-    <Style x:Key="ContextMenuStyle" TargetType="toolkit:ContextMenu">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="Opacity" Value="1"/>
-        <Setter Property="BorderBrush" Value="#FF091423"/>
+    <Style x:Key="ContextMenuStyle"
+           TargetType="toolkit:ContextMenu">
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="Opacity"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="#FF091423" />
     </Style>
     <!--弹出菜单条目-->
-    <Style x:Key="MenuItemStyle" TargetType="toolkit:MenuItem">
-        <Setter Property="Foreground" Value="Black"/>
+    <Style x:Key="MenuItemStyle"
+           TargetType="toolkit:MenuItem">
+        <Setter Property="Foreground"
+                Value="Black" />
     </Style>
-
 
     <!--广场Tile-->
-    <Style x:Key="HubTileButton" TargetType="Grid">
-        <Setter Property="Background" Value="{StaticResource PhoneAccentColor}"/>
-        <Setter Property="Width" Value="173"/>
-        <Setter Property="Height" Value="173"/>
+    <Style x:Key="HubTileButton"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="{StaticResource PhoneAccentColor}" />
+        <Setter Property="Width"
+                Value="173" />
+        <Setter Property="Height"
+                Value="173" />
     </Style>
-    <Style x:Key="HubTileButtonText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="21"/>
-        <Setter Property="Margin" Value="5,0,0,5"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    <Style x:Key="HubTileButtonText"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="FontSize"
+                Value="21" />
+        <Setter Property="Margin"
+                Value="5,0,0,5" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
     </Style>
 </ResourceDictionary>

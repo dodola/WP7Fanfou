@@ -237,6 +237,6 @@ namespace MetroFanfou.Helper
             return stream;
         }
 
-        #endregion
+        #endregion 保存文件用
     }
 }

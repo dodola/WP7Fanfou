@@ -44,7 +44,7 @@ namespace MetroFanfou.Controls
             }
         }
 
-        #endregion
+        #endregion 自定义属性
 
         /// <summary>
         /// 设置内容解析帐号
@@ -63,7 +63,6 @@ namespace MetroFanfou.Controls
             Blocks.Clear();
             PaserContent(null, text);
         }
-
 
         private void PaserContent(ICollection<User> userInfos, string content)
         {
@@ -124,7 +123,6 @@ namespace MetroFanfou.Controls
             Selection.Insert(block);
         }
 
-
         private Run TextRun(string text)
         {
             return new Run
@@ -156,8 +154,6 @@ namespace MetroFanfou.Controls
         /// </summary>
         private void HyperlinkClick(object sender, RoutedEventArgs e)
         {
-
-
             var link = sender as Hyperlink;
             if (link != null)
             {
@@ -170,7 +166,6 @@ namespace MetroFanfou.Controls
                                          };
                 webBrowserTask.Show();
             }
-
         }
     }
 }

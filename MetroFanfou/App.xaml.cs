@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using FanFou.SDK.Objects;
+using MetroFanfou.Helper;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -17,19 +12,14 @@ namespace MetroFanfou
 {
     public partial class App : Application
     {
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
-        public PhoneApplicationFrame RootFrame { get; private set; }
-
+        public static User CurrentUser { get; set; }
 
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
         public App()
         {
-            // Global handler for uncaught exceptions. 
+            // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
             // Standard Silverlight initialization
@@ -39,18 +29,23 @@ namespace MetroFanfou
             InitializePhoneApplication();
 
             //加载样式
-            Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(Helper.ThemeHelper.ThemeFile(AppSetting.ThemeName), UriKind.Relative) });
+            Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+                                                         {
+                                                             Source =
+                                                                 new Uri(ThemeHelper.ThemeFile(AppSetting.ThemeName),
+                                                                         UriKind.Relative)
+                                                         });
 
             // Show graphics profiling information while debugging.
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
-                // Enable non-production analysis visualization mode, 
+                // Enable non-production analysis visualization mode,
                 // which shows areas of a page that are handed off to GPU with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
@@ -60,8 +55,13 @@ namespace MetroFanfou
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
+
+        /// <summary>
+        /// Provides easy access to the root frame of the Phone Application.
+        /// </summary>
+        /// <returns>The root frame of the Phone Application.</returns>
+        public PhoneApplicationFrame RootFrame { get; private set; }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
@@ -72,14 +72,13 @@ namespace MetroFanfou
                 ShellTile MainTile = ShellTile.ActiveTiles.First();
                 if (MainTile != null)
                 {
-                    StandardTileData NewTileData = new StandardTileData { Count = 0 };
+                    var NewTileData = new StandardTileData { Count = 0 };
                     MainTile.Update(NewTileData);
                 }
-                Helper.ScheduledHelper.Stop();
+                ScheduledHelper.Stop();
             }
             catch
             {
-
             }
         }
 
@@ -87,14 +86,14 @@ namespace MetroFanfou
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            Helper.ScheduledHelper.Stop();
+            ScheduledHelper.Stop();
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            Helper.ScheduledHelper.Start();
+            ScheduledHelper.Start();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -103,36 +102,37 @@ namespace MetroFanfou
         {
             try
             {
-                Helper.ScheduledHelper.Start();
-
+                ScheduledHelper.Start();
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
         }
 
         #region Phone application initialization
 
         // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
+        private bool phoneApplicationInitialized;
 
         // Do not add any additional code to this method
         private void InitializePhoneApplication()
@@ -143,9 +143,8 @@ namespace MetroFanfou
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
 
-
             //RootFrame = new PhoneApplicationFrame();
-            RootFrame=new TransitionFrame();
+            RootFrame = new TransitionFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures
@@ -166,12 +165,9 @@ namespace MetroFanfou
             RootFrame.Navigated -= CompleteInitializePhoneApplication;
         }
 
-        #endregion
+        #endregion Phone application initialization
 
         #region 退出
-
-        private class QuitException : Exception { }
-
 
         /// <summary>
         /// 退出应用
@@ -187,6 +183,10 @@ namespace MetroFanfou
             throw new QuitException();
         }
 
-        #endregion
+        private class QuitException : Exception
+        {
+        }
+
+        #endregion 退出
     }
 }

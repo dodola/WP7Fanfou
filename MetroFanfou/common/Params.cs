@@ -16,12 +16,11 @@
         /// <summary>
         /// 后台任务名称
         /// </summary>
-        public static string PeriodicTaskName {
-
-            get {
-
+        public static string PeriodicTaskName
+        {
+            get
+            {
                 return "AltmanTweetChecker";
-
             }
         }
     }

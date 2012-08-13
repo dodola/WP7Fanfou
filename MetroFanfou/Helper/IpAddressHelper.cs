@@ -17,6 +17,7 @@ namespace MetroFanfou.Helper
     public class IpAddressHelper
     {
         private const string IpaddressApi = "http://fw.qq.com/ipaddress";
+
         /// <summary>
         ///  获取IP地址，并回调
         /// </summary>
@@ -24,16 +25,17 @@ namespace MetroFanfou.Helper
         public void GetIpAddress(Action<string> callback)
         {
             var request = new AsyncHttpRequest(IpaddressApi, Encoding.UTF8);
-            request.Get(EndGetResponseData, callback); 
+            request.Get(EndGetResponseData, callback);
         }
 
         private void EndGetResponseData(string rs, Action<string> callback)
         {
-            if (!string.IsNullOrEmpty(rs) && callback!=null)
+            if (!string.IsNullOrEmpty(rs) && callback != null)
             {
                 callback(ExtractIpaddress(rs));
             }
         }
+
         /// <summary>
         /// 提取IP
         /// </summary>

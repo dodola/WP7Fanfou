@@ -18,24 +18,29 @@ namespace MetroFanfou.Helper
         public static List<string> GetRecent(int count = 0)
         {
             var ht = (List<string>)Isolated.Get(IsolatedHelper.HuaTiKey);
-            if (ht == null) {
+            if (ht == null)
+            {
                 return new List<string>();
             }
-            if (count > 0) {
-                count = Math.Min(count,ht.Count);
+            if (count > 0)
+            {
+                count = Math.Min(count, ht.Count);
                 ht = ht.Take(count).ToList();
             }
             return ht;
         }
+
         /// <summary>
         /// 设置话题
         /// </summary>
         /// <param name="ht"></param>
         /// <returns></returns>
-        public static void SetOneHuaTi(string htStr) {
+        public static void SetOneHuaTi(string htStr)
+        {
             var ht = (new List<string> { htStr });
             var all = GetRecent();
-            if (all != null && all.Count > 0) {
+            if (all != null && all.Count > 0)
+            {
                 foreach (var item in all)
                 {
                     if (string.Compare(item, htStr, StringComparison.CurrentCultureIgnoreCase) == 0)
@@ -45,7 +50,7 @@ namespace MetroFanfou.Helper
                 }
             }
             var rs = all == null ? ht : (ht.Concat(all).Take(10).ToList());
-            Isolated.Set(IsolatedHelper.HuaTiKey,rs);
+            Isolated.Set(IsolatedHelper.HuaTiKey, rs);
         }
     }
 }

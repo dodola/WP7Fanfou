@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" HorizontalAlignment="Left"
-                      
+
                        Stretch="Fill"
                        Width="40"
                        Height="40"
@@ -46,12 +46,12 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding User.ScreenName}" Style="{StaticResource TweetListAccount}"/>
                     </StackPanel>
-                    <fanfou:RichTweetBox  OrigText="{Binding Text}" 
-                                          TextWrapping="Wrap" 
+                    <fanfou:RichTweetBox  OrigText="{Binding Text}"
+                                          TextWrapping="Wrap"
                                           FontSize="22"
                                           Foreground="Black"
-                                          x:Name="rtRichTweetBox" 
-                                          Style="{StaticResource RichTweetBox}" 
+                                          x:Name="rtRichTweetBox"
+                                          Style="{StaticResource RichTweetBox}"
                                           Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}"/>
 
                     <Image  Stretch="None" Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}" Source="{Binding Image,StringFormat='\{0\}/160'}" Style="{StaticResource TweetListImage}"/>
@@ -71,7 +71,7 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}" Style="{StaticResource TweetListParentText}" Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}"/>
 
-                                <Image  Stretch="None" 
+                                <Image  Stretch="None"
                                         Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"
                                         Style="{StaticResource TweetListParentImage}"
                                         Tag="{Binding RepostStatus.StatusPhoto}"
@@ -209,8 +209,8 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid x:Name="TweetListLayoutRoot" Background="Transparent" Style="{StaticResource ListLayoutGrid}">
-        <toolkit:LongListSelector x:Name="FanListBox" 
-                                  Background="Transparent" 
+        <toolkit:LongListSelector x:Name="FanListBox"
+                                  Background="Transparent"
                                   toolkit:TiltEffect.IsTiltEnabled="True"
                                   IsFlatList="True"
                                   ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
