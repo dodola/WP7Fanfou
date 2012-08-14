@@ -59,6 +59,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -68,7 +69,7 @@
                                         x:Name="progressBar"
                                         Style="{StaticResource PerformanceProgressBarStyle}" />
 
-        <!--用户信息-->
+        <!--当前用户信息-->
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
             <Image x:Name="imgLogo"
@@ -77,27 +78,28 @@
                        Style="{StaticResource TweetAccountTitle}" />
         </StackPanel>
 
-        <!--用户头像-->
+        <!--当前消息用户头像-->
+        <Image Grid.Row="2"
+               HorizontalAlignment="Left"
+               Stretch="Fill"
+               Width="40"
+               Height="40"
+               VerticalAlignment="Top">
+            <Image.Source>
+                <BitmapImage  CreateOptions="BackgroundCreation"
+                              UriSource="{Binding CurrentStatus.User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}">
 
+                </BitmapImage>
+            </Image.Source>
+            <Image.Clip>
+                <EllipseGeometry RadiusX="20"
+                                 RadiusY="20"
+                                 Center="20,20" />
+            </Image.Clip>
 
-        <!--Pivot Control-->
-        <controls:Pivot x:Name="detailPivot"
-                        Style="{StaticResource Pivot}"
-                        Grid.Row="2"
-                        SelectionChanged="Pivot_SelectionChanged">
-            <!--Pivot item one-->
-            <controls:PivotItem Header="详情">
-                <fanfou:TweetDetail x:Name="tweetDetail" />
-                
-            </controls:PivotItem>
-
-            <!--Pivot item two-->
-            <controls:PivotItem Header="转播与评论">
-                <fanfou:FanList x:Name="replyList"
-                                Timeline="Reply"
-                                ShowType="Reply" />
-            </controls:PivotItem>
-        </controls:Pivot>
-
+        </Image>
+        <!-- 信息-->
+        <fanfou:TweetDetail x:Name="tweetDetail"
+                            Grid.Row="3" />
     </Grid>
 </phone:PhoneApplicationPage>

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FanFou.SDK.Objects;
 using MetroFanfou.common;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace MetroFanfou
 {
     public partial class DetailPage : PhoneApplicationPage
     {
         private string _id;
-
+        public Status CurrentStatus { get; set; }
         public DetailPage()
         {
             InitializeComponent();
@@ -25,12 +27,29 @@ namespace MetroFanfou
                 if (!string.IsNullOrWhiteSpace(tid))
                 {
                     progressBar.IsIndeterminate = true;
-                    tweetDetail.LoadTweet(tid, null, null);//TODO:完成回调，取出用户信息
+                    tweetDetail.LoadTweet(tid, BeforeLoading, AfterLoaded);
                 }
             }
             base.OnNavigatedTo(e);
         }
+        /// <summary>
+        /// 加载数据前显示loading状态
+        /// </summary>
+        private void BeforeLoading()
+        {
+            Dispatcher.BeginInvoke(() => progressBar.IsIndeterminate = true);
+        }
 
+        /// <summary>
+        /// 加载数据后隐藏loading状态，显示相关信息
+        /// </summary>
+        private void AfterLoaded(Status status)
+        {
+
+            CurrentStatus = status;
+            this.DataContext = CurrentStatus;
+            Dispatcher.BeginInvoke(() => { progressBar.IsIndeterminate = false; });
+        }
         /// <summary>
         ///
         /// </summary>
@@ -41,21 +60,28 @@ namespace MetroFanfou
         }
 
         /// <summary>
-        ///
+        ///短信分享
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SmsClick(object sender, EventArgs e)
         {
+            var smsTask = new SmsComposeTask();
+            smsTask.Body = CurrentStatus.Text;
+            smsTask.Show();
         }
 
         /// <summary>
-        ///
+        /// 邮件分享
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void EmailClick(object sender, EventArgs e)
         {
+            var emailTask = new EmailComposeTask();
+            emailTask.Subject = "分享微博";
+            emailTask.Body = CurrentStatus.Text;
+            emailTask.Show();
         }
 
         private void btnReply_Click(object sender, EventArgs e)
@@ -74,16 +100,6 @@ namespace MetroFanfou
         {
         }
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (detailPivot.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    break;
 
-            }
-        }
     }
 }
