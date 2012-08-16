@@ -7,11 +7,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using FanFou.SDK.API;
 using FanFou.SDK.Objects;
-using MetroFanfou.common;
 using MetroFanfou.Helper;
+using MetroFanfou.common;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework.Input.Touch;
+using WP7_ControlsLib.Controls;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MetroFanfou.Controls
@@ -19,6 +20,8 @@ namespace MetroFanfou.Controls
     public partial class FanList : UserControl
     {
         private Statuses _statusApi;
+        private double lastListBoxScrollableVerticalOffset;
+        private ScrollViewer listBox_ScrollViewer;
 
         #region 属性枚举
 
@@ -45,7 +48,7 @@ namespace MetroFanfou.Controls
             Reply
         }
 
-        #endregion EShowType enum
+        #endregion
 
         #region ETimeline enum
 
@@ -70,7 +73,7 @@ namespace MetroFanfou.Controls
             Public
         }
 
-        #endregion ETimeline enum
+        #endregion
 
         /// <summary>
         /// 拉取数据类型
@@ -144,8 +147,8 @@ namespace MetroFanfou.Controls
         /// 依赖项，显示的时间线内容类型
         /// </summary>
         public static readonly DependencyProperty TimelineProperty = DependencyProperty.Register("Timeline",
-                                                                                                 typeof(ETimeline),
-                                                                                                 typeof(FanList),
+                                                                                                 typeof (ETimeline),
+                                                                                                 typeof (FanList),
                                                                                                  new PropertyMetadata(
                                                                                                      ETimeline.Home));
 
@@ -153,8 +156,8 @@ namespace MetroFanfou.Controls
         /// 依赖项，显示方式
         /// </summary>
         public static readonly DependencyProperty ShowTypeProperty = DependencyProperty.Register("ShowType",
-                                                                                                 typeof(EShowType),
-                                                                                                 typeof(FanList),
+                                                                                                 typeof (EShowType),
+                                                                                                 typeof (FanList),
                                                                                                  new PropertyMetadata(
                                                                                                      EShowType.Full));
 
@@ -164,7 +167,7 @@ namespace MetroFanfou.Controls
         [Description("时间线类型")]
         public ETimeline Timeline
         {
-            get { return (ETimeline)GetValue(TimelineProperty); }
+            get { return (ETimeline) GetValue(TimelineProperty); }
             set { SetValue(TimelineProperty, value); }
         }
 
@@ -174,7 +177,7 @@ namespace MetroFanfou.Controls
         [Description("显示类型")]
         public EShowType ShowType
         {
-            get { return (EShowType)GetValue(ShowTypeProperty); }
+            get { return (EShowType) GetValue(ShowTypeProperty); }
             set { SetValue(ShowTypeProperty, value); }
         }
 
@@ -230,7 +233,7 @@ namespace MetroFanfou.Controls
 
             Dispatcher.BeginInvoke(() =>
                                        {
-                                           var data = (IEnumerable<Status>)FanListBox.ItemsSource;
+                                           var data = (IEnumerable<Status>) FanListBox.ItemsSource;
 
                                            if (PollType == EPollType.NextPage)
                                            {
@@ -277,17 +280,17 @@ namespace MetroFanfou.Controls
                                                if (ShowType == EShowType.Full)
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate)Resources["FullFanListItemTemplate"];
+                                                       (DataTemplate) Resources["FullFanListItemTemplate"];
                                                }
                                                else if (ShowType == EShowType.Reply)
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate)Resources["ReplayListItemTemplate"];
+                                                       (DataTemplate) Resources["ReplayListItemTemplate"];
                                                }
                                                else
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate)Resources["SimpleFanListItemTemplate"];
+                                                       (DataTemplate) Resources["SimpleFanListItemTemplate"];
                                                }
                                            }
                                            //处理界面提示
@@ -315,7 +318,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Reply(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem)sender;
+            var m = (MenuItem) sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -331,7 +334,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Forward(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem)sender;
+            var m = (MenuItem) sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -347,7 +350,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Favorite(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem)sender;
+            var m = (MenuItem) sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -363,7 +366,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Comment(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem)sender;
+            var m = (MenuItem) sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -396,7 +399,7 @@ namespace MetroFanfou.Controls
         {
             if (!string.IsNullOrWhiteSpace(tweetId))
             {
-                var data = (IEnumerable<Status>)FanListBox.ItemsSource;
+                var data = (IEnumerable<Status>) FanListBox.ItemsSource;
                 if (data != null)
                 {
                     return data.FirstOrDefault(t => t.Id == tweetId);
@@ -409,12 +412,29 @@ namespace MetroFanfou.Controls
         {
             if (sender != null)
             {
-                var image = (Image)sender;
+                var image = (Image) sender;
                 var photo = image.Tag as Photo;
                 PhoneApplicationService.Current.State[Const.Imgobj] = photo;
                 var app = Application.Current as App;
                 if (app != null)
                     app.RootFrame.Navigate(new Uri("/ImageBrowse.xaml", UriKind.Relative));
+            }
+        }
+
+        private void FanListBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            if ((listBox_ScrollViewer != null) && IsCanPollData())
+            {
+                bool flag = listBox_ScrollViewer.VerticalOffset > lastListBoxScrollableVerticalOffset;
+                lastListBoxScrollableVerticalOffset = listBox_ScrollViewer.VerticalOffset;
+                if ((listBox_ScrollViewer.VerticalOffset >= (listBox_ScrollViewer.ScrollableHeight - 2.0)) && flag)
+                {
+                    GetNextPage();
+                }
+            }
+            else
+            {
+                listBox_ScrollViewer = ControlHelper.FindChildOfType<ScrollViewer>(FanListBox);
             }
         }
 
@@ -434,53 +454,53 @@ namespace MetroFanfou.Controls
         {
             if (Selected != null)
             {
-                Selected((Status)FanListBox.SelectedItem);
+                Selected((Status) FanListBox.SelectedItem);
             }
         }
 
-        /// <summary>
-        /// 手势结束
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GestureListener_GestureCompleted(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
-        {
-            if (isVerticalDrag || AppSetting.HightDragSensitivity)
-            {
-                var scrollviewer = AppSetting.FindChildOfType<ScrollViewer>(FanListBox);
-                if (scrollviewer == null)
-                {
-                    return;
-                }
-                //到底部
-                if (Math.Abs(scrollviewer.VerticalOffset - scrollviewer.ScrollableHeight) < 2)
-                {
-                    GetNextPage();
-                }
-                //顶部
-                else if (scrollviewer.VerticalOffset < 0.000001)
-                {
-                    GetLastest();
-                }
-            }
-        }
+        ///// <summary>
+        ///// 手势结束
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void GestureListener_GestureCompleted(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
+        //{
+        //    if (isVerticalDrag || AppSetting.HightDragSensitivity)
+        //    {
+        //        var scrollviewer = AppSetting.FindChildOfType<ScrollViewer>(FanListBox);
+        //        if (scrollviewer == null)
+        //        {
+        //            return;
+        //        }
+        //        //到底部
+        //        if (Math.Abs(scrollviewer.VerticalOffset - scrollviewer.ScrollableHeight) < 2)
+        //        {
+        //            GetNextPage();
+        //        }
+        //        //顶部
+        //        else if (scrollviewer.VerticalOffset < 0.000001)
+        //        {
+        //            GetLastest();
+        //        }
+        //    }
+        //}
 
-        /// <summary>
-        /// 手势开始
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GestureListener_GestureBegin(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
-        {
-            while (TouchPanel.IsGestureAvailable)
-            {
-                GestureSample gs = TouchPanel.ReadGesture();
-                if (gs.GestureType == GestureType.VerticalDrag)
-                {
-                    isVerticalDrag = true;
-                }
-            }
-        }
+        ///// <summary>
+        ///// 手势开始
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void GestureListener_GestureBegin(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
+        //{
+        //    while (TouchPanel.IsGestureAvailable)
+        //    {
+        //        GestureSample gs = TouchPanel.ReadGesture();
+        //        if (gs.GestureType == GestureType.VerticalDrag)
+        //        {
+        //            isVerticalDrag = true;
+        //        }
+        //    }
+        //}
 
         #endregion 操作事件
 

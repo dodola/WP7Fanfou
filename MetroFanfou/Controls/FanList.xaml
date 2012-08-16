@@ -10,6 +10,7 @@
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
              xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+             
              d:DesignHeight="800"
              d:DesignWidth="480">
     <UserControl.Resources>
@@ -39,14 +40,14 @@
                     </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0"
                        HorizontalAlignment="Left"
                        Stretch="Fill"
-                       Width="40"
-                       Height="40"
+                       Width="50"
+                       Height="50"
                        VerticalAlignment="Top">
                     <Image.Source>
                         <BitmapImage  CreateOptions="BackgroundCreation"
@@ -54,11 +55,11 @@
 
                         </BitmapImage>
                     </Image.Source>
-                    <Image.Clip>
+                    <!--<Image.Clip>
                         <EllipseGeometry RadiusX="20"
                                          RadiusY="20"
                                          Center="20,20" />
-                    </Image.Clip>
+                    </Image.Clip>-->
 
                 </Image>
                 <StackPanel Grid.Column="1">
@@ -97,11 +98,14 @@
                                            Style="{StaticResource TweetListParentText}"
                                            Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
 
-                                <Image  Stretch="None"
+                                <Image  Stretch="Fill"
                                         Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"
                                         Style="{StaticResource TweetListParentImage}"
                                         Tag="{Binding RepostStatus.StatusPhoto}"
-                                        MouseLeftButtonUp="Image_MouseLeftButtonUp">
+                                        
+                                        MouseLeftButtonUp="Image_MouseLeftButtonUp"
+                                     
+                                        >
                                     <Image.Source>
                                         <BitmapImage UriSource="{Binding RepostStatus.StatusPhoto.ImageUrl}"
                                                      CreateOptions="BackgroundCreation"></BitmapImage>
@@ -306,6 +310,10 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+        
+        <!--TODO:需要增加一个无数据时的模板-->
+        
+        
         <!--头部模板-->
         <DataTemplate x:Key="ListHeaderTemplate">
             <Grid Style="{StaticResource ListHeaderGrid}">
@@ -342,11 +350,13 @@
                                   ListFooterTemplate="{StaticResource ListFooterTemplate}"
                                   ShowListHeader="False"
                                   ShowListFooter="False"
-                                  Tap="FanListBox_Tap">
-            <toolkit:GestureService.GestureListener>
+                                  
+                                  Tap="FanListBox_Tap"
+                                  LayoutUpdated="FanListBox_LayoutUpdated">
+            <!--<toolkit:GestureService.GestureListener>
                 <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted"
                                           GestureBegin="GestureListener_GestureBegin" />
-            </toolkit:GestureService.GestureListener>
+            </toolkit:GestureService.GestureListener>-->
         </toolkit:LongListSelector>
     </Grid>
 

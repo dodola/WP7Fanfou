@@ -8,6 +8,5 @@ D:\dodogit\WP7Fanfou\FanFou.SDK\obj\Debug\FanFou.SDK.dll
 D:\dodogit\WP7Fanfou\FanFou.SDK\obj\Debug\FanFou.SDK.pdb
 D:\GitHub\WP7Fanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll
 D:\GitHub\WP7Fanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.pdb
-D:\GitHub\WP7Fanfou\FanFou.SDK\obj\Debug\ResolveAssemblyReference.cache
 D:\GitHub\WP7Fanfou\FanFou.SDK\obj\Debug\FanFou.SDK.dll
 D:\GitHub\WP7Fanfou\FanFou.SDK\obj\Debug\FanFou.SDK.pdb

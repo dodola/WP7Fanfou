@@ -8,5 +8,7 @@
     <AssemblyPart x:Name="Microsoft.Expression.Drawing" Source="Microsoft.Expression.Drawing.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="WP7_ControlsLib" Source="WP7_ControlsLib.dll" />
+    <AssemblyPart x:Name="WP7_UitlLib" Source="WP7_UitlLib.dll" />
   </Deployment.Parts>
 </Deployment>

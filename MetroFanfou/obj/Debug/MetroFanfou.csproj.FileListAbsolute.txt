@@ -60,7 +60,6 @@ D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\FanFou.SDK.pdb
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Expression.Controls.xml
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Expression.Drawing.xml
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.xml
-D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\ResolveAssemblyReference.cache
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\App.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\FanList.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\LoginPage.g.i.cs
@@ -78,3 +77,6 @@ D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.pdb
 D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.xml
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\TweetDetail.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\DetailPage.g.i.cs
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\WP7_ControlsLib.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\WP7_UitlLib.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.csprojResolveAssemblyReference.cache

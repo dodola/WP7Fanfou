@@ -57,7 +57,7 @@
           Style="{StaticResource PageLayoutGrid}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
@@ -79,25 +79,27 @@
         </StackPanel>
 
         <!--当前消息用户头像-->
-        <Image Grid.Row="2"
-               HorizontalAlignment="Left"
-               Stretch="Fill"
-               Width="40"
-               Height="40"
-               VerticalAlignment="Top">
-            <Image.Source>
-                <BitmapImage  CreateOptions="BackgroundCreation"
-                              UriSource="{Binding CurrentStatus.User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}">
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal">
+            <Image HorizontalAlignment="Left"
+                   Stretch="Fill"
+                   Width="120"
+                   Height="120"
+                   VerticalAlignment="Top"
+                   >
+                <Image.Source>
+                    <BitmapImage  CreateOptions="BackgroundCreation"
+                                  UriSource="{Binding CurrentStatus.User.ProfileImageUrlLarge, Converter={StaticResource HeadUrlConverter},ConverterParameter='50'}">
 
-                </BitmapImage>
-            </Image.Source>
-            <Image.Clip>
-                <EllipseGeometry RadiusX="20"
-                                 RadiusY="20"
-                                 Center="20,20" />
-            </Image.Clip>
+                    </BitmapImage>
+                </Image.Source>
 
-        </Image>
+            </Image>
+            <TextBlock Text="{Binding CurrentStatus.User.NickName}"
+                       FontSize="40" />
+
+        </StackPanel>
+
         <!-- 信息-->
         <fanfou:TweetDetail x:Name="tweetDetail"
                             Grid.Row="3" />

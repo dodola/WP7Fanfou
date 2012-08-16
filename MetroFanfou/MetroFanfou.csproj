@@ -64,6 +64,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="WP7_ControlsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="WP7_UitlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -171,6 +173,8 @@
     </Content>
     <Content Include="libs\Coding4Fun.Phone.Controls.dll" />
     <Content Include="libs\Coding4Fun.Phone.Controls.Toolkit.dll" />
+    <Content Include="libs\WP7_ControlsLib.dll" />
+    <Content Include="libs\WP7_UitlLib.dll" />
     <Content Include="Resource\Icons\back.png" />
     <Content Include="Resource\Icons\camera.png" />
     <Content Include="Resource\Icons\cancel.png" />

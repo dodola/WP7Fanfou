@@ -43,12 +43,12 @@ namespace MetroFanfou
             App.CurrentUser = obj;
             Dispatcher.BeginInvoke(() =>
                                        {
-                                           tbTweetCount.Text = obj.StatusesCount.ToString(CultureInfo.InvariantCulture);
-                                           tbCommentCount.Text =
-                                               obj.FavouritesCount.ToString(CultureInfo.InvariantCulture);
-                                           tbFanxCount.Text = obj.FollowersCount.ToString(CultureInfo.InvariantCulture);
+                                           //tbTweetCount.Text = obj.StatusesCount.ToString(CultureInfo.InvariantCulture);
+                                           //tbCommentCount.Text =
+                                           //    obj.FavouritesCount.ToString(CultureInfo.InvariantCulture);
+                                           //tbFanxCount.Text = obj.FollowersCount.ToString(CultureInfo.InvariantCulture);
                                            tbAccountName.Text = obj.Name;
-                                           tbMessageCount.Text = obj.FriendsCount.ToString(CultureInfo.InvariantCulture);
+                                           //tbMessageCount.Text = obj.FriendsCount.ToString(CultureInfo.InvariantCulture);
                                        });
         }
 
