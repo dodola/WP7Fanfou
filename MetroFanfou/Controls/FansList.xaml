@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="MetroFanfou.Controls.FansList"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.Resources>
+        <DataTemplate x:Key="FansListItemTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <Image  Source="{Binding Head, Converter={StaticResource HeadUrlConverter},ConverterParameter='100'}"  Stretch="Fill" Width="80" Height="80" Margin="0,0,12,0"/>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding NickName}" Style="{StaticResource IdolName}" />
+                        <Image Source="/Resource/Icons/v.png" Stretch="Fill" Width="24" Height="24" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource IdolTweet}" Margin="0,5,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <TextBlock Text="{Binding Fansnum,StringFormat='听众\{0\}'}" Style="{StaticResource IdolCount}" Margin="0,0,12,0"/>
+                        <TextBlock Text="{Binding Idolnum,StringFormat='收听\{0\}'}" Style="{StaticResource IdolCount}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <!--头部模板-->
+        <DataTemplate x:Key="ListHeaderTemplate">
+            <Grid Style="{StaticResource ListHeaderGrid}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/Resource/Images/pull.png" Width="32" Height="32" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tbHeaderText" Style="{StaticResource ListHeaderText}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <!--底部模板-->
+        <DataTemplate x:Key="ListFooterTemplate">
+            <Grid Style="{StaticResource ListFooterGrid}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbFooterText" Style="{StaticResource ListFooterText}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="FansListLayoutRoot" Background="Transparent" Style="{StaticResource ListLayoutGrid}">
+        <toolkit:LongListSelector x:Name="TweetListBox" 
+                                  Background="Transparent" 
+                                  toolkit:TiltEffect.IsTiltEnabled="True"
+                                  IsFlatList="True"
+                                  ItemTemplate="{StaticResource FansListItemTemplate}"
+                                  ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
+                                  ListFooterTemplate="{StaticResource ListFooterTemplate}"
+                                  ShowListHeader="False"
+                                  ShowListFooter="False"
+                                  Tap="TweetListBox_Tap"
+                                  >
+            <toolkit:GestureService.GestureListener>
+                <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted" GestureBegin="GestureListener_GestureBegin" />
+            </toolkit:GestureService.GestureListener>
+        </toolkit:LongListSelector>
+    </Grid>
+</UserControl>

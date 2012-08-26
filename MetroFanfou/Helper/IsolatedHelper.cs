@@ -146,9 +146,9 @@ namespace MetroFanfou.Helper
                     {
                         return buffer;
                     }
-                    var buffer2 = new byte[buffer.Length * 2];
+                    var buffer2 = new byte[buffer.Length*2];
                     Array.Copy(buffer, buffer2, buffer.Length);
-                    buffer2[offset] = (byte)num3;
+                    buffer2[offset] = (byte) num3;
                     buffer = buffer2;
                     offset++;
                 }
@@ -166,7 +166,7 @@ namespace MetroFanfou.Helper
                 {
                     SaveToIsoStore(fileName, TitleContainer.OpenStream(soursefileName));
                 }
-                catch
+                catch (Exception)
                 {
                 }
             }
@@ -186,7 +186,7 @@ namespace MetroFanfou.Helper
                     writer.Write(data);
                 }
             }
-            catch
+            catch (Exception)
             {
             }
         }
@@ -209,7 +209,7 @@ namespace MetroFanfou.Helper
 
         public static void SaveToIsoStore(string fileName, Stream stream)
         {
-            byte[] data = ReadFully(stream, (int)stream.Length);
+            byte[] data = ReadFully(stream, (int) stream.Length);
             stream.Close();
             SaveToIsoStore(fileName, data);
         }

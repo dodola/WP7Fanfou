@@ -1,0 +1,104 @@
+﻿<phone:PhoneApplicationPage xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="800"
+                            x:Class="MetroFanfou.Profile"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Style="{StaticResource PageLayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="3" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar Width="400"
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        x:Name="progressBar"
+                                        Style="{StaticResource PerformanceProgressBarStyle}" />
+        <!--用户头像-->
+        <fanfou:UserAvatar x:Name="UserInfo"
+                           Grid.Row="0" />
+        <!--Pivot Control-->
+        <controls:Pivot x:Name="pivotProfile"
+                        Style="{StaticResource Pivot}"
+                        Grid.Row="2"
+                        SelectionChanged="Pivot_SelectionChanged">
+            <!--Pivot item 资料-->
+            <controls:PivotItem Header="资料">
+                <fanfou:ProfileInfo x:Name="profileInfo" />
+            </controls:PivotItem>
+
+            <!--Pivot item 微博-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="我的空间" />
+                        <TextBlock x:Name="tbTweetNum"
+                                   Text="0"
+                                   Style="{StaticResource HeaderSubText}" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <fanfou:StatusList x:Name="profileTweetList"
+                                   Timeline="User"
+                                   ShowType="Simple" />
+            </controls:PivotItem>
+
+            <!--Pivot item 收听-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="收听" />
+                        <TextBlock x:Name="tbIdolNum"
+                                   Text="0"
+                                   Style="{StaticResource HeaderSubText}" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <fanfou:FansList x:Name="idolList"
+                                 DataType="Idol" />
+            </controls:PivotItem>
+
+            <!--Pivot item 听众-->
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="听众" />
+                        <TextBlock  x:Name="tbFansNum"
+                                    Text="0"
+                                    Style="{StaticResource HeaderSubText}" />
+                    </StackPanel>
+                </controls:PivotItem.Header>
+                <fanfou:FansList x:Name="fansList"
+                                 DataType="Fans" />
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="True"
+                              Opacity="0.9">
+            <shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems>
+            <!--<shell:ApplicationBarIconButton x:Name="btnIdol" IconUri="/Resource/Icons/idol.png" Text="关注" Click="btnIdol_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnMessage" IconUri="/Resource/Icons/message.png" Text="私信" Click="btnMessage_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnMention" IconUri="/Resource/Icons/mentions.png" Text="@Ta" Click="btnMention_Click"/>
+			<shell:ApplicationBarIconButton x:Name="btnHome" IconUri="/Resource/Icons/home.png" Text="首页" Click="btnHome_Click"/>-->
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

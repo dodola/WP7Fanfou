@@ -24,6 +24,7 @@ namespace MetroFanfou
 
         private void InitData()
         {
+
             object imgObj;
             PhoneApplicationService.Current.State.TryGetValue(Const.Imgobj, out imgObj);
             if (imgObj != null)
@@ -127,6 +128,11 @@ namespace MetroFanfou
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

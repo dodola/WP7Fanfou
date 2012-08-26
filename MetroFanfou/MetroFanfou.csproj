@@ -68,6 +68,9 @@
     <Reference Include="WP7_UitlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddStatus.xaml.cs">
+      <DependentUpon>AddStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -76,13 +79,23 @@
     <Compile Include="common\Isolated.cs" />
     <Compile Include="common\OauthHelper.cs" />
     <Compile Include="common\Params.cs" />
-    <Compile Include="Controls\FanList.xaml.cs">
-      <DependentUpon>FanList.xaml</DependentUpon>
+    <Compile Include="Controls\BasePage.cs" />
+    <Compile Include="Controls\FansList.xaml.cs">
+      <DependentUpon>FansList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatusList.xaml.cs">
+      <DependentUpon>StatusList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProfileInfo.xaml.cs">
+      <DependentUpon>ProfileInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PullDownToRefreshPanel.cs" />
     <Compile Include="Controls\RichTweetBox.cs" />
     <Compile Include="Controls\TweetDetail.xaml.cs">
       <DependentUpon>TweetDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserAvatar.xaml.cs">
+      <DependentUpon>UserAvatar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
@@ -91,6 +104,7 @@
     <Compile Include="Helper\DraftHelper.cs" />
     <Compile Include="Helper\EAddTweetType.cs" />
     <Compile Include="Helper\EMenuItemAction.cs" />
+    <Compile Include="Helper\GlobalLoading.cs" />
     <Compile Include="Helper\HuaTiHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\IpAddressHelper.cs" />
@@ -106,7 +120,13 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchUser.xaml.cs">
+      <DependentUpon>SearchUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
@@ -119,11 +139,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Controls\FanList.xaml">
+    <Page Include="AddStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FansList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatusList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProfileInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\TweetDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserAvatar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -136,6 +172,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Profile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +263,7 @@
     <Content Include="Resource\Icons\tray.tweet.png" />
     <Content Include="Resource\Icons\tray.tweet.white.png" />
     <Content Include="Resource\Icons\v.png" />
+    <Content Include="Resource\Icons\input_delete.png" />
     <Content Include="Resource\Images\AddTweetTileBackground.png" />
     <Content Include="Resource\Images\backgound.png" />
     <Content Include="Resource\Images\noHead.png" />
@@ -227,6 +272,7 @@
     <Content Include="Resource\Images\s.famous.png" />
     <Content Include="Resource\Images\s.mayknow.png" />
     <Content Include="Resource\Images\s.topic.png" />
+    <Content Include="Resource\Images\Search.png" />
     <Content Include="Resource\Images\theme.black.png" />
     <Content Include="Resource\Images\theme.blue.png" />
     <Content Include="Resource\Images\theme.darkblue.png" />

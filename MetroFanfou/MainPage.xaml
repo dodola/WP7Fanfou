@@ -1,23 +1,24 @@
-﻿<phone:PhoneApplicationPage x:Class="MetroFanfou.MainPage"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                            FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
-                            SupportedOrientations="Portrait"
-                            Orientation="Portrait"
-                            mc:Ignorable="d"
-                            d:DesignHeight="768"
-                            d:DesignWidth="480"
-                            shell:SystemTray.IsVisible="True"
-                            xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
-                            Loaded="PhoneApplicationPageLoaded">
+﻿<fanfou:BasePage x:Class="MetroFanfou.MainPage"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                 FontSize="{StaticResource PhoneFontSizeNormal}"
+                 Foreground="{StaticResource PhoneForegroundBrush}"
+                 SupportedOrientations="Portrait"
+                 Orientation="Portrait"
+                 mc:Ignorable="d"
+                 d:DesignHeight="768"
+                 d:DesignWidth="480"
+                 shell:SystemTray.IsVisible="True"
+                 xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+                 Loaded="PhoneApplicationPageLoaded">
+
 
     <Grid x:Name="rootView"
           Style="{StaticResource PageLayoutGrid}">
@@ -69,35 +70,33 @@
 
         <controls:Pivot x:Name="PivotMain"
                         Style="{StaticResource Pivot}"
-                        Grid.Row="2"
-                         
                         SelectionChanged="PivotMainSelectionChanged"
-                      >
+                        Grid.Row="2">
             <!--主页 -->
-            <controls:PivotItem Header="主页" >
+            <controls:PivotItem Header="主页">
 
-                <fanfou:FanList HorizontalAlignment="Left"
-                                Timeline="Home"
-                                ShowType="Full"
-                                x:Name="homeItem"
-                                VerticalAlignment="Top" />
+                <fanfou:StatusList HorizontalAlignment="Left"
+                                   Timeline="Home"
+                                   ShowType="Full"
+                                   x:Name="homeItem"
+                                   VerticalAlignment="Top" />
             </controls:PivotItem>
 
             <!--提及 -->
             <controls:PivotItem Header="@提到我的">
-                <fanfou:FanList HorizontalAlignment="Left"
-                                Timeline="Reply"
-                                ShowType="Full"
-                                x:Name="replyItem"
-                                VerticalAlignment="Top" />
+                <fanfou:StatusList HorizontalAlignment="Left"
+                                   Timeline="Reply"
+                                   ShowType="Full"
+                                   x:Name="replyItem"
+                                   VerticalAlignment="Top" />
             </controls:PivotItem>
             <!--私信-->
             <controls:PivotItem Header="随便看看">
-                <fanfou:FanList HorizontalAlignment="Left"
-                                Timeline="Public"
-                                ShowType="Full"
-                                x:Name="publicItem"
-                                VerticalAlignment="Top" />
+                <fanfou:StatusList HorizontalAlignment="Left"
+                                   Timeline="Public"
+                                   ShowType="Full"
+                                   x:Name="publicItem"
+                                   VerticalAlignment="Top" />
             </controls:PivotItem>
 
         </controls:Pivot>
@@ -143,4 +142,4 @@
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
-</phone:PhoneApplicationPage>
+</fanfou:BasePage>

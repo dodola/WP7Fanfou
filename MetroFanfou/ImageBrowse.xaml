@@ -50,7 +50,8 @@
         <shell:ApplicationBar IsVisible="True"
                               IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Resource\Icons\savet.png"
-                                            Text="保存" />
+                                            Text="保存" 
+                                            Click="SaveButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

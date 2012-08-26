@@ -17,7 +17,7 @@ using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MetroFanfou.Controls
 {
-    public partial class FanList : UserControl
+    public partial class StatusList : UserControl
     {
         private Statuses _statusApi;
         private double lastListBoxScrollableVerticalOffset;
@@ -70,7 +70,9 @@ namespace MetroFanfou.Controls
             /// <summary>
             /// 随便看看
             /// </summary>
-            Public
+            Public,
+
+            User
         }
 
         #endregion
@@ -147,8 +149,8 @@ namespace MetroFanfou.Controls
         /// 依赖项，显示的时间线内容类型
         /// </summary>
         public static readonly DependencyProperty TimelineProperty = DependencyProperty.Register("Timeline",
-                                                                                                 typeof (ETimeline),
-                                                                                                 typeof (FanList),
+                                                                                                 typeof(ETimeline),
+                                                                                                 typeof(StatusList),
                                                                                                  new PropertyMetadata(
                                                                                                      ETimeline.Home));
 
@@ -156,8 +158,8 @@ namespace MetroFanfou.Controls
         /// 依赖项，显示方式
         /// </summary>
         public static readonly DependencyProperty ShowTypeProperty = DependencyProperty.Register("ShowType",
-                                                                                                 typeof (EShowType),
-                                                                                                 typeof (FanList),
+                                                                                                 typeof(EShowType),
+                                                                                                 typeof(StatusList),
                                                                                                  new PropertyMetadata(
                                                                                                      EShowType.Full));
 
@@ -167,7 +169,7 @@ namespace MetroFanfou.Controls
         [Description("时间线类型")]
         public ETimeline Timeline
         {
-            get { return (ETimeline) GetValue(TimelineProperty); }
+            get { return (ETimeline)GetValue(TimelineProperty); }
             set { SetValue(TimelineProperty, value); }
         }
 
@@ -177,7 +179,7 @@ namespace MetroFanfou.Controls
         [Description("显示类型")]
         public EShowType ShowType
         {
-            get { return (EShowType) GetValue(ShowTypeProperty); }
+            get { return (EShowType)GetValue(ShowTypeProperty); }
             set { SetValue(ShowTypeProperty, value); }
         }
 
@@ -209,7 +211,7 @@ namespace MetroFanfou.Controls
         /// <summary>
         /// 构造函数
         /// </summary>
-        public FanList()
+        public StatusList()
         {
             if (!DesignerProperties.IsInDesignTool)
             {
@@ -233,7 +235,7 @@ namespace MetroFanfou.Controls
 
             Dispatcher.BeginInvoke(() =>
                                        {
-                                           var data = (IEnumerable<Status>) FanListBox.ItemsSource;
+                                           var data = (IEnumerable<Status>)FanListBox.ItemsSource;
 
                                            if (PollType == EPollType.NextPage)
                                            {
@@ -280,17 +282,17 @@ namespace MetroFanfou.Controls
                                                if (ShowType == EShowType.Full)
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate) Resources["FullFanListItemTemplate"];
+                                                       (DataTemplate)Resources["FullFanListItemTemplate"];
                                                }
                                                else if (ShowType == EShowType.Reply)
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate) Resources["ReplayListItemTemplate"];
+                                                       (DataTemplate)Resources["ReplayListItemTemplate"];
                                                }
                                                else
                                                {
                                                    FanListBox.ItemTemplate =
-                                                       (DataTemplate) Resources["SimpleFanListItemTemplate"];
+                                                       (DataTemplate)Resources["SimpleFanListItemTemplate"];
                                                }
                                            }
                                            //处理界面提示
@@ -318,7 +320,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Reply(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem) sender;
+            var m = (MenuItem)sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -334,7 +336,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Forward(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem) sender;
+            var m = (MenuItem)sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -350,7 +352,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Favorite(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem) sender;
+            var m = (MenuItem)sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -366,7 +368,7 @@ namespace MetroFanfou.Controls
 
         private void MenuItem_Comment(object sender, RoutedEventArgs e)
         {
-            var m = (MenuItem) sender;
+            var m = (MenuItem)sender;
             if (m != null)
             {
                 Status t = GetMenuItemTweet(m.Tag.ToString());
@@ -399,7 +401,7 @@ namespace MetroFanfou.Controls
         {
             if (!string.IsNullOrWhiteSpace(tweetId))
             {
-                var data = (IEnumerable<Status>) FanListBox.ItemsSource;
+                var data = (IEnumerable<Status>)FanListBox.ItemsSource;
                 if (data != null)
                 {
                     return data.FirstOrDefault(t => t.Id == tweetId);
@@ -412,7 +414,7 @@ namespace MetroFanfou.Controls
         {
             if (sender != null)
             {
-                var image = (Image) sender;
+                var image = (Image)sender;
                 var photo = image.Tag as Photo;
                 PhoneApplicationService.Current.State[Const.Imgobj] = photo;
                 var app = Application.Current as App;
@@ -454,7 +456,7 @@ namespace MetroFanfou.Controls
         {
             if (Selected != null)
             {
-                Selected((Status) FanListBox.SelectedItem);
+                Selected((Status)FanListBox.SelectedItem);
             }
         }
 

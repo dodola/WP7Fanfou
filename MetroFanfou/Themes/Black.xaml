@@ -257,8 +257,9 @@
         <Setter Property="Margin"
                 Value="0,0,0,6" />
     </Style>
+    <!--回复的微博-->
     <Style x:Key="TweetListParentText"
-           TargetType="TextBlock">
+           TargetType="fanfou:RichTweetBox">
         <Setter Property="Foreground"
                 Value="#FF949494" />
         <Setter Property="FontSize"

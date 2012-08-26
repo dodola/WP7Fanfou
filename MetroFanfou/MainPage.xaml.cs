@@ -5,11 +5,12 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using FanFou.SDK.API;
 using FanFou.SDK.Objects;
+using MetroFanfou.Controls;
 using MetroFanfou.common;
 
 namespace MetroFanfou
 {
-    public partial class MainPage
+    public partial class MainPage : BasePage
     {
         private readonly Users _usersApi = new Users(OauthHelper.OAuth());
 
@@ -17,15 +18,14 @@ namespace MetroFanfou
         {
             InitializeComponent();
             ApplicationBar.BackgroundColor = (Color)Application.Current.Resources["ApplicationBarBackgroundColor"];
-            homeItem.Init(BeforeLoading, AfterLoaded);
-
+            homeItem.Selected = SelectStatus;
+            replyItem.Selected = SelectStatus;
+            publicItem.Selected = SelectStatus;
             Dispatcher.BeginInvoke(() =>
                                        {
                                            _usersApi.UsersShow(UserLoaded);
                                            if (NavigationService.CanGoBack)
                                                NavigationService.RemoveBackEntry();
-
-                                           homeItem.Selected = SelectStatus;
                                        });
         }
 
@@ -57,16 +57,46 @@ namespace MetroFanfou
             NavigationService.Navigate(new Uri(string.Format("/Setting.xaml"), UriKind.Relative));
         }
 
+        /// <summary>
+        /// 注销
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MLogoutClick(object sender, EventArgs e)
         {
+            var rs = MessageBox.Show("确定注销吗？\r\n注销后将会自动退出，重启程序继续使用。", "注销", MessageBoxButton.OKCancel);
+            if (rs == MessageBoxResult.OK)
+            {
+                OauthHelper.Logout();
+                OauthHelper.IsVerified = false;
+                AppSetting.IsScheduledAgent = false;
+                AppSetting.CheckUpdateSecondSpan = 0;
+
+                App.Quit();
+            }
         }
 
         private void MHelpClick(object sender, EventArgs e)
         {
         }
 
+        /// <summary>
+        /// 退出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MExitClick(object sender, EventArgs e)
         {
+            var b = true;
+            if (AppSetting.IsExitConfirm)
+            {
+                var rs = MessageBox.Show("确定退出吗？", "提示", MessageBoxButton.OKCancel);
+                b = rs != MessageBoxResult.Cancel;
+            }
+            if (b)
+            {
+                App.Quit();
+            }
         }
 
         private void BtnReloadClick(object sender, EventArgs e)
@@ -87,8 +117,14 @@ namespace MetroFanfou
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddClick(object sender, EventArgs e)
         {
+            NavigationService.Navigate(new Uri(string.Format("/AddStatus.xaml"), UriKind.Relative));
         }
 
         private void BtnProfileClick(object sender, EventArgs e)
@@ -124,7 +160,7 @@ namespace MetroFanfou
             switch (PivotMain.SelectedIndex)
             {
                 case 0:
-                   
+
                     homeItem.Init(BeforeLoading, AfterLoaded);
                     break;
 
@@ -137,5 +173,7 @@ namespace MetroFanfou
                     break;
             }
         }
+
+
     }
 }

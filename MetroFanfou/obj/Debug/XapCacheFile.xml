@@ -1,15 +1,15 @@
-﻿<xapCache source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\MetroFanfou.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2012/8/17 0:41:07">
-  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2012/8/13 22:41:20" />
+﻿<xapCache source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\MetroFanfou.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2012/8/25 20:40:26">
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2012/8/22 21:58:57" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Background.png" archivePath="Background.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="2012/7/29 16:20:54" />
-  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.dll" archivePath="MetroFanfou.dll" lastWriteTime="2012/8/17 0:41:06" />
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\MetroFanfou.dll" archivePath="MetroFanfou.dll" lastWriteTime="2012/8/25 20:40:25" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\libs\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="2012/8/5 19:21:30" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\libs\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="2012/8/5 19:21:30" />
-  <file source="D:\GitHub\WP7Fanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll" archivePath="FanFou.SDK.dll" lastWriteTime="2012/8/17 0:41:06" />
+  <file source="D:\GitHub\WP7Fanfou\FanFou.SDK\Bin\Debug\FanFou.SDK.dll" archivePath="FanFou.SDK.dll" lastWriteTime="2012/8/25 19:44:44" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Controls.dll" archivePath="Microsoft.Expression.Controls.dll" lastWriteTime="2011/8/17 1:48:22" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Drawing.dll" archivePath="Microsoft.Expression.Drawing.dll" lastWriteTime="2011/8/17 1:48:22" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="2012/3/19 16:29:06" />
-  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Toolkit\Oct11\Bin\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="2011/10/6 11:33:14" />
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="2011/10/6 11:33:14" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\libs\WP7_ControlsLib.dll" archivePath="WP7_ControlsLib.dll" lastWriteTime="2012/8/17 0:05:26" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\libs\WP7_UitlLib.dll" archivePath="WP7_UitlLib.dll" lastWriteTime="2012/8/17 0:05:26" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\libs\Coding4Fun.Phone.Controls.dll" archivePath="libs\Coding4Fun.Phone.Controls.dll" lastWriteTime="2012/8/5 19:21:30" />
@@ -60,6 +60,7 @@
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Icons\tray.tweet.png" archivePath="Resource\Icons\tray.tweet.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Icons\tray.tweet.white.png" archivePath="Resource\Icons\tray.tweet.white.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Icons\v.png" archivePath="Resource\Icons\v.png" lastWriteTime="2012/7/29 16:20:54" />
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Icons\input_delete.png" archivePath="Resource\Icons\input_delete.png" lastWriteTime="2012/8/19 16:24:07" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\AddTweetTileBackground.png" archivePath="Resource\Images\AddTweetTileBackground.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\backgound.png" archivePath="Resource\Images\backgound.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\noHead.png" archivePath="Resource\Images\noHead.png" lastWriteTime="2012/7/29 16:20:54" />
@@ -68,12 +69,13 @@
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\s.famous.png" archivePath="Resource\Images\s.famous.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\s.mayknow.png" archivePath="Resource\Images\s.mayknow.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\s.topic.png" archivePath="Resource\Images\s.topic.png" lastWriteTime="2012/7/29 16:20:54" />
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\Search.png" archivePath="Resource\Images\Search.png" lastWriteTime="2012/8/19 16:00:46" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\theme.black.png" archivePath="Resource\Images\theme.black.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\theme.blue.png" archivePath="Resource\Images\theme.blue.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\theme.darkblue.png" archivePath="Resource\Images\theme.darkblue.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Resource\Images\VideoMask.png" archivePath="Resource\Images\VideoMask.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="2012/7/29 16:20:54" />
-  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2012/8/17 0:41:07" />
+  <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2012/8/24 22:40:20" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="2012/7/29 16:20:54" />
   <file source="D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\Background.png" archivePath="Background.png" lastWriteTime="2012/7/29 16:20:54" />
 </xapCache>

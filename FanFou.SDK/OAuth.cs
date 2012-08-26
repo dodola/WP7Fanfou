@@ -112,7 +112,7 @@ namespace FanFou.SDK
         /// 如果获取成功, 对象实例的Token与TokenSecret属性值将改为access_token与access_secret
         /// </summary>
         /// <param name="requestUrl">API请求地址</param>
-        /// <param name="verifier">请求授权request token时返回的验证码</param>
+        /// <param name="verifier">请求授权request token时返回的验证码</param> 
         /// <param name="callback">回调，参数是微博帐户名</param>
         /// <returns>是否获取Access Token成功</returns>
         public void GetAccessToken(string requestUrl, string verifier, Action<string> callback)

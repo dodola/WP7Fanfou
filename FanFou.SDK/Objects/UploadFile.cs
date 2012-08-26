@@ -60,7 +60,7 @@ namespace FanFou.SDK.Objects
                 && File.Exists(this.FilePath))
             {
                 //写入本地文件流
-                using (System.IO.FileStream reader = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read))
+                using (var reader = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read))
                 {
                     while ((size = reader.Read(buffer, 0, buffer.Length)) > 0)
                     {

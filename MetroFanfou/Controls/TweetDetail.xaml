@@ -55,9 +55,9 @@
                                           Style="{StaticResource RichTweetBox}"
                                           Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}" />
 
-                    <Image  Stretch="None"
+                    <Image  Stretch="Fill"
                             Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}"
-                            Source="{Binding Image,StringFormat='\{0\}/160'}"
+                            Source="{Binding StatusPhoto.ImageUrl}"
                             Style="{StaticResource TweetListImage}" />
 
                     <!--被回复的微博Style 1-->
@@ -74,9 +74,9 @@
                         <Grid Grid.Row="1"
                               Style="{StaticResource TweetListParentTextBg}">
                             <StackPanel>
-                                <TextBlock Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
-                                           Style="{StaticResource TweetListParentText}"
-                                           Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
+                                <fanfou:RichTweetBox  OrigText="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
+                                                      Style="{StaticResource TweetListParentText}"
+                                                      Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
 
                                 <Image  Stretch="None"
                                         Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"

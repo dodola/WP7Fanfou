@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="MetroFanfou.Controls.ProfileInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+        <Grid x:Name="ProfileInfoLayoutRoot" Background="Transparent">
+        <ScrollViewer>
+            <StackPanel >
+            <TextBlock Text="个人资料" Style="{StaticResource InfoTitleStyle}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Sex}" Style="{StaticResource InfoContentStyle}"/>
+                <TextBlock Text="{Binding Location}" Margin="12,0,0,0" Style="{StaticResource InfoContentStyle}"/>
+            </StackPanel>
+            <TextBlock x:Name="tbUserInfo" Text="{Binding Introduction}" Style="{StaticResource InfoContentStyle}"/>
+            <TextBlock Text="认证信息" Style="{StaticResource InfoTitleStyle}" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+            <TextBlock x:Name="tbUserVerifyInfo" Text="{Binding VerifyInfo}" Style="{StaticResource InfoContentStyle}" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+            <Grid Height="100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Style="{StaticResource InfoCountBlock}">
+                        <TextBlock Text="微博" Style="{StaticResource InfoCountTypeStyle}" />
+                        <TextBlock x:Name="tbTweetCount" Text="{Binding Tweetnum}" Style="{StaticResource InfoCountNumStyle}" />
+                </Grid>
+                    <Grid Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"  Style="{StaticResource InfoCountBlock}">
+                        <TextBlock Text="收听"  Style="{StaticResource InfoCountTypeStyle}" />
+                        <TextBlock x:Name="tbFansCount" Text="{Binding Idolnum}" Style="{StaticResource InfoCountNumStyle}" />
+                    </Grid>
+                    <Grid  Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" Style="{StaticResource InfoCountBlock}">
+                        <TextBlock Text="粉丝"  Style="{StaticResource InfoCountTypeStyle}" />
+                        <TextBlock x:Name="tbFanseCount" Text="{Binding Fansnum}" Style="{StaticResource InfoCountNumStyle}" />
+                    </Grid>
+            </Grid>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

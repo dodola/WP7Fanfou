@@ -1,0 +1,117 @@
+﻿<phone:PhoneApplicationPage x:Class="MetroFanfou.SearchUser"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            d:DesignHeight="696"
+                            d:DesignWidth="480"
+                            shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含应用程序的名称和页标题-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="24,13,24,20">
+            <Border Height="20">
+                <ProgressBar IsIndeterminate="True"
+                             Name="progressBar"
+                             Width="300"
+                             Visibility="Collapsed" />
+            </Border>
+            <StackPanel x:Name="Logo"
+                        Orientation="Horizontal">
+                <Image Stretch="None"
+                       HorizontalAlignment="Left" />
+                <TextBlock  Name="pageTitle"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="20" />
+            </StackPanel>
+        </StackPanel>
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="24,0,24,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <toolkit:PhoneTextBox Grid.Row="0"
+                                  Hint="Search"
+                                  ActionIcon="/Resource\Images\Search.png"
+                                  ActionIconTapped="Search_ActionIconTapped" />
+            <toolkit:MultiselectList Grid.Row="1"
+                                     x:Name="SearchUserList"
+                                     Margin="0,14,-12,0"
+                                     SelectionChanged="SearchUserList_SelectionChanged"
+                                     IsSelectionEnabledChanged="SearchUserList_IsSelectionEnabledChanged">
+                <toolkit:MultiselectList.ItemContainerStyle>
+                    <Style TargetType="toolkit:MultiselectItem">
+                        <Setter Property="HintPanelHeight"
+                                Value="90" />
+                    </Style>
+                </toolkit:MultiselectList.ItemContainerStyle>
+                <toolkit:MultiselectList.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,-14,0,24"
+                                        Tap="ItemContent_Tap">
+                                <TextBlock Text="{Binding Sender}"
+                                           Margin="0,0,0,-4"
+                                           FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                                           FontFamily="{StaticResource PhoneFontFamilySemiLight}" />
+
+                                <TextBlock Text="{Binding Body}"
+                                           Foreground="{StaticResource PhoneSubtleBrush}"
+                                           FontSize="{StaticResource PhoneFontSizeNormal}" />
+                            </StackPanel>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </toolkit:MultiselectList.ItemTemplate>
+                <toolkit:MultiselectList.ItemInfoTemplate>
+                    <DataTemplate>
+                        <Border Width="74"
+                                Margin="0,9,24,0">
+                            <TextBlock Text="{Binding Time}"
+                                       HorizontalAlignment="Right" />
+                        </Border>
+                    </DataTemplate>
+                </toolkit:MultiselectList.ItemInfoTemplate>
+            </toolkit:MultiselectList>
+
+
+
+        </Grid>
+    </Grid>
+    <!--ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1"
+                                            IconUri="/Resource/Images/Search.png"
+                                            Text="select"
+                                            Click="select_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

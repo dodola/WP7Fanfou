@@ -1,0 +1,153 @@
+﻿<fanfou:BasePage x:Class="MetroFanfou.AddStatus"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                 xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                 FontSize="{StaticResource PhoneFontSizeNormal}"
+                 Foreground="{StaticResource PhoneForegroundBrush}"
+                 SupportedOrientations="Portrait"
+                 Orientation="Portrait"
+                 mc:Ignorable="d"
+                 xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                 xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+                 d:DesignHeight="768"
+                 d:DesignWidth="480"
+                 shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot"
+          Style="{StaticResource PageLayoutGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal">
+            <Image x:Name="imgLogo"
+                   Style="{StaticResource TweetLogo}" />
+            <TextBlock x:Name="tbAccountName"
+                       Text="发微博"
+                       Style="{StaticResource TweetAccountTitle}" />
+        </StackPanel>
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--输入框的区域 -->
+            <Border Grid.Row="0"
+                    Margin="24,15,24,0">
+                <!--输入框-->
+                <StackPanel>
+                    <ScrollViewer x:Name="inputView"
+                                  Background="#E5E5E5"
+                                  BorderBrush="#E5E5E5"
+                                  BorderThickness="2"
+                                  Height="200">
+                        <TextBox Name="editContent"
+                                 TextWrapping="Wrap"
+                                 FontSize="24"
+                                 MinHeight="200"
+                                 Width="440"
+                                 MaxHeight="400"
+                                 MaxLength="400"
+                                 TextAlignment="Left"
+                                 SelectionForeground="White"
+                                 Foreground="#FF4c4c4c"
+                                 TextChanged="editContent_TextChanged"
+                                 LostFocus="EditTextBox_LostFocus"
+                                 GotFocus="EditTextBox_GotFocus"
+                                 AcceptsReturn="True"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Top"
+                                 BorderThickness="0"
+                                 Background="#E5E5E5">
+                        </TextBox>
+                    </ScrollViewer>
+                    <!--输入框工具栏-->
+                    <Grid Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--微博内容的图片-->
+                        <Image x:Name="imageIcon"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Grid.Column="0"
+                               Height="40"
+                               Width="40"
+                               toolkit:TiltEffect.IsTiltEnabled="True"
+                               Tap="ShowImage_Tap">
+                        </Image>
+
+                        <!--删除按钮-->
+                        <StackPanel x:Name="deletButton"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right"
+                                    Grid.Column="1"
+                                    Tap="ClearContent_Tap"
+                                    toolkit:TiltEffect.IsTiltEnabled="True">
+                            <TextBlock Name="textCounter"
+                                       FontSize="27"
+                                       Text="140"
+                                       Foreground="#FF808080"
+                                       Margin="12,5,0,6" />
+                            <Image Source="/Resource/icons/input_delete.png"
+                                   Height="32"
+                                   Width="32"
+                                   Margin="4,2,-3,2"
+                                   Visibility="Collapsed"
+                                   Name="iconDelete" />
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True"
+                              IsMenuEnabled="True"
+                              Opacity="0.9">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="清空文字"
+                                              x:Name="mClearText"
+                                              Click="mClearText_Click" />
+                <shell:ApplicationBarMenuItem Text="清除图片"
+                                              x:Name="mClearPhoto"
+                                              Click="mClearPhoto_Click"
+                                              IsEnabled="False" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="btnSend"
+                                            IconUri="/Resource/Icons/sent.png"
+                                            Text="发布"
+                                            Click="btnSend_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnPhoto"
+                                            IconUri="/Resource/Icons/camera.png"
+                                            Text="图片"
+                                            Click="btnPhoto_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnMentions"
+                                            IconUri="/Resource/Icons/mentions.png"
+                                            Text="@"
+                                            Click="btnMentions_Click" />
+            <shell:ApplicationBarIconButton x:Name="btnFace"
+                                            IconUri="/Resource/Icons/face.png"
+                                            Text="话题"
+                                            Click="btnFace_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</fanfou:BasePage>

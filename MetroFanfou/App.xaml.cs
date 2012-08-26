@@ -12,6 +12,7 @@ namespace MetroFanfou
 {
     public partial class App : Application
     {
+        private static GlobalLoading _in;
         public static User CurrentUser { get; set; }
 
         /// <summary>
@@ -124,6 +125,7 @@ namespace MetroFanfou
         {
             if (Debugger.IsAttached)
             {
+
                 // An unhandled exception has occurred; break into the debugger
                 Debugger.Break();
             }
@@ -145,6 +147,9 @@ namespace MetroFanfou
 
             //RootFrame = new PhoneApplicationFrame();
             RootFrame = new TransitionFrame();
+
+            GlobalLoading.Instance.Initialize(RootFrame);
+
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

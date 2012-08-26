@@ -57,6 +57,7 @@ namespace MetroFanfou
         /// <param name="e"></param>
         private void HomeClick(object sender, EventArgs e)
         {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         /// <summary>
