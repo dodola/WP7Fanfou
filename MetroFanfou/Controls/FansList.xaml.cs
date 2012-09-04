@@ -217,12 +217,6 @@ namespace MetroFanfou.Controls
 
             pollType = EPollType.Default;
 
-            switch (DataType)
-            {
-                //case EDataType.Fans: Dal.Friends.Instance.GetFanslist(account, 0, GetFansListEnd); break;
-                //case EDataType.Idol: Dal.Friends.Instance.GetIdollist(account, 0, GetFansListEnd); break;
-            }
-
         }
 
 
@@ -259,23 +253,6 @@ namespace MetroFanfou.Controls
 
             pollType = EPollType.NextPage;
 
-            switch (DataType)
-            {
-                //case EDataType.Fans: Dal.Friends.Instance.GetFanslist(account, startIndex, GetFansListEnd); break;
-                //case EDataType.Idol: Dal.Friends.Instance.GetIdollist(account, startIndex, GetFansListEnd); break;
-            }
-
-
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                if (!TweetListBox.ShowListFooter)
-                {
-                    TweetListBox.ShowListFooter = true;
-                    TweetListBox.ScrollTo(TweetListBox.ListFooter);
-                }
-            });
-
         }
 
         /// <summary>
@@ -295,19 +272,7 @@ namespace MetroFanfou.Controls
 
             pollType = EPollType.Lastest;
 
-            switch (DataType)
-            {
-                //case EDataType.Fans: Dal.Friends.Instance.GetFanslist(account, 0, GetFansListEnd); break;
-                //case EDataType.Idol: Dal.Friends.Instance.GetIdollist(account, 0, GetFansListEnd); break;
-            }
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                if (!TweetListBox.ShowListHeader)
-                {
-                    TweetListBox.ShowListHeader = true;
-                }
-            });
+           
         }
 
         /// <summary>
@@ -360,9 +325,7 @@ namespace MetroFanfou.Controls
 
                 TweetListBox.UpdateLayout();
 
-                TweetListBox.ShowListFooter = false;
-
-                TweetListBox.ShowListHeader = false;
+           
 
                 if (afterLoadedCallback != null)
                 {

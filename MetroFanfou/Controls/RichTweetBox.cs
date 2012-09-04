@@ -23,7 +23,7 @@ namespace MetroFanfou.Controls
                                                                                         typeof(RichTweetBox),
                                                                                         new PropertyMetadata("",
                                                                                                              OrigTextPropertyChangeCallback));
-
+        
         /// <summary>
         /// 微博的原始内容
         /// </summary>
@@ -43,7 +43,7 @@ namespace MetroFanfou.Controls
                 richTextBox.Dispatcher.BeginInvoke(() => richTextBox.SetContent(s));
             }
         }
-
+        
         #endregion 自定义属性
 
         /// <summary>
@@ -66,61 +66,66 @@ namespace MetroFanfou.Controls
 
         private void PaserContent(ICollection<User> userInfos, string content)
         {
-            const string reg = @"@.*?\s+|\#([^\#|.]+)\#|http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)";
-            var regAccount = new Regex(reg);
-            MatchCollection matches = regAccount.Matches(content);
-            int lastPos = 0;
-            var block = new Paragraph();
-            foreach (Match match in matches)
-            {
-                if (match.Index != lastPos)
-                {
-                    block.Inlines.Add(TextRun(content.Substring(lastPos, match.Index - lastPos)));
-                }
-                string val = match.Value;
-                if (!string.IsNullOrWhiteSpace(val))
-                {
-                    if (val.IndexOf("@") == 0)
-                    {
-                        var run = new Run
-                                      {
-                                          Foreground =
-                                              (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
-                                          Text = GetUserNickName(val.Substring(1), userInfos)
-                                      };
-                        block.Inlines.Add(run);
-                    }
-                    else if (val.IndexOf("#") == 0)
-                    {
-                        var run = new Run
-                                      {
-                                          Foreground =
-                                              (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
-                                          Text = val
-                                      };
-                        block.Inlines.Add(run);
-                    }
-                    else
-                    {
-                        var link = new Hyperlink
+            Dispatcher.BeginInvoke(() =>
                                        {
-                                           Foreground =
-                                               (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
-                                           NavigateUri = new Uri(val, UriKind.Absolute)
-                                       };
-                        link.Inlines.Add(val);
-                        link.Click += HyperlinkClick;
-                        block.Inlines.Add(link);
-                    }
+                                           const string reg = @"@.*?\s+|\#([^\#|.]+)\#|http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)";
+                                           var regAccount = new Regex(reg);
+                                           MatchCollection matches = regAccount.Matches(content);
+                                           int lastPos = 0;
+                                           var block = new Paragraph();
+                                           foreach (Match match in matches)
+                                           {
+                                               if (match.Index != lastPos)
+                                               {
+                                                   block.Inlines.Add(TextRun(content.Substring(lastPos, match.Index - lastPos)));
+                                               }
+                                               string val = match.Value;
+                                               if (!string.IsNullOrWhiteSpace(val))
+                                               {
+                                                   if (val.IndexOf("@") == 0)
+                                                   {
+                                                       var run = new Run
+                                                       {
+                                                           Foreground =
+                                                               (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
+                                                           Text = GetUserNickName(val.Substring(1), userInfos)
+                                                       };
+                                                       block.Inlines.Add(run);
+                                                   }
+                                                   else if (val.IndexOf("#") == 0)
+                                                   {
+                                                       var run = new Run
+                                                       {
+                                                           Foreground =
+                                                               (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
+                                                           Text = val
+                                                       };
+                                                       block.Inlines.Add(run);
+                                                   }
+                                                   else
+                                                   {
+                                                       var link = new Hyperlink
+                                                       {
+                                                           Foreground =
+                                                               (SolidColorBrush)Application.Current.Resources["DetailComponentBrush"],
+                                                           NavigateUri = new Uri(val, UriKind.Absolute)
+                                                       };
+                                                       link.Inlines.Add(val);
+                                                       link.Click += HyperlinkClick;
+                                                       block.Inlines.Add(link);
+                                                   }
 
-                    lastPos = match.Index + match.Length;
-                }
-            }
-            if (lastPos < content.Length)
-            {
-                block.Inlines.Add(TextRun(content.Substring(lastPos)));
-            }
-            Selection.Insert(block);
+                                                   lastPos = match.Index + match.Length;
+                                               }
+                                           }
+                                           if (lastPos < content.Length)
+                                           {
+                                               block.Inlines.Add(TextRun(content.Substring(lastPos)));
+                                           }
+                                           Selection.Insert(block);
+
+                                       });
+
         }
 
         private Run TextRun(string text)

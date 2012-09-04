@@ -1,28 +1,46 @@
 ﻿<UserControl x:Class="MetroFanfou.Controls.FansList"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
-    
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lazy="clr-namespace:LazyListBox;assembly=LazyListBox"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             d:DesignHeight="480"
+             d:DesignWidth="480">
+
     <UserControl.Resources>
         <DataTemplate x:Key="FansListItemTemplate">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
-                <Image  Source="{Binding Head, Converter={StaticResource HeadUrlConverter},ConverterParameter='100'}"  Stretch="Fill" Width="80" Height="80" Margin="0,0,12,0"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,0,0,24">
+                <Image  Source="{Binding Head, Converter={StaticResource HeadUrlConverter},ConverterParameter='100'}"
+                        Stretch="Fill"
+                        Width="80"
+                        Height="80"
+                        Margin="0,0,12,0" />
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding NickName}" Style="{StaticResource IdolName}" />
-                        <Image Source="/Resource/Icons/v.png" Stretch="Fill" Width="24" Height="24" Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}"/>
+                        <TextBlock Text="{Binding NickName}"
+                                   Style="{StaticResource IdolName}" />
+                        <Image Source="/Resource/Icons/v.png"
+                               Stretch="Fill"
+                               Width="24"
+                               Height="24"
+                               Visibility="{Binding IsVip, Converter={StaticResource IntToVisibleConverter}}" />
                     </StackPanel>
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource IdolTweet}" Margin="0,5,0,0"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="{Binding Fansnum,StringFormat='听众\{0\}'}" Style="{StaticResource IdolCount}" Margin="0,0,12,0"/>
-                        <TextBlock Text="{Binding Idolnum,StringFormat='收听\{0\}'}" Style="{StaticResource IdolCount}" />
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource IdolTweet}"
+                               Margin="0,5,0,0" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,5,0,0">
+                        <TextBlock Text="{Binding Fansnum,StringFormat='听众\{0\}'}"
+                                   Style="{StaticResource IdolCount}"
+                                   Margin="0,0,12,0" />
+                        <TextBlock Text="{Binding Idolnum,StringFormat='收听\{0\}'}"
+                                   Style="{StaticResource IdolCount}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -30,24 +48,105 @@
         <!--头部模板-->
         <DataTemplate x:Key="ListHeaderTemplate">
             <Grid Style="{StaticResource ListHeaderGrid}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image Source="/Resource/Images/pull.png" Width="32" Height="32" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="tbHeaderText" Style="{StaticResource ListHeaderText}"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Image Source="/Resource/Images/pull.png"
+                           Width="32"
+                           Height="32"
+                           VerticalAlignment="Center" />
+                    <TextBlock x:Name="tbHeaderText"
+                               Style="{StaticResource ListHeaderText}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
         <!--底部模板-->
         <DataTemplate x:Key="ListFooterTemplate">
             <Grid Style="{StaticResource ListFooterGrid}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock x:Name="tbFooterText" Style="{StaticResource ListFooterText}"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbFooterText"
+                               Style="{StaticResource ListFooterText}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid x:Name="FansListLayoutRoot" Background="Transparent" Style="{StaticResource ListLayoutGrid}">
-        <toolkit:LongListSelector x:Name="TweetListBox" 
-                                  Background="Transparent" 
+    <Grid x:Name="FansListLayoutRoot"
+          Background="Transparent"
+          Style="{StaticResource ListLayoutGrid}">
+
+        <lazy:LazyListBox x:Name="TweetListBox">
+            <lazy:LazyListBox.LoadedItemTemplate>
+                <DataTemplate>
+                    <Grid Height="100">
+                        <Grid.Triggers>
+                            <!--Show a nice animation to fade the minimal content into the full content-->
+                            <EventTrigger RoutedEvent="Grid.Loaded">
+                                <BeginStoryboard>
+                                    <BeginStoryboard.Storyboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="largeText"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             From="1"
+                                                             To="0"
+                                                             Duration="0:0:0.6">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseIn"
+                                                               Power="3" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="details"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             From="0"
+                                                             To="1"
+                                                             Duration="0:0:0.6">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseOut"
+                                                               Power="3" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard.Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding ImageSource}"
+                               Grid.Column="0"
+                               Stretch="Uniform"
+                               Width="65"
+                               Height="90"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="12,0" />
+                        <TextBlock x:Name="largeText"
+                                   Grid.Column="1"
+                                   Text="{Binding Title}"
+                                   Style='{StaticResource PhoneTextLargeStyle}'
+                                   VerticalAlignment='Center' />
+                        <StackPanel Margin="1,4,0,0"
+                                    Grid.Column="1"
+                                    x:Name="details"
+                                    Height="80"
+                                    VerticalAlignment="Top">
+                            <TextBlock Text="{Binding Title}"
+                                       Style='{StaticResource PhoneTextNormalStyle}'
+                                       Height='27' />
+                            <TextBlock Text="{Binding Description}"
+                                       TextWrapping="Wrap"
+                                       Height="53"
+                                       FontSize="{StaticResource PhoneFontSizeSmall}"
+                                       Style='{StaticResource PhoneTextSubtleStyle}' />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </lazy:LazyListBox.LoadedItemTemplate>
+
+        </lazy:LazyListBox>
+        <!--<toolkit:LongListSelector x:Name="TweetListBox"
+                                  Background="Transparent"
                                   toolkit:TiltEffect.IsTiltEnabled="True"
                                   IsFlatList="True"
                                   ItemTemplate="{StaticResource FansListItemTemplate}"
@@ -55,11 +154,11 @@
                                   ListFooterTemplate="{StaticResource ListFooterTemplate}"
                                   ShowListHeader="False"
                                   ShowListFooter="False"
-                                  Tap="TweetListBox_Tap"
-                                  >
+                                  Tap="TweetListBox_Tap">
             <toolkit:GestureService.GestureListener>
-                <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted" GestureBegin="GestureListener_GestureBegin" />
+                <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted"
+                                          GestureBegin="GestureListener_GestureBegin" />
             </toolkit:GestureService.GestureListener>
-        </toolkit:LongListSelector>
+        </toolkit:LongListSelector>-->
     </Grid>
 </UserControl>

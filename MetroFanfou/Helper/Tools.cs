@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using Coding4Fun.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
@@ -56,6 +58,14 @@ namespace MetroFanfou.Helper
         }
 
         public delegate void PopToastCompleted();
+
+        public void HighlightText(RichTextBox block)
+        {
+            const string reg = @"@.*?\s+|\#([^\#|.]+)\#|http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)";
+            var regAccount = new Regex(reg);
+          
+
+        }
 
         public static void SavePicture(Image img)
         {

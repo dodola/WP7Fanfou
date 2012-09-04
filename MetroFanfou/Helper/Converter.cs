@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
+using FanFou.SDK.Objects;
 
 namespace MetroFanfou.Helper
 {
@@ -17,15 +18,19 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class ObjectToVisibleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value == null ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -33,16 +38,20 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class StringToVisibleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) return true;
             return string.IsNullOrEmpty(value.ToString()) ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -50,17 +59,21 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class IntToVisibleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var b = (long)value < 1;
+            bool b = (long) value < 1;
             b = parameter == null ? b : !b;
             return b ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -68,16 +81,22 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class HeadUrlConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var size = parameter.ToString();
-            return string.IsNullOrEmpty(value.ToString()) ? "/MetroFanfou;component/Resource/Images/noHead.png" : value.ToString() + "/" + (string.IsNullOrEmpty(size) ? "50" : size);
+            string size = parameter.ToString();
+            return string.IsNullOrEmpty(value.ToString())
+                       ? "/MetroFanfou;component/Resource/Images/noHead.png"
+                       : value + "/" + (string.IsNullOrEmpty(size) ? "50" : size);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -85,9 +104,11 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class MessageListTextConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var str = value.ToString();
+            string str = value.ToString();
             if (!string.IsNullOrWhiteSpace(str) && str.Length > 16)
             {
                 str = str.Substring(0, 16) + "...";
@@ -95,10 +116,12 @@ namespace MetroFanfou.Helper
             return str;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -106,31 +129,29 @@ namespace MetroFanfou.Helper
     /// </summary>
     public class SourceTweetContentConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {
-                var t = (FanFou.SDK.Objects.Status)value;
+                var t = (Status) value;
                 return string.Format("{0}: {1}", t.User.ScreenName, t.Text);
             }
             return "";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }
+
+        #endregion
     }
 
     public class TimeToSpanConvert : IValueConverter
     {
-        /// <summary>
-        /// 本地时间转成GMT格式的时间
-        /// </summary>
-        public static string ToGMTFormat(DateTime dt)
-        {
-            return dt.ToString("r") + dt.ToString("zzz").Replace(":", "");
-        }
+        #region IValueConverter Members
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -143,20 +164,20 @@ namespace MetroFanfou.Helper
                 {
                     TimeSpan timeSpan = DateTime.Now.Subtract(date).Duration();
 
-                    if ((int)timeSpan.TotalDays > 0)
+                    if ((int) timeSpan.TotalDays > 0)
                     {
-                        return string.Format("{0}天前", (int)timeSpan.TotalDays);
+                        return string.Format("{0}天前", (int) timeSpan.TotalDays);
                     }
-                    if ((int)timeSpan.TotalHours > 0)
+                    if ((int) timeSpan.TotalHours > 0)
                     {
-                        return string.Format("{0}小时前", (int)timeSpan.TotalHours);
+                        return string.Format("{0}小时前", (int) timeSpan.TotalHours);
                     }
-                    if ((int)timeSpan.TotalMinutes > 0)
+                    if ((int) timeSpan.TotalMinutes > 0)
                     {
-                        return string.Format("{0}分钟前", (int)timeSpan.TotalMinutes);
+                        return string.Format("{0}分钟前", (int) timeSpan.TotalMinutes);
                     }
-                    if ((int)timeSpan.TotalSeconds > 0)
-                        return String.Format("{0}秒前", (int)timeSpan.TotalSeconds);
+                    if ((int) timeSpan.TotalSeconds > 0)
+                        return String.Format("{0}秒前", (int) timeSpan.TotalSeconds);
                 }
             }
             return "";
@@ -166,10 +187,22 @@ namespace MetroFanfou.Helper
         {
             return value;
         }
+
+        #endregion
+
+        /// <summary>
+        /// 本地时间转成GMT格式的时间
+        /// </summary>
+        public static string ToGMTFormat(DateTime dt)
+        {
+            return dt.ToString("r") + dt.ToString("zzz").Replace(":", "");
+        }
     }
 
     public class HtmlToLinkConvert : IValueConverter
     {
+        #region IValueConverter Members
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             String link = "";
@@ -189,10 +222,14 @@ namespace MetroFanfou.Helper
         {
             return value;
         }
+
+        #endregion
     }
 
     public class HtmlToContentConvert : IValueConverter
     {
+        #region IValueConverter Members
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             String content = "";
@@ -210,5 +247,7 @@ namespace MetroFanfou.Helper
         {
             return value;
         }
+
+        #endregion
     }
 }

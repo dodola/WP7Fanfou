@@ -301,9 +301,7 @@ namespace MetroFanfou.Controls
 
                                            FanListBox.UpdateLayout();
 
-                                           FanListBox.ShowListFooter = false;
 
-                                           FanListBox.ShowListHeader = false;
 
                                            if (AfterLoadedCallback != null)
                                            {
@@ -601,14 +599,7 @@ namespace MetroFanfou.Controls
                     break;
             }
 
-            Dispatcher.BeginInvoke(() =>
-                                       {
-                                           if (!FanListBox.ShowListFooter)
-                                           {
-                                               FanListBox.ShowListFooter = true;
-                                               FanListBox.ScrollTo(FanListBox.ListFooter);
-                                           }
-                                       });
+
         }
 
         /// <summary>
@@ -643,13 +634,7 @@ namespace MetroFanfou.Controls
                     break;
             }
 
-            Dispatcher.BeginInvoke(() =>
-                                       {
-                                           if (!FanListBox.ShowListHeader)
-                                           {
-                                               FanListBox.ShowListHeader = true;
-                                           }
-                                       });
+
         }
 
         /// <summary>

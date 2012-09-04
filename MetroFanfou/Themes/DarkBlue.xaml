@@ -258,7 +258,7 @@
                 Value="0,0,0,6" />
     </Style>
     <Style x:Key="TweetListParentText"
-           TargetType="fanfou:RichTweetBox">
+           TargetType="TextBlock">
         <Setter Property="Foreground"
                 Value="#FF949494" />
         <Setter Property="FontSize"

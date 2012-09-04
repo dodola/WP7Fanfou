@@ -259,7 +259,7 @@
     </Style>
     <!--回复的微博-->
     <Style x:Key="TweetListParentText"
-           TargetType="fanfou:RichTweetBox">
+           TargetType="TextBlock">
         <Setter Property="Foreground"
                 Value="#FF949494" />
         <Setter Property="FontSize"
@@ -341,7 +341,7 @@
                 Value="Microsoft YaHei" />
         <Setter Property="TextWrapping"
                 Value="Wrap" />
-    </Style>+
+    </Style> +
     <!--详细微博内容中的链接，昵称，主题的颜色-->
     <SolidColorBrush x:Key="DetailComponentBrush"
                      Color="{StaticResource PhoneAccentColor}" />

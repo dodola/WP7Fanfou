@@ -83,3 +83,5 @@ D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\ProfileInfo.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\UserAvatar.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\FansList.g.i.cs
 D:\GitHub\WP7Fanfou\MetroFanfou\obj\Debug\Controls\StatusList.g.i.cs
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\LazyListBox.dll
+D:\GitHub\WP7Fanfou\MetroFanfou\Bin\Debug\UIExtensionMethods.dll

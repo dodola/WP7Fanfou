@@ -10,6 +10,7 @@
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
              xmlns:fanfou="clr-namespace:MetroFanfou.Controls"
+             xmlns:list="clr-namespace:LazyListBox;assembly=LazyListBox"
              d:DesignHeight="800"
              d:DesignWidth="480">
     <UserControl.Resources>
@@ -66,18 +67,27 @@
                         <TextBlock Text="{Binding User.ScreenName}"
                                    Style="{StaticResource TweetListAccount}" />
                     </StackPanel>
-                    <fanfou:RichTweetBox  OrigText="{Binding Text}"
+                    <!--<fanfou:RichTweetBox  OrigText="{Binding Text}"
                                           TextWrapping="Wrap"
                                           FontSize="22"
                                           Foreground="Black"
                                           x:Name="rtRichTweetBox"
                                           Style="{StaticResource RichTweetBox}"
-                                          Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}" />
+                                          Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}" />-->
+                    <TextBlock   Text="{Binding Text}"
+                                 TextWrapping="Wrap"
+                                 FontSize="22"
+                                 Foreground="Black"
+                                 x:Name="rtRichTweetBox"
+                                 Style="{StaticResource TweetListParentText}"
+                                 Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}" />
 
-                    <Image  Stretch="Fill"
-                            Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}"
+                    <Image  Stretch="None"
+                            Visibility="{Binding StatusPhoto, Converter={StaticResource ObjectToVisibleConverter}}"
                             Source="{Binding StatusPhoto.ImageUrl}"
-                            Style="{StaticResource TweetListImage}" />
+                            Style="{StaticResource TweetListImage}"
+                            Height="200"
+                            MouseLeftButtonUp="Image_MouseLeftButtonUp" />
 
                     <!--被回复的微博Style 1-->
                     <Grid  Visibility="{Binding RepostStatus, Converter={StaticResource ObjectToVisibleConverter}}">
@@ -96,21 +106,22 @@
                                 <!--<TextBlock Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
                                            Style="{StaticResource TweetListParentText}"
                                            Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />-->
-                                <fanfou:RichTweetBox  OrigText="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
-                                                      x:Name="repostStatus"
-                                                      Style="{StaticResource TweetListParentText}"
-                                                      Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
-                                
-                                <Image  Stretch="Fill"
-                                        Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"
+                                <TextBlock  Text="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
+                                            x:Name="repostStatus"
+                                            Style="{StaticResource TweetListParentText}"
+                                            Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
+
+                                <!--<Image  Stretch="Fill"
+                                        Visibility="{Binding RepostStatus.StatusPhoto, Converter={StaticResource ObjectToVisibleConverter}}"
                                         Style="{StaticResource TweetListParentImage}"
                                         Tag="{Binding RepostStatus.StatusPhoto}"
+                                        Height="200"
                                         MouseLeftButtonUp="Image_MouseLeftButtonUp">
                                     <Image.Source>
                                         <BitmapImage UriSource="{Binding RepostStatus.StatusPhoto.ImageUrl}"
-                                                     CreateOptions="BackgroundCreation"></BitmapImage>
+                                                     CreateOptions="DelayCreation"></BitmapImage>
                                     </Image.Source>
-                                </Image>
+                                </Image>-->
 
                             </StackPanel>
                         </Grid>
@@ -342,22 +353,21 @@
     <Grid x:Name="TweetListLayoutRoot"
           Background="Transparent"
           Style="{StaticResource ListLayoutGrid}">
-        <toolkit:LongListSelector x:Name="FanListBox"
-                                  Background="Transparent"
-                                  toolkit:TiltEffect.IsTiltEnabled="True"
-                                  IsFlatList="True"
-                                  ListHeaderTemplate="{StaticResource ListHeaderTemplate}"
-                                  ListFooterTemplate="{StaticResource ListFooterTemplate}"
-                                  ShowListHeader="False"
-                                  ShowListFooter="False"
-                                  Tap="FanListBox_Tap"
-                                  LayoutUpdated="FanListBox_LayoutUpdated">
+        <!--<ListBox x:Name="FanListBox"
+                 Background="Transparent"
+                 toolkit:TiltEffect.IsTiltEnabled="True"
+                 Tap="FanListBox_Tap"
+                 LayoutUpdated="FanListBox_LayoutUpdated">
 
-            <!--<toolkit:GestureService.GestureListener>
-                <toolkit:GestureListener  GestureCompleted="GestureListener_GestureCompleted"
-                                          GestureBegin="GestureListener_GestureBegin" />
-            </toolkit:GestureService.GestureListener>-->
-        </toolkit:LongListSelector>
+        </ListBox>-->
+        <list:LazyListBox x:Name="FanListBox"
+                          toolkit:TiltEffect.IsTiltEnabled="True"
+                          Tap="FanListBox_Tap"
+                          Background="Transparent"
+                          LayoutUpdated="FanListBox_LayoutUpdated">
+
+
+        </list:LazyListBox>
     </Grid>
 
 </UserControl>
