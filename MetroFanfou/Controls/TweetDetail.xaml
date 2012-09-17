@@ -52,8 +52,7 @@
                                           FontSize="22"
                                           Foreground="Black"
                                           x:Name="rtRichTweetBox"
-                                          Style="{StaticResource RichTweetBox}"
-                                          Visibility="{Binding Origtext, Converter={StaticResource StringToVisibleConverter}}" />
+                                          Style="{StaticResource RichTweetBox}" />
 
                     <Image  Stretch="Fill"
                             Visibility="{Binding StatusPhoto, Converter={StaticResource StringToVisibleConverter}}"
@@ -74,9 +73,9 @@
                         <Grid Grid.Row="1"
                               Style="{StaticResource TweetListParentTextBg}">
                             <StackPanel>
-                                <fanfou:RichTweetBox  OrigText="{Binding RepostStatus,Converter={StaticResource SourceTweetContentConverter}}"
-                                                      Style="{StaticResource TweetListParentText}"
-                                                      Visibility="{Binding RepostStatus.Text, Converter={StaticResource StringToVisibleConverter}}" />
+
+                                <fanfou:RichTweetBox  OrigText="{Binding RepostStatus.Text}"
+                                                      Style="{StaticResource RichTweetBox}" />
 
                                 <Image  Stretch="None"
                                         Visibility="{Binding RepostStatus.StatusPhoto.ImageUrl, Converter={StaticResource StringToVisibleConverter}}"

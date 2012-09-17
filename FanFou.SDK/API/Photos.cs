@@ -25,7 +25,7 @@ namespace FanFou.SDK.API
             if (!string.IsNullOrEmpty(location)) parameters.Add("location", location);
             var file = new Files();
             file.Add("photo", image);
-            PostData("http://api.fanfou.com/photos/upload.json", parameters, file, UpdateStatusEnd);
+            PostData("http://api.fanfou.com/photos/upload.xml", parameters, file, UpdateStatusEnd);
         }
 
         private void UpdateStatusEnd(string json)

@@ -17,6 +17,7 @@ namespace FanFou.SDK.Http
         public static HttpWebRequest CreateRequest(string method, string url, int timeout)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
+
             request.AllowReadStreamBuffering = false;
             request.Method = method;
             return request;

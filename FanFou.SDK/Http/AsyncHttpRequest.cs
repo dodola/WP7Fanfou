@@ -20,7 +20,8 @@ namespace FanFou.SDK.Http
         /// 构造
         /// </summary>
         /// <param name="url"></param>
-        public AsyncHttpRequest(string url) : this(url, null, Encoding.UTF8)
+        public AsyncHttpRequest(string url)
+            : this(url, null, Encoding.UTF8)
         {
         }
 
@@ -29,7 +30,8 @@ namespace FanFou.SDK.Http
         /// </summary>
         /// <param name="url"></param>
         /// <param name="charset"></param>
-        public AsyncHttpRequest(string url, Encoding charset) : this(url, null, charset)
+        public AsyncHttpRequest(string url, Encoding charset)
+            : this(url, null, charset)
         {
         }
 
@@ -61,6 +63,8 @@ namespace FanFou.SDK.Http
         /// 查询参数
         /// </summary>
         public Parameters Parameters { get; set; }
+
+        public String AuthHeader { get; set; }
 
         /// <summary>
         /// OAuthEndAction方法
@@ -133,6 +137,7 @@ namespace FanFou.SDK.Http
             Files = files;
 
             HttpWebRequest request = HttpUtil.CreateRequest("POST", Url, Timeout);
+            request.Headers["Authorization"] = AuthHeader;
             if (Parameters != null && Parameters.Items.Count != 0)
             {
                 request.BeginGetRequestStream(GetPostFileRequestStreamCallback, request);
@@ -165,8 +170,8 @@ namespace FanFou.SDK.Http
         {
             try
             {
-                var request = (HttpWebRequest) asynchronousResult.AsyncState;
-                var response = (HttpWebResponse) request.EndGetResponse(asynchronousResult);
+                var request = (HttpWebRequest)asynchronousResult.AsyncState;
+                var response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
                 Stream streamResponse = response.GetResponseStream();
                 var streamRead = new StreamReader(streamResponse);
                 string responseString = streamRead.ReadToEnd();
@@ -195,7 +200,7 @@ namespace FanFou.SDK.Http
         {
             try
             {
-                var request = (HttpWebRequest) asynchronousResult.AsyncState;
+                var request = (HttpWebRequest)asynchronousResult.AsyncState;
                 Stream stream = request.EndGetRequestStream(asynchronousResult);
                 string queryString = Parameters.BuildQueryString(true);
                 byte[] data = Charset.GetBytes(queryString);
@@ -218,14 +223,16 @@ namespace FanFou.SDK.Http
         /// <param name="asynchronousResult"></param>
         public void GetPostFileRequestStreamCallback(IAsyncResult asynchronousResult)
         {
-            var request = (HttpWebRequest) asynchronousResult.AsyncState;
+            var request = (HttpWebRequest)asynchronousResult.AsyncState;
             Stream stream = request.EndGetRequestStream(asynchronousResult);
 
             #region 生成流
 
             Files files = Files;
-            string boundary = string.Concat("--", Util.GenerateRndNonce());
+
+            string boundary = string.Concat("-----------------------------", Util.GenerateRndNonce());
             request.ContentType = string.Concat("multipart/form-data; boundary=", boundary);
+
             using (var ms = new MemoryStream())
             {
                 byte[] boundaryData = Charset.GetBytes("\r\n--" + boundary + "\r\n");

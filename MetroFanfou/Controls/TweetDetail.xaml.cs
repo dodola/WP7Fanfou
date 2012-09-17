@@ -69,9 +69,6 @@ namespace MetroFanfou.Controls
             {
                 _status = rs;
                 TweetDetailLayoutRoot.DataContext = rs;
-
-                rtRichTweetBox.SetContent(rs.Text);
-
                 if (AfterLoadedCallback != null)
                 {
                     AfterLoadedCallback(rs);

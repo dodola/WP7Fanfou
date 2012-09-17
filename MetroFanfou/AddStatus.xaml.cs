@@ -88,20 +88,17 @@ namespace MetroFanfou
         private void btnSend_Click(object sender, EventArgs e)
         {
             StartSystemTrayProgress();
-            var t = new Thread(() =>
-                                      {
 
 
-                                          if (uploadFile != null)
-                                              _photos.Upload(SendCallback, uploadFile, editContent.Text);
-                                          else
-                                              _status.UpdateStatus(SendCallback, editContent.Text);
-                                          StopSystemTrayProgress();
+            if (uploadFile != null)
+                _photos.Upload(SendCallback, uploadFile, editContent.Text);
+            else
+                _status.UpdateStatus(SendCallback, editContent.Text);
+            StopSystemTrayProgress();
 
 
 
-                                      });
-            t.Start();
+
             NavigationService.GoBack();
 
         }
@@ -126,9 +123,8 @@ namespace MetroFanfou
                     ((ApplicationBarMenuItem)ApplicationBar.MenuItems[1]).IsEnabled = true; //清空图片
                     imageIcon.Visibility = Visibility.Visible;
                     if (string.IsNullOrWhiteSpace(editContent.Text))
-                    {
                         editContent.Text = "#分享照片#";
-                    }
+
                     uploadFile = new UploadFile(e.OriginalFileName, ImageHelper.Compression(e.ChosenPhoto));
 
                     //保存缩略图
@@ -140,7 +136,7 @@ namespace MetroFanfou
                     imageIcon.Source = imageSource;
                 }
             }
-            catch
+            catch (Exception ex)
             {
             }
         }
